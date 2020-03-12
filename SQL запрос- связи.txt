@@ -1,0 +1,8 @@
+// Поиск и вывод заказов
+SELECT orders.id, customers.`First name`, customers.`Last name` FROM customers
+INNER JOIN orders ON customers.id = orders.customer_id
+
+// Поиск и вывод заказов по имени
+SELECT orders.id, orders.service, customers.`First name`, customers.`Last name` FROM customers
+INNER JOIN orders ON customers.id = orders.customer_id
+WHERE customers.`First name` = 'Alex'
