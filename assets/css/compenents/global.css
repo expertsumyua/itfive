@@ -1,0 +1,9 @@
+.w-15{
+    width: 15%;
+}
+
+.basket .badge{
+    top: 0;
+    left: 70%;
+    transform: translate(-50%, -50%);
+}

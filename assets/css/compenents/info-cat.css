@@ -1,0 +1,60 @@
+*{
+        margin: 0px;
+        padding: 0px;
+    }
+    html, body{
+        height: 100%;
+    }
+.inf{
+    background-color: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+body{
+    background:  #E5E5E5;
+}
+.cat-header{
+    position: relative;
+}
+
+.cat-title{
+    padding-right: 20px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 80px;
+    float: left;
+}
+.order-btn{
+    margin-top: 30px;
+    margin-bottom: 55px;
+}
+.top-left{
+    margin: 0;
+    overflow: hidden;
+}
+.top-right{
+
+    top: 0;
+    right: 0;
+    float: right;
+}
+.order-img{
+    top: 0;
+    max-width: 100%;
+}
+.cat-top-text{
+
+}
+.cat-bottom{
+    padding-bottom: 20px;
+    text-align: center;
+}
+.bottom-img{
+    width: 100%;
+}
+.price{
+    font-size: 23px;
+}

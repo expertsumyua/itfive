@@ -1,0 +1,41 @@
+
+
+.card a {
+	float: right;
+}
+
+.card-text img#modx {
+	position: absolute;
+    left: 375px;
+    top: 10px;
+}
+
+.card-text img#opencart {
+	position: absolute;
+    left: 420px;
+    top: 2px;
+}
+
+.card-text img#react {
+	position: absolute;
+    left: 385px;
+    top: 15px;
+}
+
+.card-text img#wordpress {
+	position: absolute;
+    left: 390px;
+    top: 25px;
+}
+
+.card-text img#shopify {
+	position: absolute;
+    left: 390px;
+    top: 5px;
+}
+
+.card-text img#nodeJS {
+	position: absolute;
+    left: 395px;
+    top: 5px;
+}

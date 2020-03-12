@@ -1,0 +1,19 @@
+
+
+
+/*шапка сайта*/
+
+.w-15{
+    width: 15%;
+}
+
+.card .table td{
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.btn-add{
+    top: 100%;
+    left: 50%;
+    transform: translate(-100%, -50%);
+}
