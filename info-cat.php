@@ -15,7 +15,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
     $result = $connect->query($sql);
     // Выводим циклом вайл по одному каждый продукт
     while ($row = mysqli_fetch_assoc($result)) {
-        include 'cat_card.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/parts/cat_card.php';
     }
 ?>
 
