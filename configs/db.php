@@ -5,7 +5,7 @@
 $server = "localhost";
 $username = "root";
 $password = "";
-$dbname = "shop";
+$dbname = "itfive";
 
 //подключение к базе даных chat
 $connect = new mysqli($server, $username, $password, $dbname);
