@@ -21,7 +21,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
                 <div class="card-info col p-4 d-flex flex-column position-static">
                     <strong class="d-inline-block mb-2 text-primary">Каталог услуг</strong>
                     <p class="card-info__description card-text mb-auto">Мы разрабатываем интернет-магазины с 2006 года, и за это время сформулировали четкую систему того, как сделать ваш бизнес в сети успешным с помощью качественного веб-ресурса, и дальнейшего  продвижения интернет магазина</p>
-                    <a href="#" class="stretched-link">Перейти в раздел</a>
+                    <a href="info-cat.php" class="stretched-link">Перейти в раздел</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
                     <img src="assets/img/service-index.png" height="223" width="171"/>
