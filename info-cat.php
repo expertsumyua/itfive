@@ -22,5 +22,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
 </div> <!-- НЕ ТРОГАТЬ!!!-->
 
 <?php
+/*================== Это ФУТЕР сайта =====================*/
 include $_SERVER['DOCUMENT_ROOT'] . '/parts/footer.php';
+/*========================================================*/
 ?>
