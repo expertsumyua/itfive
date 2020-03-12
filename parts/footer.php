@@ -4,8 +4,8 @@
         <div class="row row-cols-3 justify-content-between">
             <a href="/" class="text-decoration-none text-left">IT <span class="text-warning">Five</span></a>
             <nav class="it-five__nav nav d-flex justify-content-around">
-                <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="#">Главная</a>
-                <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="#">Услуги</a>
+                <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="/">Главная</a>
+                <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="info-cat.php">Услуги</a>
                 <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="#">Заказы</a>
             </nav>
             <p class="text-right">

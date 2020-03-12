@@ -22,7 +22,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
                 <a class="text-muted" href="#"></a>
             </div>
             <div class="col-4 text-center">
-                <a class="blog-header-logo text-dark" href="#"><span class="text-warning">IT</span>five</a>
+                <a class="blog-header-logo text-dark" href="/"><span class="text-warning">IT</span>five</a>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
                 <a class="btn btn-sm btn-outline-secondary ml-2" href="#">Войти</a>
@@ -41,7 +41,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
     <hr>
     <div class="nav-scroller py-1 mb-2">
         <nav class="it-five__nav nav d-flex justify-content-center text-decoration-none">
-            <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="index.html">Главная</a>
+            <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="/">Главная</a>
             <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="info-cat.php">Услуги</a>
             <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="#">Заказы</a>
         </nav>
