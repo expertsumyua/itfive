@@ -14,4 +14,5 @@ if ($page == "Наши товары" || $page == "edit" || $page == "delete" || 
     </div>
     <?php
 }
+}
 ?>
