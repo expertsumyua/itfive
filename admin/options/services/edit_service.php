@@ -54,28 +54,34 @@ if(isset($_POST['submit'])) {
                             <div class="card-body">
                                 <form method="POST" enctype="multipart/form-data">
                                     <div class="row">
+                                       <?php
+                                            $sql = "SELECT * FROM services WHERE id=" . $_GET['id'];
+                                            $result = $connect->query($sql);
+                                            $data = mysqli_fetch_assoc($result);
+                                            ?>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Название</label>
-                                                <input name="title" type="text" class="form-control" placeholder="">
+                                                <input name="title" type="text" class="form-control" placeholder="" value="<?php echo $data["title"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Короткое писание</label>
-                                                <input name="short_description" type="text" class="form-control" placeholder="Короткое писание" maxlength="60">
+                                                <input name="short_description" type="text" class="form-control" placeholder="Короткое писание" maxlength="60" value="<?php echo $data["short_description"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
+
                                                 <label>Полное описание</label>
-                                                <textarea name="full_description" type="text" class="form-control" placeholder="Полное описание"></textarea>
+                                                <textarea name="full_description" type="text" class="form-control" value=""><?php echo $data["full_description"]; ?></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Цена</label>
-                                                <input name="cost" type="text" class="form-control" placeholder="">
+                                                <input name="cost" type="text" class="form-control" placeholder="" value="<?php echo $data["cost"]; ?>">
                                             </div>
                                         </div>
                                     </div>
