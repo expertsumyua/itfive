@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Мар 13 2020 г., 15:26
+-- Время создания: Мар 13 2020 г., 18:05
 -- Версия сервера: 10.4.11-MariaDB
 -- Версия PHP: 7.4.2
 
@@ -207,7 +207,7 @@ CREATE TABLE `orders` (
   `customer_id` int(11) NOT NULL,
   `service` text NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `status` varchar(255) NOT NULL
+  `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -215,10 +215,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `customer_id`, `service`, `created_at`, `status`) VALUES
-(1, 2, 'Картошка', '2020-03-12 00:07:40', ''),
-(2, 1, 'Маркоывка', '2020-03-12 00:07:40', ''),
-(3, 1, 'Бурячок', '2020-03-12 00:17:42', ''),
-(4, 2, 'Хлебушек', '2020-03-12 00:17:42', '');
+(1, 2, 'Картошка', '2020-03-12 00:07:40', 0),
+(2, 1, 'Маркоывка', '2020-03-12 00:07:40', 0),
+(3, 1, 'Бурячок', '2020-03-12 00:17:42', 0),
+(4, 2, 'Хлебушек', '2020-03-12 00:17:42', 0);
 
 -- --------------------------------------------------------
 
