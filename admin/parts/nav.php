@@ -20,10 +20,10 @@
             <span>Home</span>
         </a>
     </li>
-    <li class="nav-item <?php if ($page == 'users'){echo 'active';}?>">
-        <a class="nav-link" href="users.php">
+    <li class="nav-item <?php if ($page == 'orders'){echo 'active';}?>">
+        <a class="nav-link" href="orders.php">
             <i class="fas fa-fw fa-user"></i>
-            <span>User</span>
+            <span>Заказы</span>
         </a>
     </li>
     <li class="nav-item <?php if ($page == 'products'){echo 'active';}?>"> <!-- href="products.php" -->
