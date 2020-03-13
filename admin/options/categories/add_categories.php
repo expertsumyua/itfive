@@ -2,7 +2,7 @@
 //подключаем базу даних
 include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 //устанавливаем страницу
-$page = "Добавить товар";
+$page = "Добавить категорию";
 
 
 if (isset($_POST['submit'])) {
@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
                                             <input type="file" name="img_upload" class="">
                                         </div>
                                     </div>
-                                    <button name="submit" value="1" type="submit" class="btn btn-outline-success btn-fill pull-right">Добавить товар</button>
+                                    <button name="submit" value="1" type="submit" class="btn btn-outline-success btn-fill pull-right">Добавить категорию</button>
                                 </form>
                             </div>
                         </div>

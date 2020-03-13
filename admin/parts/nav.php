@@ -15,13 +15,13 @@
         Menu
     </div>
     <li class="nav-item <?php if ($page == "Главная"){echo 'active';}?>">
-        <a class="nav-link" href="/admin">
+        <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin">
             <i class="fas fa-fw fa-home"></i>
             <span>Главная</span>
         </a>
     </li>
     <li class="nav-item <?php if ($page == 'Заказы'){echo 'active';}?>">
-        <a class="nav-link" href="orders.php">
+        <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/orders.php">
             <i class="fas fa-fw fa-user"></i>
             <span>Заказы</span>
         </a>
@@ -33,7 +33,7 @@
         </a>
     </li>
     <li class="nav-item <?php if ($page == 'Услуги'){echo 'active';}?>">
-        <a class="nav-link" href="services.php">
+        <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/services.php">
             <i class="fas fa-fw fa-folder"></i>
             <span>Наши товары</span>
         </a>
