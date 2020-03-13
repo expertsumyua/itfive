@@ -1,6 +1,9 @@
 <?php
 
+
 if ($page == "products" || $page == "edit" || $page == "delete" || $page == "Заказы" || $page == "categories") {
+if ($page == "Наши товары" || $page == "edit" || $page == "delete" || $page == "Заказы" || $page == "categories" || $page=="Добавить товар" || $page == "Изменить продукт") {
+
     ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800 text-capitalize"><?php echo $page ?></h1>

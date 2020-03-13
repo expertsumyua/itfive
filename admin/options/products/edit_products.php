@@ -2,7 +2,7 @@
 //подключаем базу даних
 include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 //устанавливаем страницу
-$page = "products";
+$page = "Изменить продукт";
 
 
 if(isset($_POST['submit'])) {
@@ -50,9 +50,6 @@ if(isset($_POST['submit'])) {
                 <div class="row">
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Edit Product</h4>
-                            </div>
                             <div class="card-body">
                                 <form method="POST">
                                     <div class="row">
@@ -63,24 +60,24 @@ if(isset($_POST['submit'])) {
                                             ?>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Title</label>
+                                                <label>Название</label>
                                                 <input name="title" type="text" class="form-control" value="<?php echo $data["title"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Description</label>
-                                                <input name="description" type="text" class="form-control" value="<?php echo $data["description"]; ?>">
+                                                <label>Описание</label>
+                                                <textarea name="description" type="text" class="form-control" value=""><?php echo $data["description"]; ?> </textarea>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-2">
                                             <div class="form-group">
-                                                <label>Cost</label>
+                                                <label>Цена</label>
                                                 <input name="cost" type="text" class="form-control" value="<?php echo $data["cost"]; ?>">
                                             </div>
                                         </div>
                                     </div>
-                                    <button name="submit" value="1" type="submit" class="btn btn-success btn-fill pull-right">Edit Product</button>
+                                    <button name="submit" value="1" type="submit" class="btn btn-outline-info btn-fill pull-right">Внести изменения</button>
                                 </form>
                             </div>
                         </div>
