@@ -36,13 +36,23 @@ $page = "products"
                         ?>
                 <!-- Row -->
                 <div class="row">
-                    <!-- DataTable with Hover -->
-                    <div class="col-lg-12 text-center">
-                        <div class="card mb-4">
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Products</h6>
+                    <div class="col-md-12">
+                        <div class="card strpied-tabled-with-hover">
+
+                            <div class="card-header">
+                                <h4 class="card-title">Наши товары
+                                <a  href="http://itfive.local/admin/options/products/add_products.php" class="btn btn-secondary">Add</a>
+                                </h4>
                             </div>
-                           Блок услуг
+                            <div class="card-body table-full-width table-responsive">
+                                <table class="table table-hover table-striped" id="data_table">
+                                   
+                                    <?php
+                                    include "products_table.php";
+                                    ?>
+
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -74,6 +84,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
         $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });
 </script>
+<script src="/admin/assets/js/products_options.js"></script>
 </body>
 
 </html>

@@ -26,10 +26,10 @@
             <span>User</span>
         </a>
     </li>
-    <li class="nav-item <?php if ($page == 'products'){echo 'active';}?>">
-        <a class="nav-link collapsed" href="products.php">
+    <li class="nav-item <?php if ($page == 'products'){echo 'active';}?>"> <!-- href="products.php" -->
+        <a class="nav-link collapsed" href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/products.php">
             <i class="fab fa-fw fa-product-hunt"></i>
-            <span>Products</span>
+            <span>Наши товары</span>
         </a>
     </li>
     <li class="nav-item <?php if ($page == 'categories'){echo 'active';}?>">
