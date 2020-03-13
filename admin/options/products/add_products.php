@@ -2,7 +2,7 @@
 //подключаем базу даних
 include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 //устанавливаем страницу
-$page = "products";
+$page = "Добавить товар";
 
 
 if (isset($_POST['submit'])) {
@@ -51,38 +51,35 @@ if (isset($_POST['submit'])) {
                 <div class="row">
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Добавить товар</h4>
-                            </div>
                             <div class="card-body">
                                 <form method="POST" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Title</label>
-                                                <input name="title" type="text" class="form-control" placeholder="Title">
+                                                <label>Название</label>
+                                                <input name="title" type="text" class="form-control" placeholder="">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Description</label>
-                                                <textarea name="description" type="text" class="form-control" placeholder="Description"></textarea>
+                                                <label>Описание</label>
+                                                <textarea name="description" type="text" class="form-control" placeholder=""></textarea>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-2">
                                             <div class="form-group">
-                                                <label>Cost</label>
-                                                <input name="cost" type="text" class="form-control" placeholder="Cost">
+                                                <label>Цена</label>
+                                                <input name="cost" type="text" class="form-control" placeholder="">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Img</label><br>
+                                            <label>Картинка</label><br>
                                             <input type="file" name="img_upload" class="">
                                         </div>
                                     </div>
-                                    <button name="submit" value="1" type="submit" class="btn btn-success btn-fill pull-right">Add Product</button>
+                                    <button name="submit" value="1" type="submit" class="btn btn-outline-success btn-fill pull-right">Добавить товар</button>
                                 </form>
                             </div>
                         </div>

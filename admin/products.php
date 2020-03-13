@@ -2,7 +2,7 @@
 //подключаем базу даних
 include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 //устанавливаем страницу
-$page = "products"
+$page = "Наши товары"
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,9 +40,7 @@ $page = "products"
                         <div class="card strpied-tabled-with-hover">
 
                             <div class="card-header">
-                                <h4 class="card-title">Наши товары
-                                <a  href="http://itfive.local/admin/options/products/add_products.php" class="btn btn-secondary">Add</a>
-                                </h4>
+                                <a  href="http://itfive.local/admin/options/products/add_products.php" class="btn btn-outline-success">Добавить товар</a>
                             </div>
                             <div class="card-body table-full-width table-responsive">
                                 <table class="table table-hover table-striped" id="data_table">
