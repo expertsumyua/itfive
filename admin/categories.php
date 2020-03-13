@@ -2,7 +2,7 @@
 //подключаем базу даних
 include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 //устанавливаем страницу
-$page = "categories"
+$page = "Категории"
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,19 +30,27 @@ $page = "categories"
             <!-- Topbar -->
             <!-- Container Fluid-->
             <div class="container-fluid" id="container-wrapper">
-                <!--breadcrumb-->
-                <?php
-                include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/breadcrumb.php"
-                ?>
+                    <!--breadcrumb-->
+                        <?php
+                        include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/breadcrumb.php"
+                        ?>
                 <!-- Row -->
                 <div class="row">
-                    <!-- DataTable with Hover -->
-                    <div class="col-lg-12">
-                        <div class="card mb-4 text-center">
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Products</h6>
+                    <div class="col-md-12">
+                        <div class="card strpied-tabled-with-hover">
+
+                            <div class="card-header">
+                                <a  href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/options/categories/add_categories.php" class="btn btn-outline-success">Добавить категорию услуг</a>
                             </div>
-                            Таблица категорий
+                            <div class="card-body table-full-width table-responsive">
+                                <table class="table table-hover table-striped" id="data_table">
+                                   
+                                    <?php
+                                    include "categories_table.php";
+                                    ?>
+
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -74,7 +82,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
         $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });
 </script>
+<script src="/admin/assets/js/products_options.js"></script>
 </body>
-
 
 </html>
