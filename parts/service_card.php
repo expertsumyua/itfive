@@ -13,7 +13,7 @@
             </div>
             <div class="card-footer" style="background: #F2F2F2">
                 <p class="order d-inline">Цена: <strong><?php echo $row['cost'] ?>$</strong></p>
-                    <a href="#"class="btn btn-outline-primary ml-5">Заказать</a>
+                    <a href="#"class="btn btn-outline-primary ml-5 justify-content-end">Заказать</a>
                 </p>
             </div>
         </div>
