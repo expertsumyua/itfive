@@ -10,7 +10,7 @@ if(isset($_POST['submit'])) {
     $sql = "UPDATE categories SET title= '". $_POST['title'] ."' , description= '". $_POST['description'] ."' , cost= '". $_POST['cost'] ."' WHERE categories . id =" . $_GET['id'];
     $sql = "UPDATE services SET title = '". $_POST['title'] ."', short_description= '". $_POST['short_description'] ."', full_description= '". $_POST['full_description'] ."', cost= '". $_POST['cost'] ."' WHERE services . id =" . $_GET['id'];
     if($connect->query($sql)){
-        header("Location: /admin/products.php");
+        header("Location: /admin/services.php");
     } else {
         echo "Error";
     }
