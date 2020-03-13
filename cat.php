@@ -10,17 +10,17 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
 
 ?>
 
-<div class="infoCategories">
+<div class="Categories">
+	<h3 class="text-left pl-5">Наши товары</h3>
 	<?php
 	    $sql = "SELECT * FROM categories";
 	    $result = $connect->query($sql);
 	    // Выводим циклом вайл по одному каждый продукт
 	    while ($row = mysqli_fetch_assoc($result)) {
-	        include $_SERVER['DOCUMENT_ROOT'] . '/parts/info-cat_card.php';
+	        include $_SERVER['DOCUMENT_ROOT'] . '/parts/cat_card.php';
 	    }
 	?>
 </div>
-
 
 </div> <!-- НЕ ТРОГАТЬ!!!-->
 

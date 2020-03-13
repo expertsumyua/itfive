@@ -51,7 +51,7 @@ $page = "Заказы"
 
                                         <tbody>
                                                 <?php
-                                                $sql = "SELECT orders.id, orders.status, orders.created_at, customers.`First name`, customers.`Last name`, customers.`phone`, customers.`email`
+                                                $sql = "SELECT orders.id, orders.status, orders.created_at, customers.first_name, customers.last_name, customers.`phone`, customers.`email`
                                                         FROM customers
                                                         INNER JOIN orders ON customers.id = orders.customer_id
                                                         ORDER BY orders.id ASC";
@@ -61,8 +61,8 @@ $page = "Заказы"
                                                     <tr>
                                                         <th><?php echo $row['id']; ?></th>
                                                         <td><a href="/admin/watch_order.php?id=<?php echo $row['id']; ?>">
-                                                            <?php echo $row['First name']; ?>,
-                                                            <?php echo $row['Last name']; ?>,
+                                                            <?php echo $row['first_name']; ?>,
+                                                            <?php echo $row['last_name']; ?>,
                                                             <?php echo $row['phone']; ?>,
                                                             <?php echo $row['email']; ?>,
                                                         </a></td>
