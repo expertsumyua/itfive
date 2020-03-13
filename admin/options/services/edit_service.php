@@ -2,7 +2,7 @@
 //подключаем базу даних
 include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 //устанавливаем страницу
-$page = "Изменить услугу";
+$page = "Изменить услуги";
 
 
 if(isset($_POST['submit'])) {
