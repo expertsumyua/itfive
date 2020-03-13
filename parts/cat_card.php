@@ -8,7 +8,7 @@
                             <h3 class=" mb-4 col-8 border-bottom cat-title">
                                 <?php echo $row['title'] ?>
                             </h3>
-                            <button type="button" class=" col-4 btn btn-outline-success order-btn">Заказать</button>
+                            <a href="services.php?id=<?php echo $row['id'] ?>" type="button" class=" col-4 btn btn-outline-success order-btn">Заказать</a>
                         </div>
                         <div class="cat-col-text px-5">
                             <p><?php echo $row['description'] ?></p>
@@ -30,7 +30,7 @@
                     <div class="col-md-4 bottom-right">
                         <div class=" d-flex flex-column justify-content-center h-100">
                             <?php $show_img = base64_encode($row['img']) ?>
-                            <img class="bottom-img" src="data:image/jpeg;base64, <?=$show_img ?>" alt="">
+                            <img class="bottom-img" src="data:image/jpeg;base64,<?=$show_img ?>">
                             <div class="price">От <?php echo $row['cost'] ?>$</div>
                         </div>
                     </div>
