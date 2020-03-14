@@ -11,7 +11,8 @@ if($loginOut){
         ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         //ждем загрузки и выполняем код
         ajax.onload = function () {
-            document.cookie = name+'=; Max-Age=-99999999;';
+            document.cookie = 'customers_id=; Max-Age=-99999999;';
+            document.cookie = 'status=; Max-Age=-99999999;';
                 location.assign($siteURL);
         };
         //отправка запроса

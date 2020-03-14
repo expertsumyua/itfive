@@ -1,6 +1,8 @@
 <?php
 // Подключаем базу даних.
 include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
+
+
 ?>
 
 <!DOCTYPE html>

@@ -11,3 +11,10 @@
 <link href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/css/ruang-admin.min.css" rel="stylesheet">
 <link href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <link href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/css/main.css" rel="stylesheet">
+<?php
+//проверяем зашел разрабочик или нет
+if($_COOKIE['status'] != 1){
+header('Location: http://itfive.local/');
+die();
+}
+?>

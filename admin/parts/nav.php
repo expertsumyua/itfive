@@ -49,9 +49,9 @@
         Опции
     </div>
     <li class="nav-item mt-2">
-        <a class="nav-link" href="login.html">
+        <button class="nav-link border-0 bg-transparent" id="login-out">
             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
             <span>Выйти</span>
-        </a>
+        </button>
     </li>
 </ul>

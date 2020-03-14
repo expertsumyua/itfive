@@ -30,16 +30,22 @@ include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
                     <?php
+
                     if ($_COOKIE) {
+                        if($_COOKIE['status']){?>
+                            <a class="btn btn-sm btn-outline-success ml-2" href="/admin">Админ-панель</a>
+                            <?php
+                        }
                         ?>
-                        <button id="login-out" value="<?php echo $_COOKIE['customers_id']?>" class="btn btn-sm btn-outline-secondary ml-2">Выйти</button>
+                        <button id="login-out" type="submit" class="btn btn-sm btn-outline-secondary ml-2">Выйти</button>
                         <?php
                     } else {
                         ?>
                         <a class="btn btn-sm btn-outline-secondary ml-2" href="login.php">Войти</a>
-                        <a class="btn btn-sm btn-outline-secondary ml-2" href="register.php">Регистацыя</a>
+                        <a class="btn btn-sm btn-outline-secondary ml-2" href="register.php">Регистация</a>
                         <?php
                     }
+
                     ?>
                     <a id="add-basket" class="basket d-flex flex-column justify-content-center align-items-center text-decoration-none position-relative"
                        href="http://<?php echo $_SERVER['HTTP_HOST']?>/basket.php">

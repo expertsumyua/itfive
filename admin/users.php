@@ -1,6 +1,7 @@
 <?php
 //подключаем базу даних
 include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
+
 //устанавливаем страницу
 $page = "Пользователи"
 ?>
