@@ -8,6 +8,7 @@ $page = "Доска";
 ?>
 
 <?php
+
 $boardindex = 0;
 if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
     $sql = "INSERT INTO `cards` (`id`, `name`, `date_time`, `type_access`, `type`) VALUES (NULL, '" . $_POST["cardname"] . "', current_timestamp(), '" . $_POST["type_access"] . "', '" . $_POST["type_card"] . "');";

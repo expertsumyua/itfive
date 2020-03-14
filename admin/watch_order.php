@@ -2,7 +2,32 @@
 // Подключаем базу даних.
 include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 
+?>
 
+<?php
+
+
+$sql = "SELECT * FROM orders where id =" . $_GET['id'];
+$result = $connect->query($sql);
+$row = mysqli_fetch_assoc($result);
+$order_servise = $row['service'];
+
+//echo $order_servise;
+if (isset($_POST))
+{
+    //echo $order_servise;
+    /// Создаем доску в таблице boards и добавляем связь пользователя с таблицей в board_users
+        $sql = "SELECT * FROM boards WHERE order_id=" . $_GET['id'];
+        if (!mysqli_fetch_assoc($connect->query($sql))) {
+
+            $sql_boards = "INSERT INTO `boards` (order_id, order_servise) VALUES ('" . $_GET['id'] . "', '" . $order_servise . "');";
+            mysqli_query($connect, $sql_boards);
+            $sql_m = "SELECT * FROM `boards` WHERE `order_id` = " . $_GET['id'] . " ORDER BY `id` DESC";
+            $boards = mysqli_fetch_assoc(mysqli_query($connect, $sql_m));
+            $boards["id"];
+        }
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +52,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 
             </nav>
             <!-- Topbar -->
+            <!-- <form method="POST"> -->
             <form action="/admin/board/board.php?order=<?php echo $_GET["id"]; ?>" method="POST">
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
@@ -53,6 +79,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
                                                     $sql = "SELECT * FROM orders where id =" . $_GET['id'];
                                                     $result = $connect->query($sql);
                                                     $row = mysqli_fetch_assoc($result);
+                                                    $order_servise = $row['service'];
                                                     ?>
                                                     <tr>
                                                     	<td><?php echo $row['id']; ?></td>
