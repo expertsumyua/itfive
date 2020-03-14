@@ -33,7 +33,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
 
                     if ($_COOKIE) {
                         if($_COOKIE['status']){?>
-                            <a class="btn btn-sm btn-outline-success ml-2" href="/admin">Войти</a>
+                            <a class="btn btn-sm btn-outline-success ml-2" href="/admin">Админ-панель</a>
                             <?php
                         }
                         ?>
@@ -42,7 +42,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
                     } else {
                         ?>
                         <a class="btn btn-sm btn-outline-secondary ml-2" href="login.php">Войти</a>
-                        <a class="btn btn-sm btn-outline-secondary ml-2" href="register.php">Регистацыя</a>
+                        <a class="btn btn-sm btn-outline-secondary ml-2" href="register.php">Регистация</a>
                         <?php
                     }
 
