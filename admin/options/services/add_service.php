@@ -13,14 +13,19 @@ if (isset($_POST['submit'])) {
     if($connect->query($sql)){
         $sql = "SELECT * FROM `services` ORDER BY `services`.`id` DESC";
         $new = mysqli_fetch_assoc($connect->query($sql));
-        $sql = "INSERT INTO `category_services` (`category_id`, `service_id`) VALUES ('" . $_POST['cat'] . "', '". $new["id"] ."'); ";
-        if($connect->query($sql)){
-            header("Location: /admin/services.php");
-        }
-    } else {
-        echo "Error";
+        $cats = $_POST['cat'];
+            if(!empty($cats)) {
+                $N = count($cats);
+                for($i=0; $i < $N; $i++){
+                    $sql = "INSERT INTO `category_services` (`category_id`, `service_id`) VALUES ('" . $cats[$i] . "', '". $new["id"] ."'); ";
+                    $connect->query($sql);
+                }
+            }
+        header("Location: /admin/services.php");
+
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,20 +90,25 @@ if (isset($_POST['submit'])) {
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Категория</label>
-                                                    <select class="form-control" name="cat" id="">
+                                                <label><b>Категории:</b></label><br/>
+
                                                         <?php
                                                             $sql = "SELECT * FROM categories";
                                                             $result = $connect->query($sql);
                                                             while ($row = mysqli_fetch_assoc($result)) {
                                                             ?>
-                                                        <option value="<?php echo $row['id']; ?>"><?php echo $row['title']; ?></option>
+                                                        <div class="form-check form-check-inline">
+                                                          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="cat[]" value="<?php echo $row['id']; ?>">
+                                                          <label class="form-check-label" for="inlineCheckbox1"><?php echo $row['title']; ?></label>
+                                                        </div>
                                                         <?php } ?>
 
 
-                                                    </select>
+
+
+
                                             </div>
                                         </div>
                                     <div class="col-md-6">

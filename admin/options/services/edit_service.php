@@ -9,7 +9,18 @@ if(isset($_POST['submit'])) {
 
 
     $sql = "UPDATE services SET title = '". $_POST['title'] ."', short_description= '". $_POST['short_description'] ."', full_description= '". $_POST['full_description'] ."', cost= '". $_POST['cost'] ."' WHERE services . id =" . $_GET['id'];
+    $sql = "DELETE FROM `category_services` WHERE `service_id` =" . $_GET['id'] ."";
+    $result = $connect->query($sql);
+
     if($connect->query($sql)){
+        $cats = $_POST['cat'];
+            if(!empty($cats)) {
+                $N = count($cats);
+                for($i=0; $i < $N; $i++){
+                    $sql = "INSERT INTO `category_services` (`category_id`, `service_id`) VALUES ('" . $cats[$i] . "', '". $_GET["id"] ."'); ";
+                    $connect->query($sql);
+                }
+            }
         header("Location: /admin/services.php");
     } else {
         echo "Error";
@@ -85,32 +96,28 @@ if(isset($_POST['submit'])) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Категория</label>
-                                                    <select class="form-control" name="cat" id="">
-                                                        <?php
-                                                            $sql = "SELECT * FROM category_services where service_id =" . $_GET['id'];
-
-                                                            $result = $connect->query($sql);
-                                                            $cat_id = mysqli_fetch_assoc($result);
-                                                            $sql = "SELECT * FROM categories where id =" . $cat_id['category_id'];
-                                                             $result = $connect->query($sql);
-                                                            $category = mysqli_fetch_assoc($result);
-
-                                                            ?>
-                                                        <option value="<?php echo $category['id']; ?>"><?php echo $category['title']; ?></option>
+                                                <label><b>Категории:</b></label><br/>
 
                                                         <?php
-                                                            $sql = "SELECT * FROM categories where id != ". $category['id'];
+                                                            $sql = "SELECT * FROM categories";
                                                             $result = $connect->query($sql);
                                                             while ($row = mysqli_fetch_assoc($result)) {
                                                             ?>
-                                                        <option value="<?php echo $row['id']; ?>"><?php echo $row['title']; ?></option>
+                                                        <div class="form-check form-check-inline">
+                                                          <input class="form-check-input" type="checkbox"
+
+                                                          name="cat[]" value="<?php echo $row['id']; ?>"
+                                                          <?php $sql_c = "SELECT count(*) FROM category_services where category_id = ". $row['id'] ." AND service_id = ". $_GET['id'];
+                                                            $result_c = $connect->query($sql_c);
+                                                            $c = mysqli_fetch_assoc($result_c);
+                                                                 if($c['count(*)'] == 1){
+                                                                 echo "checked";
+                                                                 }?>>
+                                                          <label class="form-check-label" for="inlineCheckbox1"><?php echo $row['title']; ?></label>
+                                                        </div>
                                                         <?php } ?>
-
-
-                                                    </select>
                                             </div>
                                         </div>
                                     <button name="submit" value="1" type="submit" class="btn btn-outline-success btn-fill pull-right">Изменить Услугу</button>
