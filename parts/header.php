@@ -28,11 +28,12 @@ include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
                 <a class="btn btn-sm btn-outline-secondary ml-2" href="#">Войти</a>
                 <a class="btn btn-sm btn-outline-secondary ml-2" href="#">Выйти</a>
                 <a class="btn btn-sm btn-outline-secondary ml-2" href="#">Регистацыя</a>
-                <a class="basket d-flex flex-column justify-content-center align-items-center text-decoration-none position-relative">
-                    <img class="w-15" src="assets/img/cart.svg" alt="cart">Корзина
-
-                    <span class="badge badge-pill badge-success position-absolute">0
-                            </span>
+                <a class="basket d-flex flex-column justify-content-center align-items-center text-decoration-none position-relative" href="#">
+                    <img class="w-15" src="assets/img/cart.svg" alt="cart">
+                    Корзина
+                    <span class="badge badge-pill badge-success position-absolute">
+                    0
+                    </span>
 
                 </a>
             </div>
