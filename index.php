@@ -15,7 +15,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
         </div>
     </div>
 
-    <div class="row mb-2">
+    <div class="row">
         <div class="col-md-6">
             <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="card-info col p-4 d-flex flex-column position-static">
@@ -42,6 +42,15 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
         </div>
     </div>
 </div>
+
+<div class="container bg-white px-0">
+    <div class="row">
+        <div class="col-12">
+             <img class="img-fluid" src="assets/img/mainImg.jpg">
+        </div>
+    </div>
+</div>
+
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/parts/footer.php';
 ?>
