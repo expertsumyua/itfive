@@ -23,11 +23,11 @@ if($loginOut){
 
 //Добавление в корзину
 function addToBasket(btn) {
-    console.dir(btn);
+    console.dir(btn.dataset.ser);
      var ajax = new XMLHttpRequest();
         ajax.open('POST', $siteURL + 'modules/basket/add-basket.php', false);
         ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        ajax.send('id=' + btn.dataset.ser + "&sum_count=" + sum_count);     // ajax.send('cat-id=' + btn.dataset.cat + '&ser-id=' + btn.dataset.ser ); 
+        ajax.send('id=' + btn.dataset.ser + "&sum_count=" + sum_count); // ajax.send('cat-id=' + btn.dataset.cat + '&ser-id=' + btn.dataset.ser ); 
         console.dir(ajax); 
 
         var response = JSON.parse(ajax.response);
