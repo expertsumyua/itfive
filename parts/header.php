@@ -1,5 +1,6 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,36 +17,70 @@ include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
 </head>
 <body>
 <div class="it-five container bg-white">
-    <header class="it-five__header py-3">
-        <div class="row flex-nowrap justify-content-between align-items-center">
-            <div class="col-4 pt-1">
-                <a class="text-muted" href="#"></a>
-            </div>
-            <div class="col-4 text-center">
-                <a class="blog-header-logo text-dark" href="/"><span class="text-warning">IT</span>five</a>
-            </div>
-            <div class="col-4 d-flex justify-content-end align-items-center">
-                <a class="btn btn-sm btn-outline-secondary ml-2" href="#">Войти</a>
-                <a class="btn btn-sm btn-outline-secondary ml-2" href="#">Выйти</a>
-                <a class="btn btn-sm btn-outline-secondary ml-2" href="#">Регистацыя</a>
-                <a class="basket d-flex flex-column justify-content-center align-items-center text-decoration-none position-relative" href="#">
-                    <img class="w-15" src="assets/img/cart.svg" alt="cart">
-                    Корзина
-                    <span class="badge badge-pill badge-success position-absolute">
+    <?php
+    if ($_SERVER["REQUEST_URI"] !== "/login.php" and $_SERVER["REQUEST_URI"] !== "/register.php") {
+        ?>
+        <header class="it-five__header py-3">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+                <div class="col-4 pt-1">
+                    <a class="text-muted" href="#"></a>
+                </div>
+                <div class="col-4 text-center">
+                    <a class="blog-header-logo text-dark" href="/"><span class="text-warning">IT</span>five</a>
+                </div>
+                <div class="col-4 d-flex justify-content-end align-items-center">
+                    <?php
+                    if ($_COOKIE) {
+                        ?>
+                        <button id="login-out" value="<?php echo $_COOKIE['customers_id']?>" class="btn btn-sm btn-outline-secondary ml-2">Выйти</button>
+                        <?php
+                    } else {
+                        ?>
+                        <a class="btn btn-sm btn-outline-secondary ml-2" href="login.php">Войти</a>
+                        <a class="btn btn-sm btn-outline-secondary ml-2" href="register.php">Регистацыя</a>
+                        <?php
+                    }
+                    ?>
+                    <a class="basket d-flex flex-column justify-content-center align-items-center text-decoration-none position-relative"
+                       href="#">
+                        <img class="w-15" src="assets/img/cart.svg" alt="cart">
+                        Корзина
+                        <span class="badge badge-pill badge-success position-absolute">
                     0
                     </span>
 
-                </a>
+                    </a>
+                </div>
             </div>
+        </header>
+        <hr>
+        <div class="nav-scroller py-1 mb-2">
+            <nav class="it-five__nav nav d-flex justify-content-center text-decoration-none">
+                <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="/">Главная</a>
+                <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="cat.php">Услуги</a>
+                <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="#">Заказы</a>
+            </nav>
         </div>
-    </header>
-    <hr>
-    <div class="nav-scroller py-1 mb-2">
-        <nav class="it-five__nav nav d-flex justify-content-center text-decoration-none">
-            <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="/">Главная</a>
-            <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="cat.php">Услуги</a>
-            <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="#">Заказы</a>
-        </nav>
-    </div>
-    <hr>
+        <hr>
+        <?php
+    } else {
+        ?>
 
+        <header class="it-five__header py-3">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+                <div class="col-4 pt-1">
+                    <a class="text-muted" href="#"></a>
+                </div>
+                <div class="col-4 text-center">
+                    <a class="blog-header-logo text-dark" href="/"><span class="text-warning">IT</span>five</a>
+                </div>
+                <div class="col-4 d-flex justify-content-end align-items-center">
+                    <a class="btn btn-sm btn-outline-secondary ml-2" href="#">Войти</a>
+                    <a class="btn btn-sm btn-outline-secondary ml-2" href="#">Выйти</a>
+                    <a class="btn btn-sm btn-outline-secondary ml-2" href="register.php">Регистацыя</a>
+                </div>
+            </div>
+        </header>
+        <?php
+    }
+    ?>
