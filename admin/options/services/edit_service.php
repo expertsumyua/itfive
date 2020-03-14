@@ -2,21 +2,21 @@
 //подключаем базу даних
 include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 //устанавливаем страницу
-$page = "Добавить товар";
+$page = "Изменить услуги";
 
 
-if (isset($_POST['submit'])) {
+if(isset($_POST['submit'])) {
 
-        $img = addslashes(file_get_contents($_FILES['img_upload']['tmp_name']));
-
-    $sql = "Insert into categories (title, description, cost, img) VALUES ('" . $_POST['title'] . "', '" . $_POST['description'] . "', '" . $_POST['cost'] . "', '$img')";
+    $sql = "UPDATE categories SET title= '". $_POST['title'] ."' , description= '". $_POST['description'] ."' , cost= '". $_POST['cost'] ."' WHERE categories . id =" . $_GET['id'];
+    $sql = "UPDATE services SET title = '". $_POST['title'] ."', short_description= '". $_POST['short_description'] ."', full_description= '". $_POST['full_description'] ."', cost= '". $_POST['cost'] ."' WHERE services . id =" . $_GET['id'];
     if($connect->query($sql)){
-        header("Location: /admin/products.php");
+        header("Location: /admin/services.php");
     } else {
         echo "Error";
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,58 +54,59 @@ if (isset($_POST['submit'])) {
                             <div class="card-body">
                                 <form method="POST" enctype="multipart/form-data">
                                     <div class="row">
+                                       <?php
+                                            $sql = "SELECT * FROM services WHERE id=" . $_GET['id'];
+                                            $result = $connect->query($sql);
+                                            $data = mysqli_fetch_assoc($result);
+                                            ?>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Название</label>
-                                                <input name="title" type="text" class="form-control" placeholder="">
+                                                <input name="title" type="text" class="form-control" placeholder="" value="<?php echo $data["title"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Описание</label>
-                                                <textarea name="description" type="text" class="form-control" placeholder=""></textarea>
+                                                <label>Короткое писание</label>
+                                                <input name="short_description" type="text" class="form-control" placeholder="Короткое писание" maxlength="60" value="<?php echo $data["short_description"]; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+
+                                                <label>Полное описание</label>
+                                                <textarea name="full_description" type="text" class="form-control" value=""><?php echo $data["full_description"]; ?></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Цена</label>
-                                                <input name="cost" type="text" class="form-control" placeholder="">
+                                                <input name="cost" type="text" class="form-control" placeholder="" value="<?php echo $data["cost"]; ?>">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Картинка</label><br>
-                                            <input type="file" name="img_upload" class="">
-                                        </div>
-                                    </div>
-                                    <button name="submit" value="1" type="submit" class="btn btn-outline-success btn-fill pull-right">Добавить товар</button>
+                                    <button name="submit" value="1" type="submit" class="btn btn-outline-success btn-fill pull-right">Изменить Услугу</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--Row-->
             </div>
             <!---Container Fluid-->
         </div>
-
         <!-- Footer -->
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/footer.php" ?>
         <!-- Footer -->
     </div>
 </div>
 </div>
-
 <!-- Scroll to top -->
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
-
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
 ?>
-
 <!-- Page level custom scripts -->
 <script>
     $(document).ready(function () {
@@ -113,6 +114,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
         $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });
 </script>
+<script src="/admin/assets/js/products_options.js"></script>
 </body>
 
 </html>

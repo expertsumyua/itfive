@@ -33,7 +33,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
                 <div class="card-info col p-4 d-flex flex-column position-static">
                     <strong class="d-inline-block mb-2 text-success">Заказать</strong>
                     <p class="card-info__description  mb-auto">В зависимости от целей, ниши и других факторов возможно разное распределение бюджета между перечисленными пунктами. Также стоит учесть, что требования поисковых систем постоянно меняются.</p>
-                    <a href="#" class="stretched-link">Перейти в раздел</a>
+                    <a href="services.php" class="stretched-link">Перейти в раздел</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
                     <img src="assets/img/orders-index.png" height="231" width="136"/>

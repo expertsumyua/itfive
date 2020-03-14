@@ -14,38 +14,38 @@
     <div class="sidebar-heading">
         Menu
     </div>
-    <li class="nav-item <?php if ($page == "home"){echo 'active';}?>">
-        <a class="nav-link" href="/admin">
+    <li class="nav-item <?php if ($page == "Главная"){echo 'active';}?>">
+        <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin">
             <i class="fas fa-fw fa-home"></i>
-            <span>Home</span>
+            <span>Главная</span>
         </a>
     </li>
-    <li class="nav-item <?php if ($page == 'orders'){echo 'active';}?>">
-        <a class="nav-link" href="orders.php">
+    <li class="nav-item <?php if ($page == 'Заказы'){echo 'active';}?>">
+        <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/orders.php">
             <i class="fas fa-fw fa-user"></i>
             <span>Заказы</span>
         </a>
     </li>
-    <li class="nav-item <?php if ($page == 'products'){echo 'active';}?>"> <!-- href="products.php" -->
-        <a class="nav-link collapsed" href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/products.php">
+    <li class="nav-item <?php if ($page == 'Категории'){echo 'active';}?>"> <!-- href="categories.php" -->
+        <a class="nav-link collapsed" href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/categories.php">
             <i class="fab fa-fw fa-product-hunt"></i>
-            <span>Наши товары</span>
+            <span>Категории</span>
         </a>
     </li>
-    <li class="nav-item <?php if ($page == 'categories'){echo 'active';}?>">
-        <a class="nav-link" href="categories.php">
+    <li class="nav-item <?php if ($page == 'Услуги'){echo 'active';}?>">
+        <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/services.php">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Categories</span>
+            <span>Наши товары</span>
         </a>
     </li>
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
-        Settings
+        Опции
     </div>
     <li class="nav-item mt-2">
         <a class="nav-link" href="login.html">
             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-            <span>Logout</span>
+            <span>Выйти</span>
         </a>
     </li>
 </ul>

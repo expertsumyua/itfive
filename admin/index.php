@@ -2,7 +2,7 @@
 //подключаем базу даних
 include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 //устанавливаем страницу
-$page = "home"
+$page = "Главная"
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +35,7 @@ $page = "home"
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page"><a href="./">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="./">Главная</a></li>
                     </ol>
                 </div>
 

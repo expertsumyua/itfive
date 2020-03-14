@@ -28,11 +28,12 @@ include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
                 <a class="btn btn-sm btn-outline-secondary ml-2" href="#">Войти</a>
                 <a class="btn btn-sm btn-outline-secondary ml-2" href="#">Выйти</a>
                 <a class="btn btn-sm btn-outline-secondary ml-2" href="#">Регистацыя</a>
-                <a class="basket d-flex flex-column justify-content-center align-items-center text-decoration-none position-relative">
-                    <img class="w-15" src="assets/img/cart.svg" alt="cart">Корзина
-
-                    <span class="badge badge-pill badge-success position-absolute">0
-                            </span>
+                <a class="basket d-flex flex-column justify-content-center align-items-center text-decoration-none position-relative" href="#">
+                    <img class="w-15" src="assets/img/cart.svg" alt="cart">
+                    Корзина
+                    <span class="badge badge-pill badge-success position-absolute">
+                    0
+                    </span>
 
                 </a>
             </div>
@@ -42,7 +43,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
     <div class="nav-scroller py-1 mb-2">
         <nav class="it-five__nav nav d-flex justify-content-center text-decoration-none">
             <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="/">Главная</a>
-            <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="info-cat.php">Услуги</a>
+            <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="cat.php">Услуги</a>
             <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="#">Заказы</a>
         </nav>
     </div>

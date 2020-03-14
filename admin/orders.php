@@ -101,6 +101,10 @@ $page = "Заказы"
             <!---Container Fluid-->
         </div>
     </div>
+
+     <!-- Footer -->
+    <?php include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/footer.php" ?>
+    <!-- Footer -->
     </div>
 </div>
 
