@@ -19,7 +19,7 @@
             <a class="btn-group" role="group" aria-label="Basic example">
                 <a href="options/categories/edit_categories.php?id=<?php echo $row['id']; ?>"  class="btn btn-outline-info">Редактировать</a>
                 <div data-link="options/categories/delete_categories.php?id=<?php echo $row['id']; ?>"  class="btn btn-outline-dark" onclick="delete_product(this)">Удалить</div>
-            </div>
+            </a>
 
         </td>
     </tr>
