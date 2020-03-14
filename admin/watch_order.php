@@ -25,67 +25,70 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 
             </nav>
             <!-- Topbar -->
-            <!-- Container Fluid-->
-            <div class="container-fluid" id="container-wrapper">
-                <!-- Row -->
-                <div class="row">
-                    <!-- DataTable with Hover -->
-                    <div id="" class="col-lg-12">
-                        <div class="card mb-4 text-center">
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Подробности заказа</h6>
-                            </div>
-                            <div class="card-body table-full-width table-responsive">
-                                <table class="table">
-                                  <thead>
-                                    <tr>
-                                      <th>№</th>
-                                      <th>Заказ</th>
-                                      <th>Статус</th>
-                                    </tr>
-                                  </thead>
+            <form action="/admin/board/board.php?order=<?php echo $_GET["id"]; ?>" method="POST">
+                <!-- Container Fluid-->
+                <div class="container-fluid" id="container-wrapper">
+                    <!-- Row -->
+                    <div class="row">
+                        <!-- DataTable with Hover -->
+                        <div id="" class="col-lg-12">
+                            <div class="card mb-4 text-center">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Подробности заказа</h6>
+                                </div>
+                                <div class="card-body table-full-width table-responsive">
+                                    <table class="table">
+                                      <thead>
+                                        <tr>
+                                          <th>№</th>
+                                          <th>Заказ</th>
+                                          <th>Статус</th>
+                                        </tr>
+                                      </thead>
 
-                                        <tbody>
-                                                <?php
-                                                $sql = "SELECT * FROM orders where id =" . $_GET['id'];
-                                                $result = $connect->query($sql);
-                                                $row = mysqli_fetch_assoc($result);
-                                                ?>
-                                                <tr>
-                                                	<td><?php echo $row['id']; ?></td>
-                                                    <td><?php echo $row['service']; ?></td>
-                                                    <td>
-                                                        
-                                                        <div id="status<?php echo $row['id']; ?>">
-                                                                
-                                                                <?php
-                                                                if($row['status'] == 0) {
+                                            <tbody>
+                                                    <?php
+                                                    $sql = "SELECT * FROM orders where id =" . $_GET['id'];
+                                                    $result = $connect->query($sql);
+                                                    $row = mysqli_fetch_assoc($result);
+                                                    ?>
+                                                    <tr>
+                                                    	<td><?php echo $row['id']; ?></td>
+                                                        <td><?php echo $row['service']; ?></td>
+                                                        <td>
+                                                            
+                                                            <div id="status<?php echo $row['id']; ?>">
+                                                                    
+                                                                    <?php
+                                                                    if($row['status'] == 0) {
+                                                                        ?>
+                                                                        <div class="btn btn-danger" onclick="statusNew(<?php echo $row['id']; ?>)">Новый</div>
+                                                                    <?php 
+                                                                    }
+
+                                                                    if($row['status'] == 1) {
+                                                                        ?>
+                                                                        <div class="btn btn btn-success" onclick="statusSend(<?php echo $row['id']; ?>)">Отправлено</div>
+                                                                    <?php
+                                                                    }
                                                                     ?>
-                                                                    <div class="btn btn-danger" onclick="statusNew(<?php echo $row['id']; ?>)">Новый</div>
-                                                                <?php 
-                                                                }
 
-                                                                if($row['status'] == 1) {
-                                                                    ?>
-                                                                    <div class="btn btn btn-success" onclick="statusSend(<?php echo $row['id']; ?>)">Отправлено</div>
-                                                                <?php
-                                                                }
-                                                                ?>
+                                                                </div>
+                                                        </td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
 
-                                                            </div>
-                                                    </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-
+                                </div>
                             </div>
+                        </div>
+                        <!--Row-->
                     </div>
+                    <!---Container Fluid-->
                 </div>
-                <!--Row-->
-            </div>
-            <!---Container Fluid-->
-        </div>
-        <a class="btn__progress" href="#">Прогресс</a>
+                <button class="btn__progress">Прогресс</button>
+            </form>
+        
     </div>
     </div>
 </div>
