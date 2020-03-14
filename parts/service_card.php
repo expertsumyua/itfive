@@ -9,11 +9,10 @@
                     <?php $show_img = base64_encode($row['img']) ?>
                     <img class="img-fluid" src="data:image/jpeg;base64,<?= $show_img ?>">
                 </div>
-                
             </div>
             <div class="card-footer" style="background: #F2F2F2">
                 <p class="order d-inline">Цена: <strong><?php echo $row['cost'] ?>$</strong></p>
-                    <a href="#"class="btn btn-outline-primary ml-5 justify-content-end">Заказать</a>
+                    <button onclick="addToBasket(this)" data-cat="<?php echo $categories['id']; ?>" data-ser="<?php echo $row['id']; ?>" class="btn btn-outline-primary ml-5 justify-content-end">Заказать</button>
                 </p>
             </div>
         </div>
