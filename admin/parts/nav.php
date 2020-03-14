@@ -49,9 +49,14 @@
         Опции
     </div>
     <li class="nav-item mt-2">
+        <a href="http://itfive.local/" class="nav-link border-0 bg-transparent">
+            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+            <span>На главный сайт</span>
+        </a>
         <button class="nav-link border-0 bg-transparent" id="login-out">
             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-            <span>Выйти</span>
+            <span>Выйти с аккаунта</span>
         </button>
+
     </li>
 </ul>
