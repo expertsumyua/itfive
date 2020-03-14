@@ -1,0 +1,179 @@
+body {	
+	background-image: url(../img/fon.jpg);
+	background-size:cover;
+}
+
+
+
+/*=======================
+ Левый блок с ккоментариями
+=========================*/
+
+#list-comments ul {
+	margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+}
+#list-comments ul li {
+	padding: 10px;
+	position: relative;
+	width: calc(100% - 0px);	
+}
+#list-comments ul li a {
+	text-decoration: none;
+	color: #505050;
+}
+#list-comments ul .avatar {
+	width: 60px;
+	height: 60px;
+	float: left;
+	margin-right: 10px;
+}
+#list-comments ul .avatar img {
+	width: 100%;
+	height: 100%;
+}
+#list-comments ul li .time {
+	position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#list-comments h2,
+#list-comments p {
+	margin: 0;
+}
+#list-comments h2 {
+	margin: 0 0 5px 0;
+}
+
+/*========================================
+ Основной блок с контактами доски
+==========================================*/
+.contacts-container {
+	width: 800px;
+	height: calc(100% - 100px);
+	margin: 0 auto;
+	background: white;
+	border-radius: 7px;
+	opacity: 0.8;
+	padding: 5px;
+}
+/*===========================================
+ Левый блок с поиском контактов и контактами
+=============================================*/
+#contacts {
+	width: 260px;
+	height: 100%;
+	float: left;
+}
+/*==============================
+ Левый блок с поиском контактов
+================================*/
+#search {
+	width: 100%;
+	height: 35px;
+	padding: 10px 0px 10px 10px;
+}
+#search input {
+	background: #c5a28c;
+    border: none;
+    width: calc(77% - 10px);
+    height: 100%;
+    padding: 0 10px;
+    float: left;
+    margin-right: 5px;
+    outline: none;
+}
+#search button {
+	width: 35px;
+    height: 100%;
+    border: none;
+    background: #cea792;
+    outline: none;
+    padding: 3px;  
+}
+#search button:hover {
+	background: #e8ccbd;
+	cursor: pointer;
+}
+#search button:active {
+	background: #cea792;
+}
+#search button img {
+	width: 100%;
+    height: 100%;
+}
+
+/*=======================
+ Левый блок с контактами
+=========================*/
+#list-contacts
+{
+	height: calc(100% - 55px);
+    overflow-y: auto;
+}
+#list-contacts ul {
+	margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+}
+#list-contacts ul li {
+	padding: 10px;
+	position: relative;
+	width: calc(100% - 20px);	
+}
+#list-contacts ul li a {
+	text-decoration: none;
+	color: #505050;
+}
+#list-contacts ul .avatar {
+	width: 60px;
+	height: 60px;
+	float: left;
+	margin-right: 10px;
+}
+#list-contacts ul .avatar img {
+	width: 100%;
+	height: 100%;
+}
+#list-contacts ul li .time {
+	position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#list-contacts h2,
+#list-contacts p {
+	margin: 0;
+}
+#list-contacts h2 {
+	margin: 0 0 5px 0;
+}
+
+/*=====================
+ Делаем красивый скрол
+=======================*/
+
+/*#list-comments::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+#list-comments::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+#list-comments::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+*/
