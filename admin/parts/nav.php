@@ -26,6 +26,12 @@
             <span>Заказы</span>
         </a>
     </li>
+    <li class="nav-item <?php if ($page == 'Пользователи'){echo 'active';}?>">
+        <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/users.php">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Пользователи</span>
+        </a>
+    </li>
     <li class="nav-item <?php if ($page == 'Категории'){echo 'active';}?>"> <!-- href="categories.php" -->
         <a class="nav-link collapsed" href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/categories.php">
             <i class="fab fa-fw fa-product-hunt"></i>
