@@ -7,6 +7,8 @@
                 <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="/">Главная</a>
                 <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="cat.php">Услуги</a>
                 <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="#">Заказы</a>
+                <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="http://<?php echo $_SERVER['HTTP_HOST']?>/contacts.php">Контакты</a>
+
             </nav>
             <p class="text-right">
 
@@ -24,5 +26,6 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="http://<?php echo $_SERVER['HTTP_HOST']?>/assets/js/bootstrap.min.js"></script>
 <script src="http://<?php echo $_SERVER['HTTP_HOST']?>/assets/js/main.js"></script>
+
 </body>
 </html>
