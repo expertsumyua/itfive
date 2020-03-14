@@ -85,9 +85,11 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
             </div>
             <!---Container Fluid-->
         </div>
+        <a class="btn__progress" href="#">Прогресс</a>
     </div>
     </div>
 </div>
+
 
 
     <!-- Footer -->
