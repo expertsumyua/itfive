@@ -85,6 +85,34 @@ if(isset($_POST['submit'])) {
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Категория</label>
+                                                    <select class="form-control" name="cat" id="">
+                                                        <?php
+                                                            $sql = "SELECT * FROM category_services where service_id =" . $_GET['id'];
+
+                                                            $result = $connect->query($sql);
+                                                            $cat_id = mysqli_fetch_assoc($result);
+                                                            $sql = "SELECT * FROM categories where id =" . $cat_id['category_id'];
+                                                             $result = $connect->query($sql);
+                                                            $category = mysqli_fetch_assoc($result);
+
+                                                            ?>
+                                                        <option value="<?php echo $category['id']; ?>"><?php echo $category['title']; ?></option>
+
+                                                        <?php
+                                                            $sql = "SELECT * FROM categories where id != ". $category['id'];
+                                                            $result = $connect->query($sql);
+                                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                            ?>
+                                                        <option value="<?php echo $row['id']; ?>"><?php echo $row['title']; ?></option>
+                                                        <?php } ?>
+
+
+                                                    </select>
+                                            </div>
+                                        </div>
                                     <button name="submit" value="1" type="submit" class="btn btn-outline-success btn-fill pull-right">Изменить Услугу</button>
                                 </form>
                             </div>

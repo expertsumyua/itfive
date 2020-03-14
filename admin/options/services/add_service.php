@@ -11,7 +11,12 @@ if (isset($_POST['submit'])) {
 
     $sql = "Insert into services (title, short_description, full_description, cost, img) VALUES ('" . $_POST['title'] . "', '" . $_POST['short_description'] . "', '" . $_POST['full_description'] . "', '" . $_POST['cost'] . "', '$img')";
     if($connect->query($sql)){
-        header("Location: /admin/services.php");
+        $sql = "SELECT * FROM `services` ORDER BY `services`.`id` DESC";
+        $new = mysqli_fetch_assoc($connect->query($sql));
+        $sql = "INSERT INTO `category_services` (`category_id`, `service_id`) VALUES ('" . $_POST['cat'] . "', '". $new["id"] ."'); ";
+        if($connect->query($sql)){
+            header("Location: /admin/services.php");
+        }
     } else {
         echo "Error";
     }
@@ -57,7 +62,7 @@ if (isset($_POST['submit'])) {
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Название</label>
-                                                <input name="title" type="text" class="form-control" placeholder="">
+                                                <input name="title" type="text" class="form-control" placeholder="Название">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -79,6 +84,23 @@ if (isset($_POST['submit'])) {
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Категория</label>
+                                                    <select class="form-control" name="cat" id="">
+                                                        <?php
+                                                            $sql = "SELECT * FROM categories";
+                                                            $result = $connect->query($sql);
+                                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                            ?>
+                                                        <option value="<?php echo $row['id']; ?>"><?php echo $row['title']; ?></option>
+                                                        <?php } ?>
+
+
+                                                    </select>
+                                            </div>
+                                        </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Картинка</label><br>
