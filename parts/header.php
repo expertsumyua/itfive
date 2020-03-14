@@ -42,7 +42,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
     <div class="nav-scroller py-1 mb-2">
         <nav class="it-five__nav nav d-flex justify-content-center text-decoration-none">
             <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="/">Главная</a>
-            <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="info-cat.php">Услуги</a>
+            <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="cat.php">Услуги</a>
             <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="#">Заказы</a>
         </nav>
     </div>

@@ -18,7 +18,8 @@
                         <div class="row px-5 justify-content-between">
                             <div class="price">От <?php echo $row['cost'] ?>$</div>
                             <div class="d-flex justify-content-end">
-                                <a href="services.php?id=<?php echo $row['id'] ?>" type="button" class="btn btn-outline-success rounded-0 ">Заказать</a>
+                                <a href="info-cat.php?id=<?php echo $row['id'] ?>" type="button" class="btn btn-outline-secondary rounded-0" >Подробнее</a>
+                                <a href="services.php?id=<?php echo $row['id'] ?>" type="button" class="btn btn-secondary rounded-0 ml-4">Заказать</a>
                             </div>
                         </div>
                         
