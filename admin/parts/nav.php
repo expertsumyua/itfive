@@ -41,7 +41,7 @@
     <li class="nav-item <?php if ($page == 'Услуги'){echo 'active';}?>">
         <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/services.php">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Наши товары</span>
+            <span>Услуги</span>
         </a>
     </li>
     <hr class="sidebar-divider">
@@ -49,9 +49,14 @@
         Опции
     </div>
     <li class="nav-item mt-2">
+        <a href="http://itfive.local/" class="nav-link border-0 bg-transparent">
+            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+            <span>На главный сайт</span>
+        </a>
         <button class="nav-link border-0 bg-transparent" id="login-out">
             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-            <span>Выйти</span>
+            <span>Выйти с аккаунта</span>
         </button>
+
     </li>
 </ul>
