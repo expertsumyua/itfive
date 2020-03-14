@@ -59,6 +59,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
                 <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="/">Главная</a>
                 <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="cat.php">Услуги</a>
                 <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="#">Заказы</a>
+                <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="http://<?php echo $_SERVER['HTTP_HOST']?>/contacts.php">Контакты</a>
+
             </nav>
         </div>
         <hr>
