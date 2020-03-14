@@ -41,14 +41,23 @@ include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
                         <?php
                     }
                     ?>
-                    <a class="basket d-flex flex-column justify-content-center align-items-center text-decoration-none position-relative"
-                       href="#">
+                    <a id="add-basket" class="basket d-flex flex-column justify-content-center align-items-center text-decoration-none position-relative"
+                       href="http://<?php echo $_SERVER['HTTP_HOST']?>/basket.php">
                         <img class="w-15" src="assets/img/cart.svg" alt="cart">
                         Корзина
                         <span class="badge badge-pill badge-success position-absolute">
-                    0
-                    </span>
+                        <?php 
+                            if( isset($_COOKIE['basket']) ) { 
+                                $basket = json_decode($_COOKIE['basket'], true);
+                                $sum_count = 0;
+                                for($i=0; $i < count($basket['basket']); $i++) {
+                                    $sum_count += $basket['basket'][$i]['count'];
+                                }             
+                                echo $sum_count;
 
+                            } else { echo 0;}
+                        ?>                   
+                        </span>
                     </a>
                 </div>
             </div>
