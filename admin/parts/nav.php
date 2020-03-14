@@ -41,7 +41,7 @@
     <li class="nav-item <?php if ($page == 'Услуги'){echo 'active';}?>">
         <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/services.php">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Наши товары</span>
+            <span>Услуги</span>
         </a>
     </li>
     <hr class="sidebar-divider">
