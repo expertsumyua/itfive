@@ -2,15 +2,15 @@
 //подключаем базу даних
 include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 //устанавливаем страницу
-$page = "Изменить услуги";
+$page = "Изменить пользователя";
 
 
 if(isset($_POST['submit'])) {
 
 
-    $sql = "UPDATE services SET title = '". $_POST['title'] ."', short_description= '". $_POST['short_description'] ."', full_description= '". $_POST['full_description'] ."', cost= '". $_POST['cost'] ."' WHERE services . id =" . $_GET['id'];
+    $sql = "UPDATE customers SET first_name = '". $_POST['first_name'] ."', last_name= '". $_POST['last_name'] ."', email= '". $_POST['email'] ."', rights= '". $_POST['rights'] ."' WHERE customers . id =" . $_GET['id'];
     if($connect->query($sql)){
-        header("Location: /admin/services.php");
+        header("Location: /admin/users.php");
     } else {
         echo "Error";
     }
@@ -55,37 +55,51 @@ if(isset($_POST['submit'])) {
                                 <form method="POST" enctype="multipart/form-data">
                                     <div class="row">
                                        <?php
-                                            $sql = "SELECT * FROM services WHERE id=" . $_GET['id'];
+                                            $sql = "SELECT * FROM customers WHERE id=" . $_GET['id'];
                                             $result = $connect->query($sql);
                                             $data = mysqli_fetch_assoc($result);
                                             ?>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Название</label>
-                                                <input name="title" type="text" class="form-control" placeholder="" value="<?php echo $data["title"]; ?>">
+                                                <label>Имя</label>
+                                                <input name="first_name" type="text" class="form-control" placeholder="" value="<?php echo $data["first_name"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Короткое писание</label>
-                                                <input name="short_description" type="text" class="form-control" placeholder="Короткое писание" maxlength="60" value="<?php echo $data["short_description"]; ?>">
+                                                <label>Фамилия</label>
+                                                <input name="last_name" type="text" class="form-control" placeholder="Короткое писание" maxlength="60" value="<?php echo $data["last_name"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
 
-                                                <label>Полное описание</label>
-                                                <textarea name="full_description" type="text" class="form-control" value=""><?php echo $data["full_description"]; ?></textarea>
+                                                <label>Почта</label>
+                                                <textarea name="email" type="text" class="form-control" value=""><?php echo $data["email"]; ?></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label>Цена</label>
-                                                <input name="cost" type="text" class="form-control" placeholder="" value="<?php echo $data["cost"]; ?>">
+                                                <label>Права</label>
+                                                    <select class="form-control" name="rights" id="">
+                                                        <?php
+                                                        if($data['rights'] == 1){
+                                                        ?>
+                                                        <option value="1">Разработчик</option>
+                                                        <?php } ?>
+                                                        <option value="0">Пользователь</option>
+                                                        <?php
+                                                        if($data['rights'] == 0){
+                                                        ?>
+                                                        <option value="1">Разработчик</option>
+                                                        <?php } ?>
+
+
+                                                    </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <button name="submit" value="1" type="submit" class="btn btn-outline-success btn-fill pull-right">Изменить Услугу</button>
+                                    <button name="submit" value="1" type="submit" class="btn btn-outline-success btn-fill pull-right">Изменить пользователя</button>
                                 </form>
                             </div>
                         </div>
