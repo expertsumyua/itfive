@@ -8,7 +8,7 @@ function statusSend(id) {
  		ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
  		ajax.send("id=" + id);
 
- 	// status.innerHTML = ajax.responce;
+ 	// status.innerHTML = ajax.response;
  	location.reload();
 }
 
@@ -20,6 +20,6 @@ function statusNew(id) {
  		ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
  		ajax.send("id=" + id);
 
- 	// status.innerHTML = ajax.responce;
+ 	// status.innerHTML = ajax.response;
  	location.reload();
 }
