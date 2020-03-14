@@ -351,6 +351,7 @@ $page = "home"
 
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
+
 ?>
 </body>
 
