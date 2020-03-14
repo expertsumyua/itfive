@@ -34,6 +34,7 @@ if (isset($_POST) and $_SERVER["REQUEST_METHOD"] == "POST") {
 
         header('Location: http://itfive.local/');
         setcookie("customers_id", $user["id"], time() + 60*60, "/");
+        setcookie("status", $user["status"], time() + 60*60, "/");
     }else{
         echo "<div id='info' class='alert alert-success position-absolute' role='alert' style='top:2%'>
         Вам на почту отправлено повторно письмо для подтверждения регистрации или пройдите регистрацию</div>";

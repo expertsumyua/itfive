@@ -25,7 +25,11 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
                 <div class="row row-cols-3 pb-5"> <!--НАЧАЛО Блока вывода УСЛУГ -->
 
                     <?php
-                        $sql = "SELECT services.short_description, services.cost, services.img FROM services INNER JOIN category_services ON services.id = category_services.service_id INNER JOIN categories ON categories.id = category_services.category_id WHERE categories.id =" . $categories['id'];
+                        $sql = "SELECT services.short_description, services.cost, services.img, services.id FROM services 
+                        INNER JOIN category_services ON services.id = category_services.service_id 
+                        INNER JOIN categories ON categories.id = category_services.category_id
+                        WHERE categories.id =" . $categories['id'];
+                    
                         $result = $connect->query($sql);
                         // Выводим циклом вайл по одному каждый продукт
                         while ($row = mysqli_fetch_assoc($result)) {
