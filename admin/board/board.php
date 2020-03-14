@@ -54,9 +54,9 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
 
     <div class="row m-2">
        <?php
-        $sql = "SELECT access FROM `board_users` WHERE `board_id` = ". $_GET["board"] ." AND `user_id` = ". $_COOKIE["user_id"] ."";
-        $access = mysqli_fetch_assoc(mysqli_query($connect, $sql));
-        if($access["access"] == 3){
+        // $sql = "SELECT access FROM `board_users` WHERE `board_id` = ". $_GET["board"] ." AND `user_id` = ". $_COOKIE["user_id"] ."";
+        // $access = mysqli_fetch_assoc(mysqli_query($connect, $sql));
+        // if($access["access"] == 3){
         ?>
             <button type="button" class="btn btn-dark my-2 my-sm-0" role="button" aria-pressed="true" data-toggle="modal" data-target="#createCardModal">
               Добавить карточку
@@ -65,7 +65,7 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
             Список участников
             </a>
         <?php
-        }
+        // }
         ?>
     </div>
     <div class="row m-2">

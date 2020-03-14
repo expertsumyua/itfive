@@ -1,6 +1,3 @@
-
-
-
 /*шапка сайта*/
 
 .w-15{
@@ -16,4 +13,22 @@
     top: 100%;
     left: 50%;
     transform: translate(-100%, -50%);
+}
+
+.btn__progress {
+	font-size: 25px;
+	width: 200px;
+	float: right;
+	border: 1px solid blue;
+	padding: 15px 15px;
+	margin-right: 23px;
+	text-decoration: none;
+	color: blue;
+	text-align: center;
+}
+
+.btn__progress:hover {
+	background: blue;
+	color: white;
+	text-decoration: none;
 }
