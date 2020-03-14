@@ -67,17 +67,9 @@ include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
         ?>
 
         <header class="it-five__header py-3">
-            <div class="row flex-nowrap justify-content-between align-items-center">
-                <div class="col-4 pt-1">
-                    <a class="text-muted" href="#"></a>
-                </div>
+            <div class="row flex-nowrap justify-content-center align-items-center">
                 <div class="col-4 text-center">
                     <a class="blog-header-logo text-dark" href="/"><span class="text-warning">IT</span>five</a>
-                </div>
-                <div class="col-4 d-flex justify-content-end align-items-center">
-                    <a class="btn btn-sm btn-outline-secondary ml-2" href="#">Войти</a>
-                    <a class="btn btn-sm btn-outline-secondary ml-2" href="#">Выйти</a>
-                    <a class="btn btn-sm btn-outline-secondary ml-2" href="register.php">Регистацыя</a>
                 </div>
             </div>
         </header>
