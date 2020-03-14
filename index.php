@@ -43,7 +43,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
     </div>
 </div>
 
-<div class="container bg-white px-0">
+<div class="container bg-white px-0 pt-5">
+    <h2 class="text-center pb-5">Довольные клиенты :)</h2>
     <div class="row">
         <div class="col-12">
              <img class="img-fluid" src="assets/img/mainImg.jpg">
