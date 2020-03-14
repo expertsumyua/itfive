@@ -5,7 +5,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 //проверяем зашел разрабочик или нет
 if($_COOKIE[''] && $_COOKIE[]){
 
-    die()
+    die();
 }
 
 //устанавливаем страницу
