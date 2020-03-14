@@ -32,7 +32,7 @@ if (isset($_POST) and $_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $result->fetch_assoc();
     if ($result->num_rows > 0 && $user['verifided'] == 1) {
 
-        header('Location: http://it-five.local/');
+        header('Location: http://itfive.local/');
         setcookie("customers_id", $user["id"], time() + 60*60, "/");
     }else{
         echo "<div id='info' class='alert alert-success position-absolute' role='alert' style='top:2%'>
