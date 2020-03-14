@@ -31,13 +31,15 @@ include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
                 <div class="col-4 d-flex justify-content-end align-items-center">
                     <?php
 
-                    if ($_COOKIE) {
-                        if($_COOKIE['status']){?>
+                    if (isset($_COOKIE['customers_id'])) {
+                        if ($_COOKIE['status'] == 1) {
+                            ?>
                             <a class="btn btn-sm btn-outline-success ml-2" href="/admin">Админ-панель</a>
                             <?php
                         }
                         ?>
-                        <button id="login-out" type="submit" class="btn btn-sm btn-outline-secondary ml-2">Выйти</button>
+                        <button id="login-out" type="submit" class="btn btn-sm btn-outline-secondary ml-2">Выйти
+                        </button>
                         <?php
                     } else {
                         ?>
@@ -47,21 +49,24 @@ include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
                     }
 
                     ?>
-                    <a id="add-basket" class="basket d-flex flex-column justify-content-center align-items-center text-decoration-none position-relative"
-                       href="http://<?php echo $_SERVER['HTTP_HOST']?>/basket.php">
+                    <a id="add-basket"
+                       class="basket d-flex flex-column justify-content-center align-items-center text-decoration-none position-relative"
+                       href="http://<?php echo $_SERVER['HTTP_HOST'] ?>/basket.php">
                         <img class="w-15" src="assets/img/cart.svg" alt="cart">
                         Корзина
                         <span class="badge badge-pill badge-success position-absolute">
-                        <?php 
-                            if( isset($_COOKIE['basket']) ) { 
-                                $basket = json_decode($_COOKIE['basket'], true);
-                                $sum_count = 0;
-                                for($i=0; $i < count($basket['basket']); $i++) {
-                                    $sum_count += $basket['basket'][$i]['count'];
-                                }             
-                                echo $sum_count;
+                        <?php
+                        if (isset($_COOKIE['basket'])) {
+                            $basket = json_decode($_COOKIE['basket'], true);
+                            $sum_count = 0;
+                            for ($i = 0; $i < count($basket['basket']); $i++) {
+                                $sum_count += $basket['basket'][$i]['count'];
+                            }
+                            echo $sum_count;
 
-                            } else { echo 0;}
+                        } else {
+                            echo 0;
+                        }
                         ?>                   
                         </span>
                     </a>
@@ -74,7 +79,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
                 <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="/">Главная</a>
                 <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="cat.php">Услуги</a>
                 <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="#">Заказы</a>
-                <a class="it-five__link p-2 text-muted ml-2 text-decoration-none" href="http://<?php echo $_SERVER['HTTP_HOST']?>/contacts.php">Контакты</a>
+                <a class="it-five__link p-2 text-muted ml-2 text-decoration-none"
+                   href="http://<?php echo $_SERVER['HTTP_HOST'] ?>/contacts.php">Контакты</a>
 
             </nav>
         </div>
