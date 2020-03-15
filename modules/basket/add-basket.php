@@ -23,7 +23,8 @@ $sql = "SELECT * FROM services WHERE id=" . $_POST['id'];
 
         if ($issetProduct != 1) {
             $basket["basket"][] = [
-                "service_id" => $row['id'], 
+                "service_id" => $row['id'],
+                "cost" => $row['cost'], 
                 "count" => 1
             ];
         }
@@ -33,13 +34,9 @@ $sql = "SELECT * FROM services WHERE id=" . $_POST['id'];
     } else { // если корзина пустая
         $basket = [ "basket" => [ 
             ["service_id" => $row['id'],
+            "cost" => $row['cost'],
             "count" => 1 ]   
-        ],
-    'sum_count' => [
-        [
-            'count' => $_POST['sum_count'],
-        ]
-    ]    
+        ]  
     ];
     } 
     //Преобразование массива в json формат
