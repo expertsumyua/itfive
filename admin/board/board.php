@@ -86,7 +86,7 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
 
             <!-- -->
 
-            <div class="container-fluid" style="height: 80%;">
+            <div class="container-fluid" style="height: calc(100% - 140px);">
 
     <div class="row m-2">
        <?php
