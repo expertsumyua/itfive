@@ -13,7 +13,7 @@ $page = "Доска";
 
 <?php
 
-$board_id = 0;
+$board_id = $_GET['board'];
 if (isset($_POST["board"])) {
     $board_id = $_POST['board'];
 }
