@@ -172,12 +172,12 @@
                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                 Settings
             </a>
-            <a class="dropdown-item" href="http://itfive.local/">
+            <a class="dropdown-item" href="http://<?php echo $_SERVER['HTTP_HOST'] ?>/">
                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                 На главный сайт
             </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="login.html" id="login-out">
+            <a class="dropdown-item" href="http://<?php echo $_SERVER['HTTP_HOST'] ?>/admin/actions/delete-cook.php" id="login-out">
                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                 Выйти с аккаунта
             </a>
