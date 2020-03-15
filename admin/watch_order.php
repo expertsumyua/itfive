@@ -18,6 +18,7 @@ if (isset($_POST))
     //echo $order_servise;
     /// Создаем доску в таблице boards и добавляем связь пользователя с таблицей в board_users
         $sql = "SELECT * FROM boards WHERE order_id=" . $_GET['id'];
+
         if (!mysqli_fetch_assoc($connect->query($sql))) {
 
             $sql_boards = "INSERT INTO `boards` (order_id, order_servise) VALUES ('" . $_GET['id'] . "', '" . $order_servise . "');";
