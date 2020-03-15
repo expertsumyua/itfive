@@ -38,6 +38,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
                     <thead>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>Options</th>
                     </thead>
                     <tbody>
                         <?php
