@@ -97,6 +97,16 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
             <button type="button" class="btn btn-dark my-2 my-sm-0 border-0 rounded-0" role="button" aria-pressed="true" data-toggle="modal" data-target="#createCardModal">
               Добавить карточку
             </button>
+            <?php
+            $sql_o = "Select * from boards where id=". $_GET["board"];
+            $o = mysqli_fetch_assoc($connect->query($sql_o));
+
+            ?>
+            <a href="/admin/watch_order.php?id=<?php echo $o['order_id'] ?>" type="button" class="btn btn-outline-danger btn-sm rounded-0 ml-2">
+
+              <?php echo "Вернутся на страницу заказа №". $o['order_id'] .""; ?>
+              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-red-400"></i>
+            </a>
 <!--
             <a href="options/addmember.php?board=<?php echo $board_id?>&addmember" type="button" class="btn btn-dark my-2 my-sm-0 m-2" role="button" aria-pressed="true">
             Список участников
