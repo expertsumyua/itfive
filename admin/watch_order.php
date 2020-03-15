@@ -70,43 +70,66 @@ if (isset($_POST))
                                     <table class="table">
                                       <thead>
                                         <tr>
-                                          <th>№</th>
-                                          <th>Заказ</th>
-                                          <th>Статус</th>
+                                            <th scope="col">№</th>
+                                            <th scope="col">Технология</th>
+                                            <th scope="col">Категории</th>
+                                            <th scope="col">Цена</th>
+                                            <td scope="col">Статус заказа</td>
                                         </tr>
                                       </thead>
 
                                             <tbody>
+                                                <tr>
                                                     <?php
                                                     $sql = "SELECT * FROM orders where id =" . $_GET['id'];
-                                                    $result = $connect->query($sql);
-                                                    $row = mysqli_fetch_assoc($result);
-                                                    $order_servise = $row['service'];
-                                                    ?>
-                                                    <tr>
-                                                    	<td><?php echo $row['id']; ?></td>
-                                                        <td><?php echo $row['service']; ?></td>
-                                                        <td>
-                                                            
-                                                            <div id="status<?php echo $row['id']; ?>">
-                                                                    
-                                                                    <?php
-                                                                    if($row['status'] == 0) {
-                                                                        ?>
-                                                                        <div class="btn btn-danger" onclick="statusNew(<?php echo $row['id']; ?>)">Новый</div>
-                                                                    <?php 
-                                                                    }
+                                                        $result = $connect->query($sql);
+                                                        $row = mysqli_fetch_assoc($result);
+                                                        // $order_servise = $row['service'];
+                                                            $basket = json_decode($row['service'], true);
 
-                                                                    if($row['status'] == 1) {
-                                                                        ?>
-                                                                        <div class="btn btn btn-success" onclick="statusSend(<?php echo $row['id']; ?>)">Отправлено</div>
-                                                                    <?php
-                                                                    }
-                                                                    ?>
+                                                                for ($i = 0; $i < count($basket['basket']); $i++) {
+                                                                    $sql = "SELECT * FROM services WHERE id =" . $basket['basket'][$i]['service_id'];
+                                                                    $resultCategories = mysqli_query($connect, $sql);
+                                                                    $service = mysqli_fetch_assoc($resultCategories);
+                                                                ?> 
+                                                                        <tr>
+                                                                            <td><?php echo $service['id']; ?></td>
+                                                                            <td><?php echo $service['title']; ?></td>
 
-                                                                </div>
-                                                        </td>
-                                                    </tr>
+                                                                            <!-- Вывод категорий товара -->
+                                                                            <td>...</td>
+
+                                                                            <!-- Расчет стоимости заказа -->
+                                                                            <input id="start_price<?php echo $service['id'];?>" type="hidden" name="start_prise" value="<?php echo $service['cost'];?>" >
+
+                                                                            <td class="price" id="cost<?php echo $service['id'];?>" data-sum="<?php echo ($service['cost'] * $basket['basket'][$i]['count']);?>"><?php echo ($service['cost'] * $basket['basket'][$i]['count']);?> $</td>
+
+
+                                                                            <td>
+                                                                                <div id="status<?php echo $row['id']; ?>">
+
+                                                                                    <?php
+                                                                                    if($row['status'] == 0) {
+                                                                                        ?>
+                                                                                        <div class="btn btn-danger" onclick="statusNew(<?php echo $row['id']; ?>)">Новый</div>
+                                                                                    <?php 
+                                                                                    }
+
+                                                                                    if($row['status'] == 1) {
+                                                                                        ?>
+                                                                                        <div class="btn btn btn-success" onclick="statusSend(<?php echo $row['id']; ?>)">Отправлено</div>
+                                                                                    <?php
+                                                                                    }
+                                                                                    ?>
+
+                                                                                </div>
+                                                                            </td>
+                                                                            
+
+                                                                        </tr>
+                                                                <?php
+                                                                }
+                                                                ?>
                                             </tbody>
                                         </table>
 
@@ -136,6 +159,7 @@ if (isset($_POST))
 </a>
 
 <script src="assets/js/changeStatus.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
 
 </html>
