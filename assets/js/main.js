@@ -28,10 +28,11 @@ function addToBasket(btn) {
      var ajax = new XMLHttpRequest();
         ajax.open('POST', $siteURL + 'modules/basket/add-basket.php', false);
         ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        ajax.send('id=' + btn.dataset.ser + "&sum_count=" + sum_count);     // ajax.send('cat-id=' + btn.dataset.cat + '&ser-id=' + btn.dataset.ser );
+        ajax.send('id=' + btn.dataset.ser + "&sum_count=" + sum_count);  
 
 
         var response = JSON.parse(ajax.response);
+
         var btnGoBasket = document.querySelector("#add-basket span");
 
             var arr_count = new Array();
@@ -57,32 +58,50 @@ function deleteProductBasket(obj, id) {
             obj.parentNode.parentNode.remove();
             sunCount();
         }
-
  }
 
  // редактирование количества товара
  function formEditCount(id) {
     var count = document.querySelector("#count" + id);
-    var price = document.querySelector("#cost" + id);
+    var price = document.querySelectorAll(".price");
     var start_price = document.querySelector("#start_price" + id);
+     //var sum = document.querySelector("#sum-cost");
+
 
     var ajax = new XMLHttpRequest();
         ajax.open("POST", $siteURL + '/modules/basket/edit_count_product.php', false);
         ajax.setRequestHeader( "Content-type", "application/x-www-form-urlencoded");
         ajax.send("id=" + id + "&count=" + count.value);
+        //console.dir(id);
+         var response = JSON.parse(ajax.response);
+         
+         var arr_sum = new Array();
+         for(var i=0; i<response.basket.length; i++) {
+             var cost = response.basket[i].cost
+             var $count = response.basket[i].count
+             var cost_sum = cost * $count ;
 
-        var response = JSON.parse(ajax.response);
+            for(var j=0; j < price.length; j++) {
+
+                price[i].innerText = cost_sum + " " + "$";
+            }
+            //var $sum = count_sum;
+            arr_sum.push(cost_sum); 
+         }
         var edit_counte = document.querySelector(".edit_input");
-            edit_counte.innerText = response;
-            price.innerText =  start_price.value * response + "$";
+              edit_counte.innerText = ajax.response;
 
-     sunCount();
-
+        var sumCost = document.querySelector("#sum-cost");
+        var $sum = arr_sum.reduce((sum, current)=>sum+current);
+            console.log($sum);
+            sumCost.innerText = $sum + " " + "$";
+            sunCount(); 
 }
 
 function sunCount() {
     var $add_basket = document.querySelector("#add-basket span");
     var $edit_input = document.querySelectorAll(".edit_input");
+
     var $arrCoun = new Array();
     for (let $i = 0; $i < $edit_input.length; $i++) {
 
@@ -93,8 +112,8 @@ function sunCount() {
     if($coun) {
         var $arrCoun = $arrCoun.reduce((sum, current) => sum + current);
         $add_basket.innerHTML = $arrCoun;
+
     }else {
         $add_basket.innerHTML = 0;
     }
-
 }
