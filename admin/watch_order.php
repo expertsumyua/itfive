@@ -51,7 +51,7 @@ if (isset($_POST))
                 <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
-
+                <?php include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/top-bar.php" ?>
             </nav>
             <!-- Topbar -->
             <!-- <form method="POST"> -->
@@ -159,7 +159,14 @@ if (isset($_POST))
 </a>
 
 <script src="assets/js/changeStatus.js"></script>
+<<<<<<< HEAD
 <script src="assets/js/main.js"></script>
+=======
+<?php
+include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
+
+?>
+>>>>>>> developer
 </body>
 
 </html>

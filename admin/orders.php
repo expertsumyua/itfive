@@ -24,7 +24,7 @@ $page = "Заказы"
                 <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
-
+            <?php include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/top-bar.php" ?>
             </nav>
             <!-- Topbar -->
             <!-- Container Fluid-->
@@ -112,6 +112,12 @@ $page = "Заказы"
  
 
 <script src="assets/js/changeStatus.js"></script>
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
+
+
+?>
 </body>
 
 </html>

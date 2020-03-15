@@ -27,7 +27,7 @@ $page = "Категории"
                 <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
-
+            <?php include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/top-bar.php" ?>
             </nav>
             <!-- Topbar -->
             <!-- Container Fluid-->
@@ -85,6 +85,10 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
     });
 </script>
 <script src="/admin/assets/js/products_options.js"></script>
+<?php
+include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
+
+?>
 </body>
 
 </html>

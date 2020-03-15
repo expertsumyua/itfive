@@ -12,7 +12,7 @@
     </div>
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
-        Menu
+        Меню
     </div>
     <li class="nav-item <?php if ($page == "Главная"){echo 'active';}?>">
         <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST']?>/admin">
