@@ -37,8 +37,13 @@ include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php'
                             <a class="btn btn-sm btn-outline-success ml-2" href="/admin">Админ-панель</a>
                             <?php
                         }
+                        if(isset($_COOKIE['customers_id'])) {}
+                            $sql = "SELECT * FROM customers WHERE id=" . $_COOKIE['customers_id'];
+                            $result = mysqli_query($connect, $sql);
+                            $user = mysqli_fetch_assoc($result)
                         ?>
-                        <button id="login-out" type="submit" class="btn btn-sm btn-outline-secondary ml-2">Выйти
+                        <button id="login-out" type="submit" class="btn btn-sm btn-outline-secondary ml-2"><?php echo $user['first_name']; ?><i
+                                class="fas fa-sign-out-alt ml-2"></i>
                         </button>
                         <?php
                     } else {
