@@ -57,6 +57,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
                                     <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&showTask" type="button" class="btn btn-primary btn-sm"><?php echo $task["name"]; ?></a>
                                 </td>
                                 <td>
+                                    <div class="btn-group-vertical">
 
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <?php
@@ -76,7 +77,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
                                         if ($row_in == 1){
                                             // if($access["access"] == $type_access["type_access"] && $type["type"] != 2 || $access["access"] == 3 && $type["type"] != 2){
                                                 ?>
-                                                <a href="/admin/board/options/move.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&moveTask=<?php echo $task["id"]; ?>" type="button" class="btn btn-secondary btn-sm">Move</a>
+                                                <a href="/admin/board/options/move.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&moveTask=<?php echo $task["id"]; ?>" type="button" class="btn btn-secondary btn-sm">Вперед</a>
                                             <?php
                                             //}
                                         }
@@ -88,10 +89,12 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
 
                                          if($ind['card_index'] != 1){
                                           ?>
-                                            <a href="/admin/board/options/back.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&moveTask=<?php echo $task["id"]; ?>" type="button" class="btn btn-secondary btn-sm">Back</a>
+                                            <a href="/admin/board/options/back.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&moveTask=<?php echo $task["id"]; ?>" type="button" class="btn btn-secondary btn-sm">Назад</a>
                                             <?php
                                          }
                                         ?>
+                                        </div>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
                                         <!-- Кнопка вызоа модального окна редактирования задание -->
                                         <?php
                                         // $sql = "SELECT access FROM `board_developers` WHERE `board_id` = " . $board_id . " AND `user_id` = " . $_COOKIE["user_id"] . "";
@@ -99,14 +102,15 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
                                         // $access = mysqli_fetch_assoc($connect->query($sql));
                                         // if($access["access"] == 3){
                                             ?>
-                                            <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&editTask" type="button" class="btn btn-secondary btn-sm">Edit</a>
+                                            <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&editTask" type="button" class="btn btn-secondary btn-sm" style="max-width = 10px">Редакт.</a>
                                             <!-- ============================================================== -->
                                             <!-- ============= Кнопка удаления задание ============ -->
-                                            <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&deleteTask" type="button" class="btn btn-secondary btn-sm">Delete</a>
+                                            <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&deleteTask" type="button" class="btn btn-secondary btn-sm">Удалить</a>
                                             <!-- ================================================================== -->
                                         <?php
                                         // }
                                         ?>
+                                    </div>
                                     </div>
                                 </td>
                             </tr>
