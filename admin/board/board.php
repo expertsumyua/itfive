@@ -94,7 +94,7 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
         // $access = mysqli_fetch_assoc($connect->query($sql));
         // if($access["access"] == 3){
         ?>
-            <button type="button" class="btn btn-dark my-2 my-sm-0" role="button" aria-pressed="true" data-toggle="modal" data-target="#createCardModal">
+            <button type="button" class="btn btn-dark my-2 my-sm-0 border-0 rounded-0" role="button" aria-pressed="true" data-toggle="modal" data-target="#createCardModal">
               Добавить карточку
             </button>
 <!--

@@ -20,14 +20,14 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
         // записываем в перемнную массив с данными пользователя
         $cardN = mysqli_fetch_assoc($result_c);
         ?>
-        <div class="card-header ">
+        <div class="card-header border-0 rounded-0">
             <h4 class="card-title">
                 <?php echo $cardN["name"]; ?>
                 <?php
                 if ($card["card_index"] < 2) {
                     ?>
                     <!-- Кнопка вызова модального окна Созадния задание -->
-                    <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&addTask" type="button" class="btn btn-primary">Добавить задание</a>
+                    <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&addTask" type="button" class="btn btn-primary border-0 rounded-0">Добавить задание</a>
                     <?php
                 }
                 ?>
@@ -54,20 +54,35 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
                                 <td><?php echo $loop+1 ?></td>
                                 <td>
                                     <!-- Кнопка вызова модального окна для просмотра Задание -->
-                                    <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&showTask" type="button" class="btn btn-primary btn-sm"><?php echo $task["name"]; ?></a>
+                                    <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&showTask" type="button" class="btn btn-outline-primary border-0 rounded-0"><?php echo $task["name"]; ?></a>
                                 </td>
                                 <td>
                                     <div class="btn-group-vertical">
 
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <?php
-                                        $sql = "SELECT type FROM `cards` WHERE `id` = ". $cardN["id"] . "";
-                                        $type = mysqli_fetch_assoc($connect->query($sql));
+                                        // $sql = "SELECT type FROM `cards` WHERE `id` = ". $cardN["id"] . "";
+                                        // $type = mysqli_fetch_assoc($connect->query($sql));
                                         // $sql = "SELECT access FROM `board_developers` WHERE `board_id` = " . $board_id . " AND `user_id` = " . $_COOKIE["user_id"] . "";
 
                                         // $access = mysqli_fetch_assoc($connect->query($sql));
-                                        $sql = "SELECT type_access FROM `cards` WHERE `id` = ". $cardN["id"] . "";
-                                        $type_access = mysqli_fetch_assoc($connect->query($sql));
+                                        // $sql = "SELECT type_access FROM `cards` WHERE `id` = ". $cardN["id"] . "";
+                                        // $type_access = mysqli_fetch_assoc($connect->query($sql));
+                                        ?>
+
+                                        <?php // кнопка НАЗАД
+                                         $sql = "SELECT card_index FROM `board_cards` WHERE `board_id` = " . $board_id . " AND `card_id` = " . $cardN["id"] . "";
+
+                                         $ind = mysqli_fetch_assoc($connect->query($sql));
+
+                                         if($ind['card_index'] != 1){
+                                          ?>
+                                            <a href="/admin/board/options/back.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&moveTask=<?php echo $task["id"]; ?>" type="button" class="btn btn-outline-warning btn-sm rounded-0">Назад</a>
+                                            <?php
+                                         }
+                                        ?>
+
+                                        <?php // кнопка ВПЕРЁД
                                         $sql_i = "SELECT card_index FROM `board_cards` WHERE `card_id` = ". $cardN["id"] ."";
                                         $indexNow = mysqli_fetch_assoc($connect->query($sql_i));
                                         $nextIndex = $indexNow["card_index"] + 1;
@@ -77,22 +92,12 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
                                         if ($row_in == 1){
                                             // if($access["access"] == $type_access["type_access"] && $type["type"] != 2 || $access["access"] == 3 && $type["type"] != 2){
                                                 ?>
-                                                <a href="/admin/board/options/move.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&moveTask=<?php echo $task["id"]; ?>" type="button" class="btn btn-secondary btn-sm">Вперед</a>
+                                                <a href="/admin/board/options/move.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&moveTask=<?php echo $task["id"]; ?>" type="button" class="btn btn-outline-success btn-sm rounded-0">Вперед</a>
                                             <?php
                                             //}
                                         }
                                         ?>
-                                        <?php
-                                         $sql = "SELECT card_index FROM `board_cards` WHERE `board_id` = " . $board_id . " AND `card_id` = " . $cardN["id"] . "";
 
-                                         $ind = mysqli_fetch_assoc($connect->query($sql));
-
-                                         if($ind['card_index'] != 1){
-                                          ?>
-                                            <a href="/admin/board/options/back.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&moveTask=<?php echo $task["id"]; ?>" type="button" class="btn btn-secondary btn-sm">Назад</a>
-                                            <?php
-                                         }
-                                        ?>
                                         </div>
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                         <!-- Кнопка вызоа модального окна редактирования задание -->
@@ -102,10 +107,10 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
                                         // $access = mysqli_fetch_assoc($connect->query($sql));
                                         // if($access["access"] == 3){
                                             ?>
-                                            <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&editTask" type="button" class="btn btn-secondary btn-sm" style="max-width = 10px">Редакт.</a>
+                                            <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&editTask" type="button" class="btn btn-outline-info btn-sm  rounded-0" style="max-width = 10px">Редак.</a>
                                             <!-- ============================================================== -->
                                             <!-- ============= Кнопка удаления задание ============ -->
-                                            <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&deleteTask" type="button" class="btn btn-secondary btn-sm">Удалить</a>
+                                            <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&deleteTask" type="button" class="btn btn-outline-danger btn-sm rounded-0">Удалить</a>
                                             <!-- ================================================================== -->
                                         <?php
                                         // }
@@ -130,7 +135,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
             // $access = mysqli_fetch_assoc($connect->query($sql));
             // if($access["access"] == 3){
                 ?>
-            <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&delCard" type="button" class="btn btn-secondary btn-sm">Удалить карточку</a>
+            <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&delCard" type="button" class="btn btn-outline-danger btn-sm rounded-0">Удалить карточку</a>
             <?php
             //}
             ?>
