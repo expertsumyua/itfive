@@ -106,7 +106,10 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
         // }
         ?>
     </div>
-    <div class="row m-2">
+    <div class="row m-2" style="
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;">
     <?php
     if (isset($board_id)) {
         // выбираем все доски где учавствует авторизоываный пользователь
