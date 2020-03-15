@@ -53,7 +53,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
                                 <td><?php echo $loop+1 ?></td>
                                 <td>
                                     <!-- Кнопка вызова модального окна для просмотра Задание -->
-                                    <a href="/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&showTask" type="button" class="btn btn-primary btn-sm"><?php echo $task["name"]; ?></a>
+                                    <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&showTask" type="button" class="btn btn-primary btn-sm"><?php echo $task["name"]; ?></a>
                                 </td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
@@ -74,7 +74,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
                                         if ($row_in == 1){
                                             // if($access["access"] == $type_access["type_access"] && $type["type"] != 2 || $access["access"] == 3 && $type["type"] != 2){
                                                 ?>
-                                                <a href="options/move.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&moveTask=<?php echo $task["id"]; ?>" type="button" class="btn btn-secondary btn-sm">Move</a>
+                                                <a href="/admin/board/options/move.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&moveTask=<?php echo $task["id"]; ?>" type="button" class="btn btn-secondary btn-sm">Move</a>
                                             <?php
                                             //}
                                         }

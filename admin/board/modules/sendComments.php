@@ -1,5 +1,6 @@
 <?php
-	include "../configs/db.php";
+//подключаем базу даних
+include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 	/*=====	Отправка сообщений выбраномкпользователю ===========================*/
 	// echo "<h2>Вы пытаетесь отправить коментарий!</h2>";
 	// echo "<h2>";
@@ -21,8 +22,8 @@
 	//  Проверяем есть ли коментарии и не пустое ли ополе коментария
 	if(isset($_POST["comment"]) && $_POST["comment"] != "") {
 
-		$sql_comments = "INSERT INTO comments (task_id, user_id, comment) VALUES ('" . $_POST["task_id"] . "', '" . $_POST["user_id"] ."', '" . $_POST["comment"] ."' )";
-		mysqli_query($connect, $sql_comments);
+		$sql_comments = "INSERT INTO board_comments (task_id, user_id, comment) VALUES ('" . $_POST["task_id"] . "', '" . $_POST["user_id"] ."', '" . $_POST["comment"] ."' )";
+		$connect->query($sql_comments);
 		// if(mysqli_query($connect, $sql_comments)) {
 		// 	echo "<h2>Выдобавили коментарий!</h2>";
 		// 	include "../modules/listComments.php";
@@ -33,6 +34,6 @@
 	// /*==========================================================================*/
 
 	$task_id = $_POST["task_id"];
-	include "../modules/listComments.php";
+	include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/modules/listComments.php";
 
 ?>

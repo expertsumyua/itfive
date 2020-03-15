@@ -10,8 +10,8 @@
                 $taskID = $task_id;
             }
             // получаем все сообщения которые были отправлены пользователю
-            $sql_comments = "SELECT * FROM comments WHERE `task_id` =" . $taskID ."";
-            $result_comments = mysqli_query($connect, $sql_comments);
+            $sql_comments = "SELECT * FROM board_comments WHERE `task_id` =" . $taskID ."";
+            $result_comments = $connect->query($sql_comments);
             // mysqli_fetch_assoc - преобразовывает полученные данные
             //(результирующй ряд или строку из таблицы) пользователя в массив
             $number_of_comments = mysqli_num_rows($result_comments);
@@ -24,7 +24,7 @@
                             // вывести всю строку по указаннму id
                             $sql_users = "SELECT * FROM users WHERE id=" . $comment["user_id"];
                             // выполняю SQL запрос
-                            $result_users = mysqli_query($connect, $sql_users);
+                            $result_users = $connect->query($sql_users);
                             // записываем в переменную массив с данными пользователя
                             $user = mysqli_fetch_assoc($result_users);
     ?>

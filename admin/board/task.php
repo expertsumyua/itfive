@@ -52,7 +52,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
     <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Обзор задания</h5>
-        <a href="/board.php?board=<?php echo $board_id?>" type="button" class="close" aria-label="Close">
+        <a href="/admin/board/board.php?board=<?php echo $board_id?>" type="button" class="close" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </a>
         </div>
@@ -94,10 +94,10 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
                 <div id="list-comments">
                     <?php 
                     // include - подключить файл список коментариев
-                    include "modules/listComments.php";
+                    include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/modules/listComments.php";
                     ?>
                 </div>
-                  <form id = "form" action="http://doska.local/modules/sendComments.php" method="POST"><!-- action="http://doska.local/board.php?board=<?php //echo $board_id?>&create"> -->
+                  <form id = "form" action="/admin/board/modules/sendComments.php" method="POST"><!-- action="http://doska.local/board.php?board=<?php //echo $board_id?>&create"> -->
                   <?php
                   //if (isset($_GET["task"])){
                   ?>
@@ -120,8 +120,8 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
                   </form>              
             </div>
             <div class="modal-footer">
-                <a href="/board.php?board=<?php echo $board_id?>" type="button" class="btn btn-secondary">Отмена</a>
-              <a href="/board.php?board=<?php echo $board_id?>" type="button" class="btn btn-secondary">OK</a>
+                <a href="/admin/board/board.php?board=<?php echo $board_id?>" type="button" class="btn btn-secondary">Отмена</a>
+              <a href="/admin/board/board.php?board=<?php echo $board_id?>" type="button" class="btn btn-secondary">OK</a>
              <!--  <button type="button" class="btn btn-primary">OK</button> -->
             </div>
         
@@ -136,12 +136,12 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
     <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Редактор задания</h5>
-        <a href="/board.php?board=<?php echo $board_id?>" type="button" class="close" aria-label="Close">
+        <a href="/admin/board/board.php?board=<?php echo $board_id?>" type="button" class="close" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </a>
         </div>
 
-        <form action="http://doska.local/modules/saveTask.php" method="POST"> <!-- action="http://doska.local/board.php?board=<?php //echo $board_id?>&create"> -->
+        <form action="/admin/board/modules/saveTask.php" method="POST"> <!-- action="http://doska.local/board.php?board=<?php //echo $board_id?>&create"> -->
             <div class="modal-body">
                 <input type="hidden" name="board_id"      value="<?php echo $board_id; ?>">
                 <input type="hidden" name="card_id"       value="<?php echo $_GET["card"];  ?>">
@@ -183,7 +183,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 
             </div>
             <div class="modal-footer">
-            <a href="/board.php?board=<?php echo $board_id?>" type="button" class="btn btn-secondary">Отмена</a>
+            <a href="/admin/board/board.php?board=<?php echo $board_id?>" type="button" class="btn btn-secondary">Отмена</a>
             <button type="submit" class="btn btn-primary">Сохранить задание</button>
             </div>
         </form>
