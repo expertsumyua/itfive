@@ -159,14 +159,12 @@ if (isset($_POST))
 </a>
 
 <script src="assets/js/changeStatus.js"></script>
-<<<<<<< HEAD
 <script src="assets/js/main.js"></script>
-=======
+
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
 
 ?>
->>>>>>> developer
 </body>
 
 </html>
