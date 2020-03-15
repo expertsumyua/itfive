@@ -1,6 +1,8 @@
 <?php
 /*==================== Удаление задания  ============================*/
 if (isset($_GET["deleteTask"])) {
+
+    //$sql_comments = "SELECT * FROM `comments` WHERE task_id = " . $_GET["task"] ."";
     //Удаляем сначала все коментарии в задани
     $sql_comments = "DELETE FROM `comments` WHERE task_id = " . $_GET["task"] ."";
     // Когда все коментарии удалены, то
@@ -12,7 +14,14 @@ if (isset($_GET["deleteTask"])) {
             header("Location: /admin/board/board.php?board=" . $_GET["board"] ."");
             //echo "<h2>Вы собираетесь удалить Задачу?</h2>";
         }
-    }    
+    } else {
+        $sql_tasks = "DELETE FROM `tasks` WHERE id = " . $_GET["task"] . " AND card_id = " . $_GET["card"] ."";
+        if ($connect->query($sql_tasks)) {
+            //echo "<h2>Вы создали Задачу</h2>";
+            header("Location: /admin/board/board.php?board=" . $_GET["board"] ."");
+            //echo "<h2>Вы собираетесь удалить Задачу?</h2>";
+        }
+    } 
 }
 /*=================================================================*/
 
@@ -32,7 +41,10 @@ if (isset($_GET["delCard"])) {
             // Кдалаем все задания
             $sql_tasks = "DELETE FROM `tasks` WHERE id = " . $task["id"] . " AND card_id = " . $_GET["card"] ."";
             $connect->query($sql_tasks);            
-        }
+        } else {
+            $sql_tasks = "DELETE FROM `tasks` WHERE id = " . $task["id"] . " AND card_id = " . $_GET["card"] ."";
+            $connect->query($sql_tasks);
+        } 
         $i++;
     }
     if ($connect->query($sql_tasks)) {

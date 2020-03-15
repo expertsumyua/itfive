@@ -4,6 +4,7 @@
 include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 //include "configs/settings.php";
 /*==========================================*/
+
 /*Функционал удаления досок, карточек и заданий*/
 include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
 /*=============================================*/
