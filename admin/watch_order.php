@@ -79,6 +79,7 @@ if (isset($_POST))
                                             <th scope="col">№</th>
                                             <th scope="col">Технология</th>
                                             <th scope="col">Категории</th>
+                                            <th scope="col">Количество</th>
                                             <th scope="col">Цена</th>
                                         </tr>
                                       </thead>
@@ -97,7 +98,7 @@ if (isset($_POST))
                                                     $sql = "SELECT services.short_description, services.title, services.cost, services.img, services.id, category_services.category_id FROM services 
                                                              INNER JOIN category_services ON services.id = category_services.service_id 
                                                              INNER JOIN categories ON categories.id = category_services.category_id
-                                                             WHERE services.id =" . $basket['basket'][$i]['service_id'];
+                                                             WHERE services.id =" . $basket['basket'][$i]['service_id'] . " AND categories.id =" . $basket['basket'][$i]['category_id'];
                                                                     $resultService = mysqli_query($connect, $sql);
                                                                     $service = mysqli_fetch_assoc($resultService);
                                                                 ?> 
@@ -116,6 +117,10 @@ if (isset($_POST))
 
 
                                                                             </td>
+                                                                            
+                                                                            <td><?php echo $basket['basket'][$i]['count']; ?></td>
+
+                                                                            
 
                                                                             <!-- Расчет стоимости заказа -->
                                                                             <input id="start_price<?php echo $service['id'];?>" type="hidden" name="start_prise" value="<?php echo $service['cost'];?>" >

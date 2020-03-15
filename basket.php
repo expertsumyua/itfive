@@ -12,7 +12,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
             <table class="table table-dark " >
                 <thead>
                     <tr>
-                        <th scope="col">Название</th>
+                        <th scope="col">Технология</th>
+                        <th scope="col">Категория</th>
                         <th scope="col">Количество</th>
                         <th scope="col">Цена</th>
                         <th scope="col">Удалить</th>
@@ -23,12 +24,23 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
                      if( isset($_COOKIE['basket']) || isset($_POST['id'])) {
                         $basket = json_decode($_COOKIE['basket'], true);
                         for($i = 0; $i < count($basket['basket']); $i++) {
-                            $sql = "SELECT * FROM services WHERE id=" . $basket['basket'][$i]['service_id'];
+                            $sql = "SELECT services.short_description, services.title, services.cost, services.img, services.id, category_services.category_id FROM services 
+                            INNER JOIN category_services ON services.id = category_services.service_id 
+                            INNER JOIN categories ON categories.id = category_services.category_id
+                            WHERE services.id =" . $basket['basket'][$i]['service_id'] . " AND categories.id =" . $basket['basket'][$i]['category_id'];
+                            
                             $result = $connect->query($sql);
                             $row = mysqli_fetch_assoc($result);
                            ?>
                             <tr>
                                 <td><?php echo $row['title']; ?></td>
+
+                            <?php 
+                            $sql_categories = "SELECT * FROM categories WHERE id=" . $row['category_id'];
+                            $result_categories = $connect->query($sql_categories);
+                            $categories = mysqli_fetch_assoc($result_categories);
+                            ?>
+                                <td><?php  echo $categories['title']; ?></td>
 
                                 <!-- редактирование количества товара -->
                                 <td>
