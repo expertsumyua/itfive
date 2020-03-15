@@ -506,12 +506,14 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
     <i class="fas fa-angle-up"></i>
 </a>
 
-<?php
-include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
 
-?>
  <script src="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
  <script src="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/js/ruang-admin.min.js"></script>
+ <?php
+include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
+
+
+?>
 </body>
 
 </html>

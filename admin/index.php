@@ -26,9 +26,7 @@ $page = "Главная"
                 <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
-                <?php
-                include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/top-bar.php"
-                ?>
+                <?php include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/top-bar.php" ?>
             </nav>
             <!-- Topbar -->
 

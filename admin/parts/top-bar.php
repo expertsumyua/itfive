@@ -1,5 +1,6 @@
-<ul class="navbar-nav ml-auto d-none">
-    <li class="nav-item dropdown no-arrow">
+<ul class="navbar-nav ml-auto">
+
+    <li class="nav-item dropdown no-arrow d-none">
         <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-search fa-fw"></i>
@@ -19,7 +20,8 @@
             </form>
         </div>
     </li>
-    <li class="nav-item dropdown no-arrow mx-1">
+
+    <li class="nav-item dropdown no-arrow mx-1 d-none">
         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-bell fa-fw"></i>
@@ -66,7 +68,8 @@
             <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
         </div>
     </li>
-    <li class="nav-item dropdown no-arrow mx-1">
+
+    <li class="nav-item dropdown no-arrow mx-1 d-none">
         <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-envelope fa-fw"></i>
@@ -102,7 +105,8 @@
             <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
         </div>
     </li>
-    <li class="nav-item dropdown no-arrow mx-1">
+
+    <li class="nav-item dropdown no-arrow mx-1 d-none">
         <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-tasks fa-fw"></i>
@@ -149,7 +153,10 @@
             <a class="dropdown-item text-center small text-gray-500" href="#">View All Taks</a>
         </div>
     </li>
-    <div class="topbar-divider d-none d-sm-block"></div>
+    <!-- <div class="topbar-divider d-sm-block"></div> -->
+
+
+    <!-- АВКа и ИМЯ Юзер в верхнем паравом углу -->
     <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
@@ -161,18 +168,18 @@
                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                 Profile
             </a>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item d-none" href="#">
                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                 Settings
             </a>
-            <a class="dropdown-item" href="#">
-                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                Activity Log
+            <a class="dropdown-item" href="http://itfive.local/">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                На главный сайт
             </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="login.html">
+            <a class="dropdown-item" href="login.html" id="login-out">
                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                Logout
+                Выйти с аккаунта
             </a>
         </div>
     </li>
