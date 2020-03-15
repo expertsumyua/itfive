@@ -3,6 +3,9 @@
 $page = "basket";
 include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
 ?>
+<div class="col-12 py-5">
+            <h3 class="text-center">Ваш заказа</h3>
+</div>
 <div class="col-12" style="min-height: 400px">
     <div class="container">
         <div class="row" >
@@ -29,13 +32,15 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
 
                                 <!-- редактирование количества товара -->
                                 <td>
-                                        <input type="number" class="btn btn-outline-light col-2 edit_input" id="count<?php echo $row['id'];?>" min="1" value="<?php echo $basket['basket'][$i]['count'];?>" onchange="formEditCount(<?php echo $row['id']; ?>)">
+                                        <input type="number" class="btn btn-outline-light col-2 edit_input"
+                                               id="count<?php echo $row['id'];?>" min="0" value="<?php echo $basket['basket'][$i]['count'];?>"
+                                               onchange="formEditCount(<?php echo $row['id']; ?>)">
 
                                 </td>
                                 <!-- Расчет стоимости заказа -->
                                 <input id="start_price<?php echo $row['id'];?>" type="hidden" name="start_prise" value="<?php echo $row['cost'];?>" >
 
-                                <td class="price" id="cost<?php echo $row['id'];?>"><?php echo ($row['cost'] * $basket['basket'][$i]['count']);?> $</td>
+                                <td class="price" id="cost<?php echo $row['id'];?>" data-sum="<?php echo ($row['cost'] * $basket['basket'][$i]['count']);?>"><?php echo ($row['cost'] * $basket['basket'][$i]['count']);?> $</td>
                                 
                                 <!-- Удаление товара из корзины -->
                                 <td><button onclick="deleteProductBasket(this, <?php echo $row['id']; ?>)" class="btn btn-danger">Delete</button></td>
