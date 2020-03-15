@@ -22,7 +22,7 @@ if (isset($_GET['order'])) {
     if ($row = mysqli_fetch_assoc($connect->query($sql))) {
         $board_id = $row['id'];
         // echo $board_id;
-        // die(); 
+        // die();
     }
 }
 
@@ -97,9 +97,11 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
             <button type="button" class="btn btn-dark my-2 my-sm-0" role="button" aria-pressed="true" data-toggle="modal" data-target="#createCardModal">
               Добавить карточку
             </button>
+<!--
             <a href="options/addmember.php?board=<?php echo $board_id?>&addmember" type="button" class="btn btn-dark my-2 my-sm-0 m-2" role="button" aria-pressed="true">
             Список участников
             </a>
+-->
         <?php
         // }
         ?>

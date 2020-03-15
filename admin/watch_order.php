@@ -119,7 +119,7 @@ if (isset($_POST))
                 </div>
                 <button class="btn__progress">Прогресс</button>
             </form>
-        
+
     </div>
     </div>
 </div>

@@ -22,16 +22,18 @@
                         <li>
     <?php
                             // вывести всю строку по указаннму id
-                            $sql_users = "SELECT * FROM users WHERE id=" . $comment["user_id"];
+                            $sql_users = "SELECT * FROM customers WHERE id=" . $comment["developer_id"];
                             // выполняю SQL запрос
                             $result_users = $connect->query($sql_users);
                             // записываем в переменную массив с данными пользователя
                             $user = mysqli_fetch_assoc($result_users);
     ?>
                             <div class = "avatar" >
-                                <img src= "<?php echo $user["photo"]; ?>" >
+                                <img src= "../../../assets/img/user_icon4.png" style="
+                                        width: 50px;
+                                    ">
                             </div>
-                            <h4><?php echo $user["name"]; ?></h4>
+                            <h4><?php echo $user["first_name"]; ?></h4>
                             <p><?php echo  $comment["comment"]; ?></p>
                             <div class ="time"><?php echo $comment["date_time"]; ?></div>
 

@@ -11,7 +11,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
     <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Задание</h5>
-        <a href="/board.php?board=<?php echo $board_id?>" type="button" class="close" aria-label="Close">
+        <a href="board.php?board=<?php echo $_GET['board']?>" type="button" class="close" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </a>
         </div>
@@ -37,7 +37,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
             </div>
             <div class="modal-footer">
             <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>-->
-             <a href="admin/board/board.php?board=<?php echo $board_id?>" type="button" class="btn btn-secondary">Отмена</a>
+             <a href="board.php?board=<?php echo $_GET['board']?>" type="button" class="btn btn-secondary">Отмена</a>
             <button type="submit" class="btn btn-primary">Сохранить задание</button>
             </div>
         </form>
@@ -92,39 +92,39 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
                 /*=================================================================*/
                 ?>
                 <div id="list-comments">
-                    <?php 
+                    <?php
                     // include - подключить файл список коментариев
                     include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/modules/listComments.php";
                     ?>
                 </div>
-                  <form id = "form" action="/admin/board/modules/sendComments.php" method="POST"><!-- action="http://doska.local/board.php?board=<?php //echo $board_id?>&create"> -->
+                  <form id = "form" action="modules/sendComments.php" method="POST"><!-- action="http://doska.local/board.php?board=<?php //echo $board_id?>&create"> -->
                   <?php
                   //if (isset($_GET["task"])){
                   ?>
-                      <div class="form-group">                             
-                          <label for="exampleFormControlTextarea1">Коментарии</label>                          
+                      <div class="form-group">
+                          <label for="exampleFormControlTextarea1">Коментарии</label>
                           <!-- <input type="hidden" name="board_id"  value="<?php //echo $board_id; ?>"> -->
                           <!-- <input type="hidden" name="card_id"   value="<?php// echo $_GET["card"];  ?>"> -->
                           <input type="hidden" name="task_id"   value="<?php echo $_GET["task"];  ?>">
-                          <input type="hidden" name="user_id"   value="<?php echo $user_id;  ?>">
-                          <textarea type="text" name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Оставте свои коментарии"></textarea>   
-                                            
-                      </div> 
+                          <input type="hidden" name="user_id"   value="<?php echo $_COOKIE['customers_id']  ?>">
+                          <textarea type="text" name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Оставте свои коментарии"></textarea>
+
+                      </div>
                    <?php
                  // }
                   ?>
 
-                  <div class="form-group"> 
+                  <div class="form-group">
                       <button type="submit" class="btn btn-success">Send</button>
-                  </div> 
-                  </form>              
+                  </div>
+                  </form>
             </div>
             <div class="modal-footer">
                 <a href="/admin/board/board.php?board=<?php echo $board_id?>" type="button" class="btn btn-secondary">Отмена</a>
               <a href="/admin/board/board.php?board=<?php echo $board_id?>" type="button" class="btn btn-secondary">OK</a>
              <!--  <button type="button" class="btn btn-primary">OK</button> -->
             </div>
-        
+
 
     </div>
   </div>
@@ -201,7 +201,7 @@ if (isset($board_id) && isset($_GET["card"]) && isset($_GET["addTask"])) {
             });
         </script>
     <?php
-} 
+}
 if (isset($board_id) && isset($_GET["card"]) && isset($_GET["editTask"])) {
     ?>
         <script> $(document).ready(function() {
@@ -213,7 +213,7 @@ if (isset($board_id) && isset($_GET["card"]) && isset($_GET["editTask"])) {
 if (isset($board_id) && isset($_GET["card"]) && isset($_GET["showTask"])) {
     ?>
         <script> $(document).ready(function() {
-            $("#showTaskModal").modal('show'); 
+            $("#showTaskModal").modal('show');
             });
         </script>
     <?php
