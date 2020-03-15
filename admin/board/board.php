@@ -505,8 +505,8 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
 include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
 
 ?>
-<!-- <script src="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/vendor/jquery-easing/jquery.easing.min.js"></script> -->
-<!-- <script src="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/js/ruang-admin.min.js"></script> -->
+ <script src="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+ <script src="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/js/ruang-admin.min.js"></script>
 </body>
 
 </html>

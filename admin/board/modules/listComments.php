@@ -29,9 +29,7 @@
                             $user = mysqli_fetch_assoc($result_users);
     ?>
                             <div class = "avatar" >
-                                <img src= "../../../assets/img/user_icon4.png" style="
-                                        width: 50px;
-                                    ">
+                                <img src= "../../../assets/img/user_icon4.png" style="width: 50px;">
                             </div>
                             <h4><?php echo $user["first_name"]; ?></h4>
                             <p><?php echo  $comment["comment"]; ?></p>

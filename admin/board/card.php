@@ -10,7 +10,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
 /*=============================================*/
 ?>
 
-<div class="col-3 p-2">
+<div class="col-4 p-2">
     <div class="card strpied-tabled-with-hover">
         <?php
         // выбираем все данные про карточку которую мы сейчас выводим
@@ -56,6 +56,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
                                     <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&showTask" type="button" class="btn btn-primary btn-sm"><?php echo $task["name"]; ?></a>
                                 </td>
                                 <td>
+
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <?php
                                         $sql = "SELECT type FROM `cards` WHERE `id` = ". $cardN["id"] . "";
@@ -80,16 +81,15 @@ include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
                                         }
                                         ?>
                                         <?php
-                                        // $sql = "SELECT access FROM `board_developers` WHERE `board_id` = " . $board_id . " AND `user_id` = " . $_COOKIE["user_id"] . "";
+                                         $sql = "SELECT card_index FROM `board_cards` WHERE `board_id` = " . $board_id . " AND `card_id` = " . $cardN["id"] . "";
 
-                                        // $access = mysqli_fetch_assoc($connect->query($sql));
-                                        // $sql = "SELECT type_access FROM `cards` WHERE `id` = ". $cardN["id"] . "";
-                                        // $type_access = mysqli_fetch_assoc($connect->query($sql));
-                                        // if($access["access"] == $type_access["type_access"] && $type_access["type_access"] == 2 ||$access["access"] == 3 && $type_access["type_access"] == 2){
+                                         $ind = mysqli_fetch_assoc($connect->query($sql));
+
+                                         if($ind['card_index'] != 1){
                                           ?>
                                             <a href="/admin/board/options/back.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&moveTask=<?php echo $task["id"]; ?>" type="button" class="btn btn-secondary btn-sm">Back</a>
                                             <?php
-                                        // }
+                                         }
                                         ?>
                                         <!-- Кнопка вызоа модального окна редактирования задание -->
                                         <?php
