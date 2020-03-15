@@ -23,15 +23,16 @@ if($loginOut){
 
 
 //Добавление в корзину
-function addToBasket(btn) {
+function addToBasket(btn, cat, ser) {
 
      var ajax = new XMLHttpRequest();
         ajax.open('POST', $siteURL + 'modules/basket/add-basket.php', false);
         ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        ajax.send('id=' + btn.dataset.ser + "&sum_count=" + sum_count);  
+        ajax.send('id=' + ser + "&cat=" + cat);  
 
 
         var response = JSON.parse(ajax.response);
+        console.dir(response);
 
         var btnGoBasket = document.querySelector("#add-basket span");
 
@@ -64,7 +65,6 @@ function deleteProductBasket(obj, id) {
  function formEditCount(id) {
     var count = document.querySelector("#count" + id);
     var price = document.querySelectorAll(".price");
-    var start_price = document.querySelector("#start_price" + id);
      //var sum = document.querySelector("#sum-cost");
 
 
@@ -74,11 +74,11 @@ function deleteProductBasket(obj, id) {
         ajax.send("id=" + id + "&count=" + count.value);
         //console.dir(id);
          var response = JSON.parse(ajax.response);
-         
+         console.dir(response);
          var arr_sum = new Array();
          for(var i=0; i<response.basket.length; i++) {
-             var cost = response.basket[i].cost
-             var $count = response.basket[i].count
+             var cost = response.basket[i].cost;
+             var $count = +response.basket[i].count;
              var cost_sum = cost * $count ;
 
             for(var j=0; j < price.length; j++) {

@@ -89,7 +89,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
                         </div>
                         <div class="card-footer" style="background: #F2F2F2">
                             <p class="order d-inline">Цена: <strong><?php echo $row['cost'] ?>$</strong></p>
-                            <button onclick="addToBasket(this)" data-cat="<?php echo $categories['id']; ?>" data-ser="<?php echo $row['id']; ?>"
+                            <button onclick="addToBasket(this, <?php echo $categories['id']; ?>, <?php echo $row['id']; ?>)" 
                                     class="btn btn-outline-primary ml-5 justify-content-end">Заказать
                             </button>
                             </p>
