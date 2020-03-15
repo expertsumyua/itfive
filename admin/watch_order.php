@@ -18,6 +18,7 @@ if (isset($_POST))
     //echo $order_servise;
     /// Создаем доску в таблице boards и добавляем связь пользователя с таблицей в board_users
         $sql = "SELECT * FROM boards WHERE order_id=" . $_GET['id'];
+
         if (!mysqli_fetch_assoc($connect->query($sql))) {
 
             $sql_boards = "INSERT INTO `boards` (order_id, order_servise) VALUES ('" . $_GET['id'] . "', '" . $order_servise . "');";
@@ -51,7 +52,7 @@ if (isset($_POST))
                 <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
-
+                <?php include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/top-bar.php" ?>
             </nav>
             <!-- Topbar -->
             <!-- <form method="POST"> -->
@@ -160,6 +161,11 @@ if (isset($_POST))
 
 <script src="assets/js/changeStatus.js"></script>
 <script src="assets/js/main.js"></script>
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
+
+?>
 </body>
 
 </html>

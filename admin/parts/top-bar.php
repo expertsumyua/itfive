@@ -1,4 +1,4 @@
-<ul class="navbar-nav ml-auto d-none">
+<ul class="navbar-nav ml-auto">
     <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
