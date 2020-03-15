@@ -19,7 +19,7 @@
         // Добаляем куки
         setcookie("basket", $jsonProduct, time() + 60*60, "/");
         
-        echo $edit_count;
+        echo $jsonProduct;
         
 
     }
