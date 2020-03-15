@@ -25,8 +25,8 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
                 <input type="hidden" name="task_status"   value="addTask">
                 <input type="hidden" name="user_id"       value="<?php echo $user_id;  ?>">
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Название задания</label>
-                    <input name="taskname" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Введите название задания">
+                    <label for="exampleFormControlInput1">Название/краткое описание задания</label>
+                    <input name="taskname" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Введите название/краткое описание задания">
                   </div>
 
                   <div class="form-group">
@@ -67,7 +67,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
                     $task = mysqli_fetch_assoc($connect->query($sql_tasks));
                     ?>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Название задания</label>
+                        <label for="exampleFormControlInput1">Название/краткое описание задания</label>
                         <input name="taskname" type="text" class="form-control" id="exampleFormControlInput1" placeholder="<?php echo $task["name"]?>" readonly>
                     </div>
 
@@ -79,8 +79,8 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
                 } else {
                     ?>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Название задания</label>
-                        <input name="taskname" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Введите название задания" readonly>
+                        <label for="exampleFormControlInput1">Название/краткое описание задания</label>
+                        <input name="taskname" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Введите название/краткое описание задания" readonly>
                     </div>
 
                     <div class="form-group">
@@ -156,7 +156,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
                     $task = mysqli_fetch_assoc($connect->query($sql_tasks));
                     ?>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Название задания</label>
+                        <label for="exampleFormControlInput1">Название/краткое описание задания</label>
                         <input name="taskname" type="text" class="form-control" id="exampleFormControlInput1" value="<?php echo $task["name"]?>">
                     </div>
 
@@ -168,8 +168,8 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
                 } else {
                     ?>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Название задания</label>
-                        <input name="taskname" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Введите название задания">
+                        <label for="exampleFormControlInput1">Название/краткое описание задания</label>
+                        <input name="taskname" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Введите название/краткое описание задания">
                     </div>
 
                     <div class="form-group">
