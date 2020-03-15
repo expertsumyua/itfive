@@ -86,7 +86,7 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
 
             <!-- -->
 
-            <div class="container-fluid">
+            <div class="container-fluid" style="height: 80%;">
 
     <div class="row m-2">
        <?php
@@ -110,7 +110,7 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
-    height: 775px;
+    height: 100%;
     ">
     <?php
     if (isset($board_id)) {
