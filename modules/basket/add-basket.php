@@ -6,22 +6,22 @@ if (isset($_POST) and $_SERVER["REQUEST_METHOD"]=="POST"){
 /*$sql = "SELECT * FROM services WHERE id=" . $_POST['id'];
         $result = $connect->query($sql);
         $row = mysqli_fetch_assoc($result); */
-    $sql = "SELECT services.id, category_services.category_id
+    $sql = "SELECT services.id, category_services.category_id, services.cost
                         FROM services 
                         INNER JOIN category_services ON services.id = category_services.service_id 
                         INNER JOIN categories ON categories.id = category_services.category_id
-                        WHERE services.id =" . $_POST['id'];
+                        WHERE services.id =" . $_POST['id'] . " AND categories.id=" . $_POST['cat'];
     $result = $connect->query($sql);
     $row = mysqli_fetch_assoc($result);
     // Добавление в корзину
      if(isset($_COOKIE['basket'])) { // если в корзине уже что то есть
         $basket = json_decode($_COOKIE['basket'], true);
-
-        $basket['sum_count'][0]['count'] = $_POST['sum_count'];
+        
+        //$basket['sum_count'][0]['count'] = $_POST['sum_count'];
 
         $issetProduct = 0;
         for($i = 0; $i < count($basket['basket']); $i++) {
-            if( $basket['basket'][$i]["service_id"] == $row['id'] ) {
+            if( $basket['basket'][$i]["service_id"] == $row['id']) {
                  $basket['basket'][$i]['count']++;
                  $issetProduct = 1;
             }
@@ -31,6 +31,7 @@ if (isset($_POST) and $_SERVER["REQUEST_METHOD"]=="POST"){
             $basket["basket"][] = [
                 "service_id" => $row['id'],
                 "category_id" => $row['category_id'],
+                "cost" => $row['cost'],
                 "count" => 1
             ];
         }
@@ -41,6 +42,7 @@ if (isset($_POST) and $_SERVER["REQUEST_METHOD"]=="POST"){
         $basket = [ "basket" => [ 
             ["service_id" => $row['id'],
                 "category_id" => $row['category_id'],
+                "cost" => $row['cost'],
                 "count" => 1 ]
         ]
     ];

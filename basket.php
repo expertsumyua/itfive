@@ -4,7 +4,7 @@ $page = "basket";
 include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
 ?>
 <div class="col-12 py-5">
-            <h3 class="text-center">Ваш заказа</h3>
+            <h3 class="text-center">Ваш заказ</h3>
 </div>
 <div class="col-12" style="min-height: 400px">
     <div class="container">
@@ -12,7 +12,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
             <table class="table table-dark " >
                 <thead>
                     <tr>
-                        <th scope="col">Название</th>
+                        <th scope="col">Технология</th>
+                        <th scope="col">Категория</th>
                         <th scope="col">Количество</th>
                         <th scope="col">Цена</th>
                         <th scope="col">Удалить</th>
@@ -23,12 +24,23 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
                      if( isset($_COOKIE['basket']) || isset($_POST['id'])) {
                         $basket = json_decode($_COOKIE['basket'], true);
                         for($i = 0; $i < count($basket['basket']); $i++) {
-                            $sql = "SELECT * FROM services WHERE id=" . $basket['basket'][$i]['service_id'];
+                            $sql = "SELECT services.short_description, services.title, services.cost, services.img, services.id, category_services.category_id FROM services 
+                            INNER JOIN category_services ON services.id = category_services.service_id 
+                            INNER JOIN categories ON categories.id = category_services.category_id
+                            WHERE services.id =" . $basket['basket'][$i]['service_id'] . " AND categories.id =" . $basket['basket'][$i]['category_id'];
+                            
                             $result = $connect->query($sql);
                             $row = mysqli_fetch_assoc($result);
                            ?>
                             <tr>
                                 <td><?php echo $row['title']; ?></td>
+
+                            <?php 
+                            $sql_categories = "SELECT * FROM categories WHERE id=" . $row['category_id'];
+                            $result_categories = $connect->query($sql_categories);
+                            $categories = mysqli_fetch_assoc($result_categories);
+                            ?>
+                                <td><?php  echo $categories['title']; ?></td>
 
                                 <!-- редактирование количества товара -->
                                 <td>
@@ -40,7 +52,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
                                 <!-- Расчет стоимости заказа -->
                                 <input id="start_price<?php echo $row['id'];?>" type="hidden" name="start_prise" value="<?php echo $row['cost'];?>" >
 
-                                <td class="price" id="cost<?php echo $row['id'];?>" data-sum="<?php echo ($row['cost'] * $basket['basket'][$i]['count']);?>"><?php echo ($row['cost'] * $basket['basket'][$i]['count']);?> $</td>
+                                <td class="price" id="cost<?php echo $row['id'];?>"> <?php echo ($row['cost'] * $basket['basket'][$i]['count']);?> $</td>
                                 
                                 <!-- Удаление товара из корзины -->
                                 <td><button onclick="deleteProductBasket(this, <?php echo $row['id']; ?>)" class="btn btn-danger">Delete</button></td>
@@ -51,8 +63,26 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
                  ?>
                 </tbody>
             </table>
-            <div class="row w-100 no-gutters bg-light position-relative">
+            
+            <div class="row w-100 no-gutters bg-light ">
                 <div class="col-md-6 w-75 position-static p-4 pl-md-0 text-center">
+                <h4 class="font-italic mr-3">Сумма заказа </h4>
+            <span class="btn btn-secondary" id='sum-cost'>
+            <?php
+            if(isset($_COOKIE['basket'])){
+                $basket = json_decode($_COOKIE['basket'], true);
+                for($i = 0; $i < count($basket['basket']); $i++) {
+                    $sql = "SELECT * FROM services WHERE id=" . $basket['basket'][$i]['service_id'];
+                    $result = $connect->query($sql);
+                    $row = mysqli_fetch_assoc($result);
+                    $sum[$i] = $row['cost'] * $basket['basket'][$i]['count'];
+                    
+                }
+                echo  array_sum($sum);
+            } else { echo 0 ;}
+            ?>
+            $
+            </span>
                 </div>
                 <div class="col-md-5 w-25 position-static p-2 m-3 text-white text-right">
                     <button class="btn btn-outline-primary"  data-toggle="modal" data-target="#exampleModal">Оформить заказ</button>
