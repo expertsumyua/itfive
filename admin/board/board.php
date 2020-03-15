@@ -2,6 +2,10 @@
 //подключаем базу даних
 include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 
+/*Функционал удаления досок, карточек и заданий*/
+include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
+/*=============================================*/
+
 
 //устанавливаем страницу
 $page = "Доска";
@@ -9,22 +13,36 @@ $page = "Доска";
 
 <?php
 
+$board_id = 0;
+if (isset($_GET["board"])) {
+    $board_id = $_GET['board'];
+}
+if (isset($_GET['order'])) {
+    $sql = "SELECT * FROM boards WHERE order_id=" . $_GET['order'];
+    if ($row = mysqli_fetch_assoc($connect->query($sql))) {
+        $board_id = $row['id'];
+        // echo $board_id;
+        // die(); 
+    }
+}
+
 $boardindex = 0;
 if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
     $sql = "INSERT INTO `cards` (`id`, `name`, `date_time`, `type_access`, `type`) VALUES (NULL, '" . $_POST["cardname"] . "', current_timestamp(), '" . $_POST["type_access"] . "', '" . $_POST["type_card"] . "');";
     mysqli_query($connect, $sql);
 
-//    $sql = "INSERT INTO `board_cards` (`board_id`, `card_id`, `card_index`) VALUES ('" . $_GET["board"] . "', '1', '1');";
+//    $sql = "INSERT INTO `board_cards` (`board_id`, `card_id`, `card_index`) VALUES ('" . $board_id . "', '1', '1');";
 
     $sql_m = "SELECT * FROM `cards` WHERE `name` = '" . $_POST["cardname"] . "' ORDER BY `id` DESC";
-    $cards = mysqli_fetch_assoc(mysqli_query($connect, $sql_m));
+    $cards = mysqli_fetch_assoc($connect->query($sql_m));
     $cards["id"];
-    $sql = "INSERT INTO `board_cards` (`board_id`, `card_id`, `card_index`) VALUES ('" . $_GET["board"] . "', '" . $cards["id"] . "', '" . $boardindex ."');";
+
+    $sql = "INSERT INTO `board_cards` (`board_id`, `card_id`, `card_index`) VALUES ('" . $board_id . "', '" . $cards["id"] . "', '" . $boardindex ."');";
     mysqli_query($connect, $sql);
-    $sql_n = "SELECT * FROM `board_cards` WHERE board_id = " . $_GET["board"] . "";
-    $amount = mysqli_num_rows(mysqli_query($connect, $sql_n));
-    $sql = "UPDATE `board_cards` SET `card_index` = '" . $amount . "' WHERE `board_cards`.`board_id` = " . $_GET["board"] . " AND `board_cards`.`card_id` = " . $cards["id"] . ";";
-    mysqli_query($connect, $sql);
+    $sql_n = "SELECT * FROM `board_cards` WHERE board_id = " . $board_id . "";
+    $amount = mysqli_num_rows($connect->query($sql_n));
+    $sql = "UPDATE `board_cards` SET `card_index` = '" . $amount . "' WHERE `board_cards`.`board_id` = " . $board_id . " AND `board_cards`.`card_id` = " . $cards["id"] . ";";
+    $connect->query($sql);
 } else if (isset($_POST["cardname"])&& $_POST["cardname"]=="") {
     $link = "";
     $title = "Ошибка ввода";
@@ -72,14 +90,14 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
 
     <div class="row m-2">
        <?php
-        // $sql = "SELECT access FROM `board_users` WHERE `board_id` = ". $_GET["board"] ." AND `user_id` = ". $_COOKIE["user_id"] ."";
-        // $access = mysqli_fetch_assoc(mysqli_query($connect, $sql));
+        // $sql = "SELECT access FROM `board_developers` WHERE `board_id` = ". $board_id ." AND `user_id` = ". $_COOKIE["user_id"] ."";
+        // $access = mysqli_fetch_assoc($connect->query($sql));
         // if($access["access"] == 3){
         ?>
             <button type="button" class="btn btn-dark my-2 my-sm-0" role="button" aria-pressed="true" data-toggle="modal" data-target="#createCardModal">
               Добавить карточку
             </button>
-            <a href="options/addmember.php?board=<?php echo $_GET["board"]?>&addmember" type="button" class="btn btn-dark my-2 my-sm-0 m-2" role="button" aria-pressed="true">
+            <a href="options/addmember.php?board=<?php echo $board_id?>&addmember" type="button" class="btn btn-dark my-2 my-sm-0 m-2" role="button" aria-pressed="true">
             Список участников
             </a>
         <?php
@@ -88,17 +106,17 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
     </div>
     <div class="row m-2">
     <?php
-    if (isset($_GET["board"])) {
+    if (isset($board_id)) {
         // выбираем все доски где учавствует авторизоываный пользователь
-        $sql ="SELECT * FROM `board_cards` WHERE `board_id` = " . $_GET["board"] ."";
-        $result = mysqli_query($connect, $sql);
+        $sql ="SELECT * FROM `board_cards` WHERE `board_id` = " . $board_id ."";
+        $result = $connect->query($sql);
         $amountcards = mysqli_num_rows($result);
         $currentLoop = 0;
 
         while($currentLoop < $amountcards){
           $card = mysqli_fetch_assoc($result);
           $boardindex = $boardindex + 1;
-          include "card.php";
+         include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/card.php";
           $currentLoop = $currentLoop + 1;
         }
     }
@@ -485,8 +503,8 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
 include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
 
 ?>
-<script src="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-<script src="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/js/ruang-admin.min.js"></script>
+<!-- <script src="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/vendor/jquery-easing/jquery.easing.min.js"></script> -->
+<!-- <script src="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/js/ruang-admin.min.js"></script> -->
 </body>
 
 </html>

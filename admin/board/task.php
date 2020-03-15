@@ -1,6 +1,6 @@
 <?php
-/* Базовый фукционал: база данных, настройки*/
-include "configs/db.php";
+//подключаем базу даних
+include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 //include "configs/settings.php";
 /*==========================================*/
 ?>
@@ -11,15 +11,15 @@ include "configs/db.php";
     <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Задание</h5>
-        <a href="/board.php?board=<?php echo $_GET["board"]?>" type="button" class="close" aria-label="Close">
+        <a href="/board.php?board=<?php echo $board_id?>" type="button" class="close" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </a>
         </div>
 
-        <!-- <form method="POST"> --> <!-- action="http://doska.local/board.php?board=<?php //echo $_GET["board"]?>&create"> -->
-        <form action="http://doska.local/modules/saveTask.php" method="POST">
+        <!-- <form method="POST"> --> <!-- action="http://doska.local/board.php?board=<?php //echo $board_id?>&create"> -->
+        <form action="/admin/board/modules/saveTask.php" method="POST">
             <div class="modal-body">
-                <input type="hidden" name="board_id"      value="<?php echo $_GET["board"]; ?>">
+                <input type="hidden" name="board_id"      value="<?php echo $board_id; ?>">
                 <input type="hidden" name="card_id"       value="<?php echo $_GET["card"];  ?>">
                 <input type="hidden" name="task_id"       value="<?php echo $_GET["task"];  ?>">
                 <input type="hidden" name="task_status"   value="addTask">
@@ -37,7 +37,7 @@ include "configs/db.php";
             </div>
             <div class="modal-footer">
             <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>-->
-             <a href="/board.php?board=<?php echo $_GET["board"]?>" type="button" class="btn btn-secondary">Отмена</a>
+             <a href="admin/board/board.php?board=<?php echo $board_id?>" type="button" class="btn btn-secondary">Отмена</a>
             <button type="submit" class="btn btn-primary">Сохранить задание</button>
             </div>
         </form>
@@ -52,7 +52,7 @@ include "configs/db.php";
     <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Обзор задания</h5>
-        <a href="/board.php?board=<?php echo $_GET["board"]?>" type="button" class="close" aria-label="Close">
+        <a href="/board.php?board=<?php echo $board_id?>" type="button" class="close" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </a>
         </div>
@@ -63,8 +63,8 @@ include "configs/db.php";
                 /*=============== Вывод задания на экран  ========================*/
                 if (isset($_GET["showTask"])) {
                     $sql_tasks = "SELECT * FROM `tasks` WHERE id = " . $_GET["task"] . " AND card_id = " . $_GET["card"] ."";
-                    mysqli_query($connect, $sql_tasks);
-                    $task = mysqli_fetch_assoc(mysqli_query($connect, $sql_tasks));
+                    $connect->query($sql_tasks);
+                    $task = mysqli_fetch_assoc($connect->query($sql_tasks));
                     ?>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Название задания</label>
@@ -97,13 +97,13 @@ include "configs/db.php";
                     include "modules/listComments.php";
                     ?>
                 </div>
-                  <form id = "form" action="http://doska.local/modules/sendComments.php" method="POST"><!-- action="http://doska.local/board.php?board=<?php //echo $_GET["board"]?>&create"> -->
+                  <form id = "form" action="http://doska.local/modules/sendComments.php" method="POST"><!-- action="http://doska.local/board.php?board=<?php //echo $board_id?>&create"> -->
                   <?php
                   //if (isset($_GET["task"])){
                   ?>
                       <div class="form-group">                             
                           <label for="exampleFormControlTextarea1">Коментарии</label>                          
-                          <!-- <input type="hidden" name="board_id"  value="<?php //echo $_GET["board"]; ?>"> -->
+                          <!-- <input type="hidden" name="board_id"  value="<?php //echo $board_id; ?>"> -->
                           <!-- <input type="hidden" name="card_id"   value="<?php// echo $_GET["card"];  ?>"> -->
                           <input type="hidden" name="task_id"   value="<?php echo $_GET["task"];  ?>">
                           <input type="hidden" name="user_id"   value="<?php echo $user_id;  ?>">
@@ -120,8 +120,8 @@ include "configs/db.php";
                   </form>              
             </div>
             <div class="modal-footer">
-                <a href="/board.php?board=<?php echo $_GET["board"]?>" type="button" class="btn btn-secondary">Отмена</a>
-              <a href="/board.php?board=<?php echo $_GET["board"]?>" type="button" class="btn btn-secondary">OK</a>
+                <a href="/board.php?board=<?php echo $board_id?>" type="button" class="btn btn-secondary">Отмена</a>
+              <a href="/board.php?board=<?php echo $board_id?>" type="button" class="btn btn-secondary">OK</a>
              <!--  <button type="button" class="btn btn-primary">OK</button> -->
             </div>
         
@@ -136,14 +136,14 @@ include "configs/db.php";
     <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Редактор задания</h5>
-        <a href="/board.php?board=<?php echo $_GET["board"]?>" type="button" class="close" aria-label="Close">
+        <a href="/board.php?board=<?php echo $board_id?>" type="button" class="close" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </a>
         </div>
 
-        <form action="http://doska.local/modules/saveTask.php" method="POST"> <!-- action="http://doska.local/board.php?board=<?php //echo $_GET["board"]?>&create"> -->
+        <form action="http://doska.local/modules/saveTask.php" method="POST"> <!-- action="http://doska.local/board.php?board=<?php //echo $board_id?>&create"> -->
             <div class="modal-body">
-                <input type="hidden" name="board_id"      value="<?php echo $_GET["board"]; ?>">
+                <input type="hidden" name="board_id"      value="<?php echo $board_id; ?>">
                 <input type="hidden" name="card_id"       value="<?php echo $_GET["card"];  ?>">
                 <input type="hidden" name="task_id"       value="<?php echo $_GET["task"];  ?>">
                 <input type="hidden" name="task_status"   value="editTask">
@@ -152,8 +152,8 @@ include "configs/db.php";
                 /*=============== Вывод задания на экран  ========================*/
                 if (isset($_GET["editTask"])) {
                     $sql_tasks = "SELECT * FROM `tasks` WHERE id = " . $_GET["task"] . " AND card_id = " . $_GET["card"] ."";
-                    mysqli_query($connect, $sql_tasks);
-                    $task = mysqli_fetch_assoc(mysqli_query($connect, $sql_tasks));
+                    $connect->query($sql_tasks);
+                    $task = mysqli_fetch_assoc($connect->query($sql_tasks));
                     ?>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Название задания</label>
@@ -183,7 +183,7 @@ include "configs/db.php";
 
             </div>
             <div class="modal-footer">
-            <a href="/board.php?board=<?php echo $_GET["board"]?>" type="button" class="btn btn-secondary">Отмена</a>
+            <a href="/board.php?board=<?php echo $board_id?>" type="button" class="btn btn-secondary">Отмена</a>
             <button type="submit" class="btn btn-primary">Сохранить задание</button>
             </div>
         </form>
@@ -194,7 +194,7 @@ include "configs/db.php";
 
 
 <?php
-if (isset($_GET["board"]) && isset($_GET["card"]) && isset($_GET["addTask"])) {
+if (isset($board_id) && isset($_GET["card"]) && isset($_GET["addTask"])) {
     ?>
         <script> $(document).ready(function() {
             $("#addTaskModal").modal('show');
@@ -202,7 +202,7 @@ if (isset($_GET["board"]) && isset($_GET["card"]) && isset($_GET["addTask"])) {
         </script>
     <?php
 } 
-if (isset($_GET["board"]) && isset($_GET["card"]) && isset($_GET["editTask"])) {
+if (isset($board_id) && isset($_GET["card"]) && isset($_GET["editTask"])) {
     ?>
         <script> $(document).ready(function() {
             $("#editTaskModal").modal('show');
@@ -210,7 +210,7 @@ if (isset($_GET["board"]) && isset($_GET["card"]) && isset($_GET["editTask"])) {
         </script>
     <?php
 }
-if (isset($_GET["board"]) && isset($_GET["card"]) && isset($_GET["showTask"])) {
+if (isset($board_id) && isset($_GET["card"]) && isset($_GET["showTask"])) {
     ?>
         <script> $(document).ready(function() {
             $("#showTaskModal").modal('show'); 
@@ -220,4 +220,4 @@ if (isset($_GET["board"]) && isset($_GET["card"]) && isset($_GET["showTask"])) {
 }
 
 ?>
-<script src="js/script.js"></script>
+<script src="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/board/js/script.js"></script>

@@ -1,6 +1,6 @@
 <?php
- /* Базовый фукционал: база данных*/
- include "../configs/db.php";
+//подключаем базу даних
+include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 /*==========================================*/
 
  	/*=====	Отправка сообщений выбраномкпользователю ===========================*/
@@ -33,7 +33,7 @@ if (isset($_POST["board_id"]) && isset($_POST["card_id"]) && $_POST["task_status
         $sql_tasks = "INSERT INTO `tasks` (`card_id`, `name`, `description`) VALUES ('" . $_POST["card_id"] . "','" . $_POST["taskname"] . "', '" . $_POST["description"] . "');";
         if (mysqli_query($connect, $sql_tasks)) {
              //echo "<h2>Вы создали Задачу</h2>";
-             header("Location: /board.php?board=" . $_POST["board_id"] ."");
+             header("Location: /admin/board/board.php?board=" . $_POST["board_id"] ."");
         }
     }
 } 
@@ -44,7 +44,7 @@ if (isset($_POST["board_id"]) && isset($_POST["card_id"]) && isset($_POST["task_
         //UPDATE `tasks` SET `name`="задача",`description`="звыжделвыадлпевн" WHERE `id` = 58
         if (mysqli_query($connect, $sql_tasks)) {
              //echo "<h2>Вы отредактировали Задачу</h2>";
-             header("Location: /board.php?board=" . $_POST["board_id"] . "");
+             header("Location: /admin/board/board.php?board=" . $_POST["board_id"] . "");
         }
     }
 }
