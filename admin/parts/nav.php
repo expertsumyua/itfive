@@ -1,4 +1,4 @@
-<ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+<ul class="navbar-nav sidebar sidebar-light accordion <?php if($page == 'Доска'){ echo "toggled"; }?>" id="accordionSidebar">
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
         <div class="sidebar-brand-icon">
             <img src="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/img/logo/logo2.png">

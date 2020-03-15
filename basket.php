@@ -22,8 +22,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
                         for($i = 0; $i < count($basket['basket']); $i++) {
                             $sql = "SELECT * FROM services WHERE id=" . $basket['basket'][$i]['service_id'];
                             $result = $connect->query($sql);
-                            $row = mysqli_fetch_assoc($result); 
-                            ?>
+                            $row = mysqli_fetch_assoc($result);
+                           ?>
                             <tr>
                                 <td><?php echo $row['title']; ?></td>
 
