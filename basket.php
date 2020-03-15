@@ -46,9 +46,66 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
                  ?>
                 </tbody>
             </table>
+            <div class="row w-100 no-gutters bg-light position-relative">
+                <div class="col-md-6 w-75 position-static p-4 pl-md-0 text-center">
+                </div>
+                <div class="col-md-5 w-25 position-static p-2 m-3 text-white text-right">
+                    <button class="btn btn-outline-primary"  data-toggle="modal" data-target="#exampleModal">Оформить заказ</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Оформление заказа</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" enctype="multipart/form-data" action="/modules/basket/order.php">
+                <?php
+                    if(isset($_COOKIE['customers_id'])){
+                        ?>
+                        <div class="modal-footer">
+                            <button name="submit" value="1" type="submit" class="btn btn-primary">Отправить заказ на оформление</button>
+                        </div>
+                <?php
+                    } else {
+                ?>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input name="first_naame" type="text" class="form-control"  placeholder="Имя">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input name="last_name" type="text" class="form-control"  placeholder="Фамилия">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input name="email" type="email" class="form-control"  placeholder="Почта">
+                        </div>
+                        <div class="form-group">
+                            <input name="phone" type="text" class="form-control"  placeholder="Телефон">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button name="submit" value="1" type="submit" class="btn btn-primary">Отправить заказ на оформление</button>
+                        </div>
+                    <?php
+                    } 
+                    ?>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/parts/footer.php';
 ?>
+
