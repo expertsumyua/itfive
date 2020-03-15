@@ -5,7 +5,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 ?>
 
 <?php
-
+$page = "Заказ";
 
 ?>
 
@@ -69,6 +69,10 @@ if (isset($_POST["addBoard"]))
             <form method="POST">
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
+
+                <?php
+                include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/breadcrumb.php"
+                ?>
                     <!-- Row -->
                     <div class="row">
                         <!-- DataTable with Hover -->
@@ -164,7 +168,7 @@ if (isset($_POST["addBoard"]))
 <script src="assets/js/main.js"></script>
 
 <?php
-// include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
+include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
 
 ?>
 </body>

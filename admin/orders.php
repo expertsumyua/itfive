@@ -3,7 +3,7 @@
 include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 
 //устанавливаем страницу
-$page = "Заказы"
+$page = "Заказы";
 ?>
 <!DOCTYPE html>
 <html lang="en">
