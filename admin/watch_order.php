@@ -7,31 +7,35 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 <?php
 
 
+?>
+
+<?php
+
+
 $sql = "SELECT * FROM orders where id =" . $_GET['id'];
 $result = $connect->query($sql);
 $row = mysqli_fetch_assoc($result);
 $order_servise = $row['service'];
 
 //echo $order_servise;
-if (isset($_POST['id']))
+if (isset($_POST))
 {
     //echo $order_servise;
     /// Создаем доску в таблице boards и добавляем связь пользователя с таблицей в board_users
-        $sql = "SELECT * FROM boards WHERE order_id=" . $_POST['id'];
-            $result = $connect->query($sql);
-            $row = mysqli_fetch_assoc($result);
-        if (!$row) {
+        $sql = "SELECT * FROM boards WHERE order_id=" . $_GET['id'];
+        if (!mysqli_fetch_assoc($connect->query($sql))) {
 
-            $sql_boards = "INSERT INTO `boards` (order_id, order_servise) VALUES ('" . $_POST['id'] . "', '" . $order_servise . "');";
+            $sql_boards = "INSERT INTO `boards` (order_id, order_servise) VALUES ('" . $_GET['id'] . "', '" . $order_servise . "');";
             mysqli_query($connect, $sql_boards);
-            $sql_m = "SELECT * FROM `boards` WHERE `order_id` = " . $_POST['id'] . " ORDER BY `id` DESC";
-            $boards = mysqli_fetch_assoc($connect->query($sql_m));
+            $sql_m = "SELECT * FROM `boards` WHERE `order_id` = " . $_GET['id'] . " ORDER BY `id` DESC";
+            $boards = mysqli_fetch_assoc(mysqli_query($connect, $sql_m));
             $boards["id"];
-            // $sql = "INSERT INTO `board_developers` (`board_id`, `user_id`, `access`) VALUES ('" . $boards["id"] . "', '" . $_COOKIE["user_id"] ."', '3');";
-            // $connect->query($sql);
         }
 
 }
+
+
+
 ?>
 
 <!DOCTYPE html>
