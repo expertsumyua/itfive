@@ -1,11 +1,11 @@
 <?php
 /* Базовый фукционал: база данных, настройки*/
-include "configs/db.php";
+//подключаем базу даних
+include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 //include "configs/settings.php";
 /*==========================================*/
-
 /*Функционал удаления досок, карточек и заданий*/
-include "options/delete.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
 /*=============================================*/
 ?>
 
@@ -15,9 +15,9 @@ include "options/delete.php";
         // выбираем все данные про карточку которую мы сейчас выводим
         $sql = "SELECT * from cards WHERE id=" . $card["card_id"];
         // выполняем запрос
-        $cardN = mysqli_query($connect, $sql);
+        $result_c = $connect->query($sql);
         // записываем в перемнную массив с данными пользователя
-        $cardN = mysqli_fetch_assoc($cardN);
+        $cardN = mysqli_fetch_assoc($result_c);
         ?>
         <div class="card-header ">
             <h4 class="card-title">
@@ -26,7 +26,7 @@ include "options/delete.php";
                 if ($card["card_index"] < 2) {
                     ?>
                     <!-- Кнопка вызова модального окна Созадния задание -->
-                    <a href="/board.php?board=<?php echo $_GET["board"]?>&card=<?php echo $cardN["id"]?>&addTask" type="button" class="btn btn-primary">Добавить задание</a>
+                    <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&addTask" type="button" class="btn btn-primary">Добавить задание</a>
                     <?php
                 }
                 ?>
@@ -42,7 +42,7 @@ include "options/delete.php";
                         <?php
                         /*========= Подкоючаемся к базе для вывод всех карточек=========*/
                         $sql_b = "SELECT * FROM `tasks` WHERE `card_id` = ". $cardN["id"] . "";
-                        $result_b = mysqli_query($connect, $sql_b);
+                        $result_b = $connect->query($sql_b);
                         $amount_tasks = mysqli_num_rows($result_b);
                         $loop = 0;
                         while($loop < $amount_tasks) {
@@ -52,58 +52,58 @@ include "options/delete.php";
                                 <td><?php echo $loop+1 ?></td>
                                 <td>
                                     <!-- Кнопка вызова модального окна для просмотра Задание -->
-                                    <a href="/board.php?board=<?php echo $_GET["board"]?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&showTask" type="button" class="btn btn-primary btn-sm"><?php echo $task["name"]; ?></a>
+                                    <a href="/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&showTask" type="button" class="btn btn-primary btn-sm"><?php echo $task["name"]; ?></a>
                                 </td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <?php
                                         $sql = "SELECT type FROM `cards` WHERE `id` = ". $cardN["id"] . "";
-                                        $type = mysqli_fetch_assoc(mysqli_query($connect, $sql));
-                                        $sql = "SELECT access FROM `board_users` WHERE `board_id` = " . $_GET["board"] . " AND `user_id` = " . $_COOKIE["user_id"] . "";
+                                        $type = mysqli_fetch_assoc($connect->query($sql));
+                                        // $sql = "SELECT access FROM `board_developers` WHERE `board_id` = " . $board_id . " AND `user_id` = " . $_COOKIE["user_id"] . "";
 
-                                        $access = mysqli_fetch_assoc(mysqli_query($connect, $sql));
+                                        // $access = mysqli_fetch_assoc($connect->query($sql));
                                         $sql = "SELECT type_access FROM `cards` WHERE `id` = ". $cardN["id"] . "";
-                                        $type_access = mysqli_fetch_assoc(mysqli_query($connect, $sql));
+                                        $type_access = mysqli_fetch_assoc($connect->query($sql));
                                         $sql_i = "SELECT card_index FROM `board_cards` WHERE `card_id` = ". $cardN["id"] ."";
-                                        $indexNow = mysqli_fetch_assoc(mysqli_query($connect, $sql_i));
+                                        $indexNow = mysqli_fetch_assoc($connect->query($sql_i));
                                         $nextIndex = $indexNow["card_index"] + 1;
-                                        $sql_in = "SELECT * FROM `board_cards` WHERE `board_id` = " . $_GET["board"] . "  AND `card_index` = " . $nextIndex . "";
-                                        $row_in = mysqli_num_rows(mysqli_query($connect, $sql_in));
+                                        $sql_in = "SELECT * FROM `board_cards` WHERE `board_id` = " . $board_id . "  AND `card_index` = " . $nextIndex . "";
+                                        $row_in = mysqli_num_rows($connect->query($sql_in));
                                         // $row_in = $row_in[""]
                                         if ($row_in == 1){
-                                            if($access["access"] == $type_access["type_access"] && $type["type"] != 2 || $access["access"] == 3 && $type["type"] != 2){
+                                            // if($access["access"] == $type_access["type_access"] && $type["type"] != 2 || $access["access"] == 3 && $type["type"] != 2){
                                                 ?>
-                                                <a href="options/move.php?board=<?php echo $_GET["board"]?>&card=<?php echo $cardN["id"]?>&moveTask=<?php echo $task["id"]; ?>" type="button" class="btn btn-secondary btn-sm">Move</a>
+                                                <a href="options/move.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&moveTask=<?php echo $task["id"]; ?>" type="button" class="btn btn-secondary btn-sm">Move</a>
                                             <?php
-                                            }
+                                            //}
                                         }
                                         ?>
                                         <?php
-                                        $sql = "SELECT access FROM `board_users` WHERE `board_id` = " . $_GET["board"] . " AND `user_id` = " . $_COOKIE["user_id"] . "";
+                                        // $sql = "SELECT access FROM `board_developers` WHERE `board_id` = " . $board_id . " AND `user_id` = " . $_COOKIE["user_id"] . "";
 
-                                        $access = mysqli_fetch_assoc(mysqli_query($connect, $sql));
-                                        $sql = "SELECT type_access FROM `cards` WHERE `id` = ". $cardN["id"] . "";
-                                        $type_access = mysqli_fetch_assoc(mysqli_query($connect, $sql));
-                                        if($access["access"] == $type_access["type_access"] && $type_access["type_access"] == 2 ||$access["access"] == 3 && $type_access["type_access"] == 2){
+                                        // $access = mysqli_fetch_assoc($connect->query($sql));
+                                        // $sql = "SELECT type_access FROM `cards` WHERE `id` = ". $cardN["id"] . "";
+                                        // $type_access = mysqli_fetch_assoc($connect->query($sql));
+                                        // if($access["access"] == $type_access["type_access"] && $type_access["type_access"] == 2 ||$access["access"] == 3 && $type_access["type_access"] == 2){
                                           ?>
-                                            <a href="options/back.php?board=<?php echo $_GET["board"]?>&card=<?php echo $cardN["id"]?>&moveTask=<?php echo $task["id"]; ?>" type="button" class="btn btn-secondary btn-sm">Back</a>
+                                            <a href="/admin/board/options/back.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&moveTask=<?php echo $task["id"]; ?>" type="button" class="btn btn-secondary btn-sm">Back</a>
                                             <?php
-                                        }
+                                        // }
                                         ?>
                                         <!-- Кнопка вызоа модального окна редактирования задание -->
                                         <?php
-                                        $sql = "SELECT access FROM `board_users` WHERE `board_id` = " . $_GET["board"] . " AND `user_id` = " . $_COOKIE["user_id"] . "";
+                                        // $sql = "SELECT access FROM `board_developers` WHERE `board_id` = " . $board_id . " AND `user_id` = " . $_COOKIE["user_id"] . "";
 
-                                        $access = mysqli_fetch_assoc(mysqli_query($connect, $sql));
-                                        if($access["access"] == 3){
+                                        // $access = mysqli_fetch_assoc($connect->query($sql));
+                                        // if($access["access"] == 3){
                                             ?>
-                                            <a href="/board.php?board=<?php echo $_GET["board"]?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&editTask" type="button" class="btn btn-secondary btn-sm">Edit</a>
+                                            <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&editTask" type="button" class="btn btn-secondary btn-sm">Edit</a>
                                             <!-- ============================================================== -->
                                             <!-- ============= Кнопка удаления задание ============ -->
-                                            <a href="/board.php?board=<?php echo $_GET["board"]?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&deleteTask" type="button" class="btn btn-secondary btn-sm">Delete</a>
+                                            <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&task=<?php echo $task["id"]?>&deleteTask" type="button" class="btn btn-secondary btn-sm">Delete</a>
                                             <!-- ================================================================== -->
                                         <?php
-                                        }
+                                        // }
                                         ?>
                                     </div>
                                 </td>
@@ -120,13 +120,13 @@ include "options/delete.php";
 
             </div>
             <?php
-            $sql = "SELECT access FROM `board_users` WHERE `board_id` = ". $_GET["board"] ." AND `user_id` = ". $_COOKIE["user_id"] ."";
-            $access = mysqli_fetch_assoc(mysqli_query($connect, $sql));
-            if($access["access"] == 3){
+            // $sql = "SELECT access FROM `board_developers` WHERE `board_id` = ". $board_id ." AND `user_id` = ". $_COOKIE["user_id"] ."";
+            // $access = mysqli_fetch_assoc($connect->query($sql));
+            // if($access["access"] == 3){
                 ?>
-            <a href="/board.php?board=<?php echo $_GET["board"]?>&card=<?php echo $cardN["id"]?>&delCard" type="button" class="btn btn-secondary btn-sm">Удалить карточку</a>
+            <a href="/admin/board/board.php?board=<?php echo $board_id?>&card=<?php echo $cardN["id"]?>&delCard" type="button" class="btn btn-secondary btn-sm">Удалить карточку</a>
             <?php
-            }
+            //}
             ?>
 
 
@@ -139,5 +139,5 @@ include "options/delete.php";
 <script src="js/bootstrap.min.js"></script>
 
 <?php
-include "task.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/task.php";
 ?>

@@ -23,8 +23,10 @@ if (isset($_POST))
             $sql_boards = "INSERT INTO `boards` (order_id, order_servise) VALUES ('" . $_GET['id'] . "', '" . $order_servise . "');";
             mysqli_query($connect, $sql_boards);
             $sql_m = "SELECT * FROM `boards` WHERE `order_id` = " . $_GET['id'] . " ORDER BY `id` DESC";
-            $boards = mysqli_fetch_assoc(mysqli_query($connect, $sql_m));
+            $boards = mysqli_fetch_assoc($connect->query($sql_m));
             $boards["id"];
+            // $sql = "INSERT INTO `board_developers` (`board_id`, `user_id`, `access`) VALUES ('" . $boards["id"] . "', '" . $_COOKIE["user_id"] ."', '3');";
+            // $connect->query($sql);
         }
 
 }
