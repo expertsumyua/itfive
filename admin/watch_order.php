@@ -76,7 +76,6 @@ if (isset($_POST['id']))
                                             <th scope="col">Технология</th>
                                             <th scope="col">Категории</th>
                                             <th scope="col">Цена</th>
-                                            <td scope="col">Статус заказа</td>
                                         </tr>
                                       </thead>
 
@@ -118,28 +117,6 @@ if (isset($_POST['id']))
                                                                             <input id="start_price<?php echo $service['id'];?>" type="hidden" name="start_prise" value="<?php echo $service['cost'];?>" >
 
                                                                             <td class="price" id="cost<?php echo $service['id'];?>" data-sum="<?php echo ($service['cost'] * $basket['basket'][$i]['count']);?>"><?php echo ($service['cost'] * $basket['basket'][$i]['count']);?> $</td>
-
-
-                                                                            <td>
-                                                                                <div id="status<?php echo $row['id']; ?>">
-
-                                                                                    <?php
-                                                                                    if($row['status'] == 0) {
-                                                                                        ?>
-                                                                                        <div class="btn btn-danger" onclick="statusNew(<?php echo $row['id']; ?>)">Новый</div>
-                                                                                    <?php 
-                                                                                    }
-
-                                                                                    if($row['status'] == 1) {
-                                                                                        ?>
-                                                                                        <div class="btn btn btn-success" onclick="statusSend(<?php echo $row['id']; ?>)">Отправлено</div>
-                                                                                    <?php
-                                                                                    }
-                                                                                    ?>
-
-                                                                                </div>
-                                                                            </td>
-                                                                            
 
                                                                         </tr>
                                                                 <?php
