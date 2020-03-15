@@ -17,7 +17,7 @@ if (isset($_POST) and $_SERVER["REQUEST_METHOD"]=="POST"){
         setcookie("basket", "", 0, "/");
         // Добаляем куки
         setcookie("basket", $jsonProduct, time() + 60*60, "/");
-        var_dump($_COOKIE['basket']);
+       
         echo $jsonProduct;
 
     }
