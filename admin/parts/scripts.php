@@ -28,7 +28,7 @@ if ($page == "products" || $page == "users" || $page == "categories"){
 <!-- Page level plugins -->
 <script src="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-<script src="./assets/js/main.js"></script>
+<script src="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/js/main.js"></script>
 
 <!-- Page level custom scripts -->
 <?php

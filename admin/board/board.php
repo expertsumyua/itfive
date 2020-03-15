@@ -14,11 +14,11 @@ $page = "Доска";
 <?php
 
 $board_id = 0;
-if (isset($_GET["board"])) {
-    $board_id = $_GET['board'];
+if (isset($_POST["board"])) {
+    $board_id = $_POST['board'];
 }
-if (isset($_GET['order'])) {
-    $sql = "SELECT * FROM boards WHERE order_id=" . $_GET['order'];
+if (isset($_POST['order'])) {
+    $sql = "SELECT * FROM boards WHERE order_id=" . $_POST['order'];
     if ($row = mysqli_fetch_assoc($connect->query($sql))) {
         $board_id = $row['id'];
         // echo $board_id;
