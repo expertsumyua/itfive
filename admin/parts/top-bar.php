@@ -157,14 +157,27 @@
 
 
     <!-- АВКа и ИМЯ Юзер в верхнем паравом углу -->
+    <?php 
+
+        if(isset($_COOKIE["customers_id"])){
+            $customers_id = $_COOKIE["customers_id"];
+            $sql = "SELECT * FROM customers WHERE id=" . $_COOKIE["customers_id"];
+            if ($row = mysqli_fetch_assoc( $connect->query($sql))) {
+                $customers_id = $row;
+            }
+        }
+
+    ?>
     <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
-            <img class="img-profile rounded-circle" src="./assets/img/boy.png" style="max-width: 60px">
-            <span class="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
+           <?php $show_img = base64_encode($customers_id['photo']) ?>
+            <!-- <img class="bottom-img" src="data:image/jpeg;base64,<?=$show_img ?>"> -->
+            <img class="img-profile rounded-circle" src="data:image/jpeg;base64,<?=$show_img ?>" style="max-width: 100px">
+            <span class="ml-2 d-none d-lg-inline text-white small"><?php echo $customers_id['first_name']?> <?php echo $customers_id['last_name']?></span>
         </a>
         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="http://<?php echo $_SERVER['HTTP_HOST'] ?>/admin/profile.php">
+            <a class="dropdown-item" href="http://<?php echo $_SERVER['HTTP_HOST'] ?>/admin/user-profile.php">
                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                 Профиль
             </a>
