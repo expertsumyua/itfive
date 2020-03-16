@@ -66,7 +66,7 @@ if (isset($_POST["addBoard"]))
             </nav>
             <!-- Topbar -->
             <!-- <form method="POST"> -->
-            <form action="/admin/board/board.php?order=<?php echo $_GET["id"]; ?>" method="POST">
+            <form method="POST">
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
                     <!-- Row -->
@@ -141,7 +141,8 @@ if (isset($_POST["addBoard"]))
                     </div>
                     <!---Container Fluid-->
                 </div>
-                <button class="btn__progress">Прогресс</button>
+                <input type="hidden" name="addBoard">
+                <button type="submit" class="btn__progress">Прогресс</button>
             </form>
 
     </div>
