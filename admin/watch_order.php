@@ -18,19 +18,24 @@ $row = mysqli_fetch_assoc($result);
 $order_servise = $row['service'];
 
 //echo $order_servise;
-if (isset($_POST))
+if (isset($_POST["addBoard"]))
 {
     //echo $order_servise;
     /// Создаем доску в таблице boards и добавляем связь пользователя с таблицей в board_users
-        $sql = "SELECT * FROM boards WHERE order_id=" . $_GET['id'];
-        if (!mysqli_fetch_assoc($connect->query($sql))) {
+    $sql = "SELECT * FROM boards WHERE order_id=" . $_GET['id'];
+    if (!mysqli_fetch_assoc($connect->query($sql))) {
 
-            $sql_boards = "INSERT INTO `boards` (order_id, order_servise) VALUES ('" . $_GET['id'] . "', '" . $order_servise . "');";
-            mysqli_query($connect, $sql_boards);
-            $sql_m = "SELECT * FROM `boards` WHERE `order_id` = " . $_GET['id'] . " ORDER BY `id` DESC";
-            $boards = mysqli_fetch_assoc(mysqli_query($connect, $sql_m));
-            $boards["id"];
-        }
+        $sql_boards = "INSERT INTO boards (order_id, order_servise) VALUES ('" . $_GET['id'] . "', '" . $order_servise . "');";
+        mysqli_query($connect, $sql_boards);
+        $sql_m = "SELECT * FROM boards WHERE order_id = " . $_GET['id'] . " ORDER BY id DESC";
+        $boards = mysqli_fetch_assoc(mysqli_query($connect, $sql_m));
+        $boards["id"];
+        header("Location: /admin/board/board.php?board=". $boards['id'] ."");
+    } else {
+        $sql = "SELECT * FROM boards WHERE order_id=" . $_GET['id'];
+        $board = mysqli_fetch_assoc($connect->query($sql));
+        header("Location: /admin/board/board.php?board=". $board['id'] ."");
+    }
 
 }
 
