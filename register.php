@@ -27,7 +27,7 @@ if (isset($_GET['u_code'])) {
 //регистрацыя пользователя
 if (isset($_POST) and $_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if ($_POST['password1'] == $_POST['password2']) {
+    if ($_POST['password1'] == $_POST['password2'] &&  $_POST['first-name'] !="" && $_POST['last-name'] != "" && $_POST['phone'] != "" && $_POST['email'] != "" && $_POST['password1'] !="" && $_POST['password2'] != "") {
         $password = md5($_POST['password1']);
         $u_code = randomString(20);
         $sql = "INSERT INTO customers(first_name, last_name, phone, email, password, confirm_mail) VALUES ('" .
@@ -45,7 +45,7 @@ if (isset($_POST) and $_SERVER["REQUEST_METHOD"] == "POST") {
             mail($_POST['email'], 'Register', $link);
         }
     }else{
-        echo "<div id='info' class='alert alert-danger position-absolute' role='alert' style='top:2%'>Пароли не совпадают</div>";
+        echo "<div id='info' class='alert alert-danger position-absolute' role='alert' style='top:2%'>Пароли не совпадают или не заполнены все поля </div>";
     }
 }
 function randomString($length)
