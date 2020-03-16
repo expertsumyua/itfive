@@ -154,8 +154,15 @@ $page = "Профиль"
         ?>
 
             <!-- ID -->
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">ID Разработчика <?php echo $customers['id']; ?></h1>
+            <div class="row mb-4 px-5">
+                <div class="d-sm-flex align-items-center justify-content-between mr-5">
+                <h1 class="h3 mb-0 text-gray-800">ID Разработчика <?php echo $customers['id']; ?></h1>
+                </div>
+
+                <div class="btn-group px-5" role="group" aria-label="Basic example">
+                    <a href="options/users/edit_user.php?id=<?php echo $customers['id']; ?>" class="btn btn-outline-info">Редактировать профиль</a>
+                    <a href="options/users/delete_user.php?id=<?php echo $customers['id']; ?>" class="btn btn-outline-danger  ml-3">Удалить</a>
+                </div>
             </div>
 
             <!-- Content Row -->
@@ -285,110 +292,22 @@ $page = "Профиль"
               </div>
             </div>
 
-            <!-- Pie Chart -->
+            <!-- Фото Разработчика -->
             <div class="col-xl-4 col-lg-7">
-              <div class="card shadow mb-4">
+                <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h3 class="m-0 font-weight-bold text-primary">Фото Разработчика</h3>
-                  <div class="dropdown no-arrow">
-<!--                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="text-gray-400">Change</i>
-                    </a> -->
-<!--                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header d-n">Change status:</div>                      
-                        <?php 
-                            if ($order['status'] != 'NEW') {
-                            ?>
-                            <div onclick="changeStatus('NEW', <?php echo $order['id']; ?>)" class="dropdown-item">
-                            <i class="fa fa-clock-o fa-1x text-danger"></i>NEW
-                            </div>
-                            <?php
-                        }
-                        ?>
-                        <?php 
-                            if ($order['status'] != 'Processing') {
-                            ?>
-                            <div onclick="changeStatus('Processing', <?php echo $order['id']; ?>)" class="dropdown-item">
-                            <i class="fa fa-refresh fa-spin fa-1x fa-fw text-warning"></i>Processing
-                            </div>
-                            <?php
-                        }
-                        ?>
-                        <?php 
-                            if ($order['status'] != 'Sent') {
-                            ?>
-                            <div onclick="changeStatus('Sent', <?php echo $order['id'] ?>)" class="dropdown-item">
-                            <i class="fa fa-truck fa-1x fa-fw text-success"></i>Sent
-                            </div>
-                            <?php
-                        }
-                        ?>
-                    </div> -->
-                  </div>
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                      <h3 class="m-0 font-weight-bold text-primary">Фото Разработчика</h3>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body d-flex justify-content-center">
+                       <?php $show_img = base64_encode($customers['photo']) ?>
+                        <!-- <img class="bottom-img" src="data:image/jpeg;base64,<?=$show_img ?>"> -->
+                        <img class="img-profile rounded-circle " src="data:image/jpeg;base64,<?=$show_img ?>" style="max-width: 250px">
+                    </div> 
                 </div>
-                <!-- Card Body -->
-                <div class="card-body d-flex justify-content-center">
-                               <?php $show_img = base64_encode($customers['photo']) ?>
-                                <!-- <img class="bottom-img" src="data:image/jpeg;base64,<?=$show_img ?>"> -->
-                                <img class="img-profile rounded-circle " src="data:image/jpeg;base64,<?=$show_img ?>" style="max-width: 250px">
+            </div>
 
-<!--                   <div class="chart-pie text-center">
-                    
-                     
-                        <?php 
-                            if ($order['status'] == 'NEW') {
-                            ?>
-                                <div id="status-order">
-                                    <span class="mr-5">
-                                      <i class="fa fa-clock-o fa-5x text-danger"></i>
-                                    </span>
-                                    <div class="fa-3x text-danger text-center">NEW</div>
-                                </div>
-                            <?php
-                        }
-                        ?>
-                        <?php 
-                            if ($order['status'] == 'Processing') {
-                            ?>  <div id="status-order">
-                                    <span class="mr-5">
-                                      <i class="fa fa-refresh fa-spin fa-5x fa-fw text-warning"></i>
-                                    </span>
-                                    <div class=" fa-3x text-warning text-center">Processing</div>
-                                </div>                                
-                            <?php
-                        }
-                        ?>
-                        <?php 
-                            if ($order['status'] == 'Sent') {
-                            ?>  <div id="status-order">
-                                    <span class="mr-5">
-                                      <i class="fa fa-truck fa-5x fa-fw text-success"></i>
-                                    </span>
-                                    <div class="fa-3x text-success text-center">Sent</div>
-                                </div>                                
-                            <?php
-                        }
-                        ?>--> 
-
-                  </div>       
-
-
-
-<!--                   <div class="mt-4 text-center">
-                    <span class="mr-2">
-                      <i class="fa fa-clock-o fa-1x text-danger"></i> NEW
-                    </span>        
-                    <span class="mr-2">
-                      <i class="fa fa-refresh fa-spin fa-1x fa-fw text-warning"></i> Processing
-                    </span>
-                    <span class="mr-2">
-                      <i class="fa fa-truck fa-1x fa-fw text-success"></i> Sent
-                    </span>
-                  </div> -->
-
-                </div>
-              </div>
             </div>
             
           </div>
@@ -542,7 +461,6 @@ $page = "Профиль"
 
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
-
 ?>
 </body>
 

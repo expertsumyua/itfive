@@ -45,7 +45,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
     } else {
 
     ?>
-    <h3 class="text-center pl-5">Наши товары</h3>
+    <h3 class="text-center pl-5">Наши услуги</h3>
     <?php
 
     $sql_categories = "SELECT * FROM categories WHERE id";

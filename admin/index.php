@@ -1,4 +1,6 @@
 <?php
+header("Location: /admin/user-profile.php");
+die();
 //подключаем базу даних
 include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 

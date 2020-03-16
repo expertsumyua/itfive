@@ -5,7 +5,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 ?>
 
 <?php
-
+$page = "Заказ";
 
 ?>
 
@@ -169,8 +169,8 @@ if (isset($_POST["addBoard"]))
 
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
-
 ?>
+
 </body>
 
 </html>
