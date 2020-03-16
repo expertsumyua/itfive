@@ -5,7 +5,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 ?>
 
 <?php
-
+$page = "Заказ"
 
 ?>
 
