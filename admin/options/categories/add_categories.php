@@ -7,9 +7,9 @@ $page = "Добавить категорию";
 
 if (isset($_POST['submit'])) {
 
-        $img = addslashes(file_get_contents($_FILES['img_upload']['tmp_name']));
+    $img = addslashes(file_get_contents($_FILES['img_upload']['tmp_name']));
 
-    $sql = "Insert into categories (title, description, cost, img) VALUES ('" . $_POST['title'] . "', '" . $_POST['description'] . "', '" . $_POST['cost'] . "', '$img')";
+    $sql = "INSERT INTO categories (title, description, cost, img) VALUES ('" . $_POST['title'] . "', '" . $_POST['description'] . "', '" . $_POST['cost'] . "', '$img')";
     if($connect->query($sql)){
         header("Location: /admin/categories.php");
     } else {

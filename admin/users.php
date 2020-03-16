@@ -81,7 +81,7 @@ $page = "Пользователи"
                                                                     if ($row['id'] == $_COOKIE["customers_id"]) {
                                                                 ?>
                                                             <!-- <div class="btn-group" role="group" aria-label="Basic example"> -->
-                                                                <a href="options/users/edit_user.php?id=<?php echo $row['id']; ?>"  class="btn btn-outline-info">Профиль</a>
+                                                                <a href="http://<?php echo $_SERVER['HTTP_HOST'] ?>/admin/user-profile.php?id=<?php echo $row['id']; ?>"  class="btn btn-outline-info">Профиль</a>
                                                                  <!-- <a href="options/users/delete_user.php?id=<?php echo $row['id']; ?>"  class="btn btn-outline-danger">Удалить</a> -->
                                                             <!-- </div> -->
                                                                 <?php 

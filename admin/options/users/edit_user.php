@@ -7,10 +7,11 @@ $page = "Изменить пользователя";
 
 if(isset($_POST['submit'])) {
 
+    $photo = addslashes(file_get_contents($_FILES['img_upload']['tmp_name']));
 
     $sql = "UPDATE customers SET first_name = '". $_POST['first_name'] ."', last_name= '". $_POST['last_name'] ."', email= '". $_POST['email'] ."', rights= '". $_POST['rights'] ."' WHERE customers . id =" . $_GET['id'];
     if($connect->query($sql)){
-        header("Location: /admin/users.php");
+        header("Location: /admin/user-profile.php");
     } else {
         echo "Error";
     }
@@ -121,8 +122,12 @@ if(isset($_POST['submit'])) {
                                 <!-- <img class="bottom-img" src="data:image/jpeg;base64,<?=$show_img ?>"> -->
                                 <img class="img-profile rounded-circle " src="data:image/jpeg;base64,<?=$show_img ?>" style="max-width: 250px">
                             </div> 
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+<!--                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                               <h3 class="m-0 font-weight-bold text-primary">Фото Разработчика</h3>
+                            </div> -->
+                            <div class="form-group mx-3">
+                                <label>Загрузить фотограффию</label><br>
+                                <input type="file" name="img_upload" class="">
                             </div>
                         </div>
                     </div>    
