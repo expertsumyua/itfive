@@ -4,7 +4,33 @@ $page = "basket";
 include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
 ?>
 <div class="col-12 py-5">
-            <h3 class="text-center">Ваш заказ</h3>
+    <h3 class="text-center">Ваш заказ</h3>
+</div>
+<div class="row w-100 no-gutters bg-light ">
+    <div class="col-md-6 w-75 position-static p-4 pl-md-0 text-center">
+        <h4 class="font-italic mr-3 ">Сумма заказа:
+            <span class=" h2" id='sum-cost'>
+
+            <?php
+                if(isset($_COOKIE['basket'])){
+                    $basket = json_decode($_COOKIE['basket'], true);
+                    for($i = 0; $i < count($basket['basket']); $i++) {
+                        $sql = "SELECT * FROM services WHERE id=" . $basket['basket'][$i]['service_id'];
+                        $result = $connect->query($sql);
+                        $row = mysqli_fetch_assoc($result);
+                        $sum[$i] = $row['cost'] * $basket['basket'][$i]['count'];
+                        
+                    }
+                    echo  array_sum($sum);
+                } else { echo 0 ;}
+                ?>
+                $
+            </span>
+        </h4>
+    </div>
+    <div class="col-md-5 w-25 position-static p-2 m-3 text-white text-right">
+        <button class="btn btn-outline-primary"  data-toggle="modal" data-target="#exampleModal">Оформить заказ</button>
+    </div>
 </div>
 <div class="col-12" style="min-height: 400px">
     <div class="container">
@@ -63,31 +89,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
                  ?>
                 </tbody>
             </table>
-            
-            <div class="row w-100 no-gutters bg-light ">
-                <div class="col-md-6 w-75 position-static p-4 pl-md-0 text-center">
-                <h4 class="font-italic mr-3">Сумма заказа </h4>
-            <span class="btn btn-secondary" id='sum-cost'>
-            <?php
-            if(isset($_COOKIE['basket'])){
-                $basket = json_decode($_COOKIE['basket'], true);
-                for($i = 0; $i < count($basket['basket']); $i++) {
-                    $sql = "SELECT * FROM services WHERE id=" . $basket['basket'][$i]['service_id'];
-                    $result = $connect->query($sql);
-                    $row = mysqli_fetch_assoc($result);
-                    $sum[$i] = $row['cost'] * $basket['basket'][$i]['count'];
-                    
-                }
-                echo  array_sum($sum);
-            } else { echo 0 ;}
-            ?>
-            $
-            </span>
-                </div>
-                <div class="col-md-5 w-25 position-static p-2 m-3 text-white text-right">
-                    <button class="btn btn-outline-primary"  data-toggle="modal" data-target="#exampleModal">Оформить заказ</button>
-                </div>
-            </div>
         </div>
     </div>
 </div>

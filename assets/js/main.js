@@ -58,6 +58,22 @@ function deleteProductBasket(obj, id) {
      ajax.send('id=' + id);
         ajax.onload=function(){
 
+            var response = JSON.parse(ajax.response);
+            console.dir(response);
+            var arr_sum = new Array();
+            for(var i=0; i<response.basket.length; i++) {
+                var cost = response.basket[i].cost;
+                var $count = +response.basket[i].count;
+                var cost_sum = cost * $count ;
+
+                arr_sum.push(cost_sum);
+            }
+            var sumCost = document.querySelector("#sum-cost");
+            var $sum = arr_sum.reduce((sum, current)=>sum+current);
+            console.log($sum);
+            sumCost.innerText = "";
+            sumCost.innerText = $sum + " " + "$";
+
             obj.parentNode.parentNode.remove();
             sunCount();
         }
