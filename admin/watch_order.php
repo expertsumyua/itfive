@@ -165,8 +165,8 @@ if (isset($_POST["addBoard"]))
 
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
-
 ?>
+
 </body>
 
 </html>

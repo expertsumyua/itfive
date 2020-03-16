@@ -53,6 +53,7 @@ $page = "Пользователи"
                                       <th scope="col">Фамилия</th>
                                       <th scope="col">Почта</th>
                                       <th scope="col">Статус</th>
+                                      <th scope="col"></th>
                                     </tr>
                                   </thead>
 
@@ -76,12 +77,16 @@ $page = "Пользователи"
                                                                 echo "Разработчик";
                                                             } ?> </td>
                                                         <td>
-                                                            <a class="btn-group" role="group" aria-label="Basic example">
-                                                                <a href="options/users/edit_user.php?id=<?php echo $row['id']; ?>"  class="btn btn-outline-info">Редактировать</a>
-                                                                 <a href="options/users/delete_user.php?id=<?php echo $row['id']; ?>"  class="btn btn-outline-danger">Удалить</a>
-
-                                                            </div>
-
+                                                                <?php 
+                                                                    if ($row['id'] == $_COOKIE["customers_id"]) {
+                                                                ?>
+                                                            <!-- <div class="btn-group" role="group" aria-label="Basic example"> -->
+                                                                <a href="options/users/edit_user.php?id=<?php echo $row['id']; ?>"  class="btn btn-outline-info">Профиль</a>
+                                                                 <!-- <a href="options/users/delete_user.php?id=<?php echo $row['id']; ?>"  class="btn btn-outline-danger">Удалить</a> -->
+                                                            <!-- </div> -->
+                                                                <?php 
+                                                                    }
+                                                                ?>
                                                         </td>
                                                     </tr>
                                                     <?php

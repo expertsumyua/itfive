@@ -160,10 +160,10 @@
     <?php 
 
         if(isset($_COOKIE["customers_id"])){
-            $customers_id = $_COOKIE["customers_id"];
+            //$customers = $_COOKIE["customers_id"];
             $sql = "SELECT * FROM customers WHERE id=" . $_COOKIE["customers_id"];
             if ($row = mysqli_fetch_assoc( $connect->query($sql))) {
-                $customers_id = $row;
+                $customers = $row;
             }
         }
 
@@ -171,10 +171,10 @@
     <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
-           <?php $show_img = base64_encode($customers_id['photo']) ?>
+           <?php $show_img = base64_encode($customers['photo']) ?>
             <!-- <img class="bottom-img" src="data:image/jpeg;base64,<?=$show_img ?>"> -->
             <img class="img-profile rounded-circle" src="data:image/jpeg;base64,<?=$show_img ?>" style="max-width: 100px">
-            <span class="ml-2 d-none d-lg-inline text-white small"><?php echo $customers_id['first_name']?> <?php echo $customers_id['last_name']?></span>
+            <span class="ml-2 d-none d-lg-inline text-white small"><?php echo $customers['first_name']?> <?php echo $customers['last_name']?></span>
         </a>
         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
             <a class="dropdown-item" href="http://<?php echo $_SERVER['HTTP_HOST'] ?>/admin/user-profile.php">
