@@ -33,8 +33,10 @@ if (isset($_POST) and $_SERVER["REQUEST_METHOD"]=="POST" and !isset($_COOKIE['cu
         setcookie("basket", "", 0, "/");
         header("Location: /index.php");
         // Отправить сообщение о новом заказе в телеграм
-        message_to_telegram('New order!!!');
-    }
+        foreach (TELEGRAM_TOKEN as $chatid => $token) {
+            message_to_telegram('New order!!!', $chatid, $token);
+            }
+        }
 } else {
     $basket = $_COOKIE['basket']; 
     $basket = json_decode($_COOKIE['basket'], true);
@@ -45,7 +47,9 @@ if (isset($_POST) and $_SERVER["REQUEST_METHOD"]=="POST" and !isset($_COOKIE['cu
         setcookie("basket", "", 0, "/");
         header("Location: /index.php");
         // Отправить сообщение о новом заказе в телеграм
-        message_to_telegram('New order!!!');
+        foreach (TELEGRAM_TOKEN as $chatid => $token) {
+        message_to_telegram('New order!!!', $chatid, $token);
+        }
     }
 }
 ?>
