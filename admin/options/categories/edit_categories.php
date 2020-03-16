@@ -7,12 +7,29 @@ $page = "Изменить категорию услуг";
 
 if(isset($_POST['submit'])) {
 
-    $sql = "UPDATE categories SET title= '". $_POST['title'] ."' , description= '". $_POST['description'] ."' , cost= '". $_POST['cost'] ."' WHERE categories . id =" . $_GET['id'];
+    if ($img = addslashes(file_get_contents($_FILES['img_upload']['tmp_name']))) {
+         
+
+        $sql = "UPDATE categories SET title= '". $_POST['title'] ."' , description= '". $_POST['description'] ."' , cost= '". $_POST['cost'] ."' , img = '$img' WHERE categories . id =" . $_GET['id'];
+
+    } else {
+
+       $sql = "UPDATE categories SET title= '". $_POST['title'] ."' , description= '". $_POST['description'] ."' , cost= '". $_POST['cost'] ."' WHERE categories . id =" . $_GET['id'];
+
+    }
     if($connect->query($sql)){
         header("Location: /admin/categories.php");
     } else {
         echo "Error";
     }
+
+
+    // $sql = "UPDATE categories SET title= '". $_POST['title'] ."' , description= '". $_POST['description'] ."' , cost= '". $_POST['cost'] ."' WHERE categories . id =" . $_GET['id'];
+    // if($connect->query($sql)){
+    //     header("Location: /admin/categories.php");
+    // } else {
+    //     echo "Error";
+    // }
 }
 ?>
 
@@ -46,44 +63,73 @@ if(isset($_POST['submit'])) {
                         <?php
                         include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/breadcrumb.php"
                         ?>
-                <!-- Row -->
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="card">
-                            <div class="card-body">
-                                <form method="POST">
-                                    <div class="row">
-                                        <?php
-                                            $sql = "SELECT * FROM categories WHERE id=" . $_GET['id'];
-                                            $result = $connect->query($sql);
-                                            $data = mysqli_fetch_assoc($result);
-                                            ?>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Название</label>
-                                                <input name="title" type="text" class="form-control" value="<?php echo $data["title"]; ?>">
+                    
+                <form method="POST" enctype="multipart/form-data"> 
+                    <!-- Row -->
+                    <div class="row">
+
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    
+                                        <div class="row">
+                                            <?php
+                                                $sql = "SELECT * FROM categories WHERE id=" . $_GET['id'];
+                                                $result = $connect->query($sql);
+                                                $data = mysqli_fetch_assoc($result);
+                                                ?>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Название</label>
+                                                    <input name="title" type="text" class="form-control" value="<?php echo $data["title"]; ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Описание</label>
+                                                    <textarea name="description" type="text" class="form-control" value=""><?php echo $data["description"]; ?> </textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label>Цена</label>
+                                                    <input name="cost" type="text" class="form-control" value="<?php echo $data["cost"]; ?>">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Описание</label>
-                                                <textarea name="description" type="text" class="form-control" value=""><?php echo $data["description"]; ?> </textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label>Цена</label>
-                                                <input name="cost" type="text" class="form-control" value="<?php echo $data["cost"]; ?>">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button name="submit" value="1" type="submit" class="btn btn-outline-info btn-fill pull-right">Внести изменения</button>
-                                </form>
+                                        <button name="submit" value="1" type="submit" class="btn btn-outline-info btn-fill pull-right">Внести изменения</button>
+                                    
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Фото -->
+                        <div class="col-xl-4 col-lg-7">
+                            <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                  <h3 class="m-0 font-weight-bold text-primary">Изображение</h3>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body d-flex justify-content-center">
+                                   <?php $show_img = base64_encode($data['img']) ?>
+                                    <!-- <img class="bottom-img" src="data:image/jpeg;base64,<?=$show_img ?>"> -->
+                                    <img class="img-profile" src="data:image/jpeg;base64,<?=$show_img ?>" style="max-width: 250px">
+                                </div> 
+    <!--                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                  <h3 class="m-0 font-weight-bold text-primary">Фото Разработчика</h3>
+                                </div> -->
+                                <div class="form-group mx-3">
+                                    <label>Загрузить фотограффию</label><br>
+                                    <input type="file" name="img_upload" class="">
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
-                </div>
-                <!--Row-->
+                    <!--Row-->
+                </form>    
             </div>
             <!---Container Fluid-->
         </div>
