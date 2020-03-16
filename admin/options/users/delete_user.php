@@ -6,5 +6,5 @@ $result = $connect->query($sql);
 $sql = "DELETE FROM `customers` WHERE `customers`.`id` =" . $_GET['id'] ."";
 $result = $connect->query($sql);
 
-header("Location: http://itfive.local/admin/users.php");
+header("Location: /admin/users.php");
 ?>
