@@ -2,62 +2,10 @@
 //подключаем базу даних
 include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 
-/*Функционал удаления досок, карточек и заданий*/
-include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/options/delete.php";
-/*=============================================*/
-
 
 //устанавливаем страницу
-$page = "Доска";
+$page = "Профиль"
 ?>
-
-<?php
-
-$board_id = $_GET['board'];
-if (isset($_POST["board"])) {
-    $board_id = $_POST['board'];
-}
-if (isset($_POST['order'])) {
-    $sql = "SELECT * FROM boards WHERE order_id=" . $_POST['order'];
-    if ($row = mysqli_fetch_assoc($connect->query($sql))) {
-        $board_id = $row['id'];
-        // echo $board_id;
-        // die();
-    }
-}
-
-$boardindex = 0;
-if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
-    $sql = "INSERT INTO `cards` (`id`, `name`, `date_time`, `type_access`, `type`) VALUES (NULL, '" . $_POST["cardname"] . "', current_timestamp(), '" . $_POST["type_access"] . "', '" . $_POST["type_card"] . "');";
-    mysqli_query($connect, $sql);
-
-//    $sql = "INSERT INTO `board_cards` (`board_id`, `card_id`, `card_index`) VALUES ('" . $board_id . "', '1', '1');";
-
-    $sql_m = "SELECT * FROM `cards` WHERE `name` = '" . $_POST["cardname"] . "' ORDER BY `id` DESC";
-    $cards = mysqli_fetch_assoc($connect->query($sql_m));
-    $cards["id"];
-
-    $sql = "INSERT INTO `board_cards` (`board_id`, `card_id`, `card_index`) VALUES ('" . $board_id . "', '" . $cards["id"] . "', '" . $boardindex ."');";
-    mysqli_query($connect, $sql);
-    $sql_n = "SELECT * FROM `board_cards` WHERE board_id = " . $board_id . "";
-    $amount = mysqli_num_rows($connect->query($sql_n));
-    $sql = "UPDATE `board_cards` SET `card_index` = '" . $amount . "' WHERE `board_cards`.`board_id` = " . $board_id . " AND `board_cards`.`card_id` = " . $cards["id"] . ";";
-    $connect->query($sql);
-} else if (isset($_POST["cardname"])&& $_POST["cardname"]=="") {
-    $link = "";
-    $title = "Ошибка ввода";
-    $message_modal = "Пожалуста введите наименование карты и повторите попытку снова!";
-    include "parts_site/messageModal.php";
-    ?>
-    <script> $(document).ready(function() {
-    $("#messageModal").modal('show');
-    });
-    </script>
-    <?php
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,133 +26,24 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
                 <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
-                <?php
-                include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/top-bar.php"
-                ?>
+                <?php include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/top-bar.php" ?>
             </nav>
             <!-- Topbar -->
 
-            <!-- -->
-
-            <div class="container-fluid" style="height: calc(100% - 140px);">
-
-    <div class="row m-2">
-       <?php
-        // $sql = "SELECT access FROM `board_developers` WHERE `board_id` = ". $board_id ." AND `user_id` = ". $_COOKIE["user_id"] ."";
-        // $access = mysqli_fetch_assoc($connect->query($sql));
-        // if($access["access"] == 3){
-        ?>
-            <button type="button" class="btn btn-dark my-2 my-sm-0 border-0 rounded-0" role="button" aria-pressed="true" data-toggle="modal" data-target="#createCardModal">
-              Добавить карточку
-            </button>
-            <?php
-            $sql_o = "Select * from boards where id=". $_GET["board"];
-            $o = mysqli_fetch_assoc($connect->query($sql_o));
-
-            ?>
-            <a href="/admin/watch_order.php?id=<?php echo $o['order_id'] ?>" type="button" class="btn btn-outline-danger btn-sm rounded-0 ml-2">
-
-              <?php echo "Вернутся на страницу заказа №". $o['order_id'] .""; ?>
-              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-red-400"></i>
-            </a>
-<!--
-            <a href="options/addmember.php?board=<?php echo $board_id?>&addmember" type="button" class="btn btn-dark my-2 my-sm-0 m-2" role="button" aria-pressed="true">
-            Список участников
-            </a>
--->
-        <?php
-        // }
-        ?>
-    </div>
-    <div class="row m-2" style="
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    height: 100%;
-    ">
-    <?php
-    if (isset($board_id)) {
-        // выбираем все доски где учавствует авторизоываный пользователь
-        $sql ="SELECT * FROM `board_cards` WHERE `board_id` = " . $board_id ."";
-        $result = $connect->query($sql);
-        $amountcards = mysqli_num_rows($result);
-        $currentLoop = 0;
-
-        while($currentLoop < $amountcards){
-          $card = mysqli_fetch_assoc($result);
-          $boardindex = $boardindex + 1;
-         include $_SERVER['DOCUMENT_ROOT'] . "/admin/board/card.php";
-          $currentLoop = $currentLoop + 1;
-        }
-    }
-    ?>
-    </div>
-
-</div>
-
-<div class="modal fade" id="createCardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-              <h3 class="modal-title" id="exampleModalLabel">Создание карточки</h3>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-
-            <form method="POST">
-
-                <div class="modal-body">
-                    <h4 class="card-title">Создание карточки</h4>
-
-                      <div class="form-group">
-                        <label for="exampleInputName">Название карточки:</label>
-                        <input name="cardname" type="text" class="form-control" id="exampleInputName" placeholder="Введите название карточки">
-                      </div>
-                      <div class="form-group">
-                        <label>Доступ к карточке:</label>
-                              <select class="form-control" name="type_access" id="">
-                                  <option value="1">Для разработчиков</option>
-                                  <option value="2">Для тестировщиков</option>
-                                  <option value="3">Для Модераторов</option>
-
-
-                              </select>
-                      </div>
-                      <div class="form-group">
-                        <label>Тип карточки:</label>
-                              <select class="form-control" name="type_card" id="">
-                                  <option value="1">Начальная</option>
-                                  <option value="2">Конечная</option>
-
-
-                              </select>
-                      </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Отмена</button>
-                    <button type="submit" class="btn btn-success btn-lg" role="button" aria-pressed="true">Создать</button>
-                </div>
-
-            </form>
-
-        </div>
-    </div>
-</div>
-
-            <!-- -->
-
             <!-- Container Fluid-->
-            <div class="container-fluid d-none" id="container-wrapper">
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <div class="container-fluid" id="container-wrapper">
+                <!--breadcrumb-->
+                <?php
+                include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/breadcrumb.php"
+                ?>
+<!--                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item active" aria-current="page"><a href="./">Главная</a></li>
                     </ol>
-                </div>
+                </div> -->
 
-                <div class="row mb-3">
+                <div class="row mb-3 d-none">
                     <!-- Earnings (Monthly) Card Example -->
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card h-100">
@@ -285,8 +124,24 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Area Chart -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ================================== ДАННЫЕ разработчика ===================================================== -->
+                <div class="row mb-3">
+                    <!--  Таблица данных разработчика -->
                     <div class="col-xl-8 col-lg-7">
                         <div class="card mb-4">
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -313,25 +168,12 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
                             </div>
                         </div>
                     </div>
-                    <!-- Pie Chart -->
+                    <!-- ФОТО Разработчика -->
                     <div class="col-xl-4 col-lg-5">
                         <div class="card mb-4">
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Products Sold</h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button" id="dropdownMenuLink"
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Month <i class="fas fa-chevron-down"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                         aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Select Periode</div>
-                                        <a class="dropdown-item" href="#">Today</a>
-                                        <a class="dropdown-item" href="#">Week</a>
-                                        <a class="dropdown-item active" href="#">Month</a>
-                                        <a class="dropdown-item" href="#">This Year</a>
-                                    </div>
-                                </div>
+                                <h6 class="m-0 font-weight-bold text-primary">Фото разрбаотчика</h6>
+
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">
@@ -381,13 +223,30 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
                                 </div>
                             </div>
                             <div class="card-footer text-center">
-                                <a class="m-0 small text-primary card-link" href="#">View More <i
+                                <a class="m-0 small text-primary card-link" href="#">View More<i
                                             class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>
+<!-- ================================== ДАННЫЕ разработчика КОНЕЦ ===================================================== -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <!-- Invoice Example -->
-                    <div class="col-xl-8 col-lg-7 mb-4">
+                    <div class="col-xl-8 col-lg-7 mb-4 d-none">
                         <div class="card">
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-primary">Invoice</h6>
@@ -448,7 +307,7 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
                         </div>
                     </div>
                     <!-- Message From Customer-->
-                    <div class="col-xl-4 col-lg-5 ">
+                    <div class="col-xl-4 col-lg-5 d-none">
                         <div class="card">
                             <div class="card-header py-4 bg-primary d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-light">Message From Customer</h6>
@@ -490,6 +349,7 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <!--Row-->
 
@@ -507,8 +367,6 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/footer.php"?>
         <!-- Footer -->
     </div>
-
-
 </div>
 
 <!-- Scroll to top -->
@@ -516,12 +374,8 @@ if (isset($_POST["cardname"])&& $_POST["cardname"]!="") {
     <i class="fas fa-angle-up"></i>
 </a>
 
-
- <script src="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
- <script src="http://<?php echo $_SERVER['HTTP_HOST']?>/admin/assets/js/ruang-admin.min.js"></script>
- <?php
+<?php
 include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
-
 
 ?>
 </body>

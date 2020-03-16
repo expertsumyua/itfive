@@ -15,6 +15,7 @@ if($loginOut){
         ajax.onload = function () {
             document.cookie = 'customers_id=; Max-Age=-99999999;';
             document.cookie = 'status=; Max-Age=-99999999;';
+            document.cookie = 'basket=; Max-Age=-99999999;';
             location.assign($siteURL);
         };
         //отправка запроса

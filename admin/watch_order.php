@@ -5,6 +5,11 @@ include $_SERVER['DOCUMENT_ROOT'] . "/configs/db.php";
 ?>
 
 <?php
+$page = "Заказ";
+
+?>
+
+<?php
 
 
 ?>
@@ -17,19 +22,23 @@ $result = $connect->query($sql);
 $row = mysqli_fetch_assoc($result);
 $order_servise = $row['service'];
 
-//echo $order_servise;
-if (isset($_POST))
+if (isset($_POST["addBoard"]))
 {
     //echo $order_servise;
     /// Создаем доску в таблице boards и добавляем связь пользователя с таблицей в board_users
         $sql = "SELECT * FROM boards WHERE order_id=" . $_GET['id'];
         if (!mysqli_fetch_assoc($connect->query($sql))) {
 
-            $sql_boards = "INSERT INTO `boards` (order_id, order_servise) VALUES ('" . $_GET['id'] . "', '" . $order_servise . "');";
+            $sql_boards = "INSERT INTO boards (order_id, order_servise) VALUES ('" . $_GET['id'] . "', '" . $order_servise . "');";
             mysqli_query($connect, $sql_boards);
-            $sql_m = "SELECT * FROM `boards` WHERE `order_id` = " . $_GET['id'] . " ORDER BY `id` DESC";
+            $sql_m = "SELECT * FROM boards WHERE order_id = " . $_GET['id'] . " ORDER BY id DESC";
             $boards = mysqli_fetch_assoc(mysqli_query($connect, $sql_m));
             $boards["id"];
+            header("Location: /admin/board/board.php?board=". $boards['id'] ."");
+        } else {
+            $sql = "SELECT * FROM boards WHERE order_id=" . $_GET['id'];
+            $board = mysqli_fetch_assoc($connect->query($sql));
+            header("Location: /admin/board/board.php?board=". $board['id'] ."");
         }
 
 }
@@ -61,9 +70,13 @@ if (isset($_POST))
             </nav>
             <!-- Topbar -->
             <!-- <form method="POST"> -->
-            <form action="/admin/board/board.php?order=<?php echo $_GET["id"]; ?>" method="POST">
+            <form method="POST">
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
+
+                <?php
+                include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/breadcrumb.php"
+                ?>
                     <!-- Row -->
                     <div class="row">
                         <!-- DataTable with Hover -->
@@ -79,6 +92,7 @@ if (isset($_POST))
                                             <th scope="col">№</th>
                                             <th scope="col">Технология</th>
                                             <th scope="col">Категории</th>
+                                            <th scope="col">Количество</th>
                                             <th scope="col">Цена</th>
                                         </tr>
                                       </thead>
@@ -94,13 +108,13 @@ if (isset($_POST))
 
                                                                 for ($i = 0; $i < count($basket['basket']); $i++) {
                                                                    /* $sql = "SELECT * FROM services WHERE id =" . $basket['basket'][$i]['service_id'];*/
-                                                    $sql = "SELECT services.short_description, services.title, services.cost, services.img, services.id, category_services.category_id FROM services 
-                                                             INNER JOIN category_services ON services.id = category_services.service_id 
+                                                    $sql = "SELECT services.short_description, services.title, services.cost, services.img, services.id, category_services.category_id FROM services
+                                                             INNER JOIN category_services ON services.id = category_services.service_id
                                                              INNER JOIN categories ON categories.id = category_services.category_id
-                                                             WHERE services.id =" . $basket['basket'][$i]['service_id'];
+                                                             WHERE services.id =" . $basket['basket'][$i]['service_id'] . " AND categories.id =" . $basket['basket'][$i]['category_id'];
                                                                     $resultService = mysqli_query($connect, $sql);
                                                                     $service = mysqli_fetch_assoc($resultService);
-                                                                ?> 
+                                                                ?>
                                                                         <tr>
                                                                             <td><?php echo $service['id']; ?></td>
                                                                             <td><?php echo $service['title']; ?></td>
@@ -116,6 +130,10 @@ if (isset($_POST))
 
 
                                                                             </td>
+                                                                            
+                                                                            <td><?php echo $basket['basket'][$i]['count']; ?></td>
+
+                                                                            
 
                                                                             <!-- Расчет стоимости заказа -->
                                                                             <input id="start_price<?php echo $service['id'];?>" type="hidden" name="start_prise" value="<?php echo $service['cost'];?>" >
@@ -136,7 +154,8 @@ if (isset($_POST))
                     </div>
                     <!---Container Fluid-->
                 </div>
-                <button class="btn__progress">Прогресс</button>
+                <input type="hidden" name="addBoard">
+                <button type="submit" class="btn__progress">Прогресс</button>
             </form>
 
     </div>
@@ -158,7 +177,7 @@ if (isset($_POST))
 <script src="assets/js/main.js"></script>
 
 <?php
-// include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
+include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/scripts.php"
 
 ?>
 </body>

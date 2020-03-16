@@ -15,20 +15,20 @@
     transform: translate(-100%, -50%);
 }
 
-.btn__progress {
+button.btn__progress {
 	font-size: 25px;
 	width: 200px;
 	float: right;
-	border: 1px solid blue;
+	border: 1px solid #6777ef;
 	padding: 15px 15px;
 	margin-right: 23px;
 	text-decoration: none;
-	color: blue;
+	color: #6777ef;
 	text-align: center;
 }
 
-.btn__progress:hover {
-	background: blue;
+button.btn__progress:hover {
+	background: #6777ef;
 	color: white;
 	text-decoration: none;
 }
