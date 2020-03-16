@@ -16,11 +16,6 @@ if(isset($_POST['submit'])) {
         $sql = "UPDATE customers SET first_name = '". $_POST['first_name'] ."', last_name= '". $_POST['last_name'] ."', email= '". $_POST['email'] ."', rights= '". $_POST['rights'] ."' WHERE customers.id =" . $_GET['id'];
 
     }
-
-    // $sql = "UPDATE customers SET first_name = '". $_POST['first_name'] ."', last_name= '". $_POST['last_name'] ."', email= '". $_POST['email'] ."', rights= '". $_POST['rights'] ."' WHERE customers . id =" . $_GET['id'];
-    //$sql = "UPDATE customers SET photo = '$photo' WHERE customers.id =" . $_GET['id'];
-    // var_dump($sql);
-    // die();
     if($connect->query($sql)){
         header("Location: /admin/user-profile.php");
     } else {
@@ -59,8 +54,9 @@ if(isset($_POST['submit'])) {
                         <?php
                         include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/breadcrumb.php"
                         ?>
+                <!-- enctype="multipart/form-data ОБЯЗАТЕЛЬНО Без неё не рбаотает!-->
+                <form method="POST" enctype="multipart/form-data"> 
                     <!-- Row -->
-                <form method="POST" enctype="multipart/form-data">    
                     <div class="row">
                         <div class="col-md-8">
                             <div class="card">
@@ -130,8 +126,15 @@ if(isset($_POST['submit'])) {
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body d-flex justify-content-center">
-                                   <?php $show_img = base64_encode($data['photo']) ?>
-                                    <!-- <img class="bottom-img" src="data:image/jpeg;base64,<?=$show_img ?>"> -->
+                                    
+                                    <?php
+                                    //if (isset($_FILES['img_upload']['tmp_name'])){
+                                        //$show_img = addslashes(file_get_contents($_FILES['img_upload']['tmp_name']));
+                                    //} else {
+                                        $show_img = base64_encode($data['photo']);
+                                    //}
+                                    ?>
+                                        <!-- <img class="bottom-img" src="data:image/jpeg;base64,<?=$show_img ?>"> -->
                                     <img class="img-profile rounded-circle " src="data:image/jpeg;base64,<?=$show_img ?>" style="max-width: 250px">
                                 </div> 
     <!--                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -143,10 +146,11 @@ if(isset($_POST['submit'])) {
                                 </div>
                             </div>
                         </div>
-                    </form>
 
+                    </div>
+                </form>
 
-                </div>
+                
             </div>
             <!---Container Fluid-->
         </div>
