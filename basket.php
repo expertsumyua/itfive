@@ -27,7 +27,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
                             $sql = "SELECT services.short_description, services.title, services.cost, services.img, services.id, category_services.category_id FROM services 
                             INNER JOIN category_services ON services.id = category_services.service_id 
                             INNER JOIN categories ON categories.id = category_services.category_id
-                            WHERE services.id =" . $basket['basket'][$i]['service_id'] . " AND categories.id =" . $basket['basket'][$i]['category_id'];
+                            WHERE service_id =" . $basket['basket'][$i]['service_id'] . " AND category_id =" . $basket['basket'][$i]['category_id'];
                             
                             $result = $connect->query($sql);
                             $row = mysqli_fetch_assoc($result);
@@ -45,8 +45,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
                                 <!-- редактирование количества товара -->
                                 <td>
                                         <input type="number" class="btn btn-outline-light col-2 edit_input"
-                                               id="count<?php echo $row['id'];?>" min="0" value="<?php echo $basket['basket'][$i]['count'];?>"
-                                               onchange="formEditCount(<?php echo $row['id']; ?>)">
+                                               id="count<?php echo $row['category_id'];?>" min="0" value="<?php echo $basket['basket'][$i]['count'];?>"
+                                               onchange="formEditCount(this, <?php echo $row['category_id'];?>, <?php echo $row['id']; ?>)">
 
                                 </td>
                                 <!-- Расчет стоимости заказа -->

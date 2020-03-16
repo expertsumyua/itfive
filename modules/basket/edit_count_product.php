@@ -6,7 +6,7 @@
         $basket = json_decode($_COOKIE['basket'], true);
 
         for($i = 0; $i < count($basket['basket']); $i++) {
-            if($basket['basket'][$i]['service_id'] == $_POST['id']){
+            if($basket['basket'][$i]['service_id'] == $_POST['ser'] && $basket['basket'][$i]['category_id'] == $_POST['id']){
                 $basket['basket'][$i]['count'] = $_POST['count'];
                 //$edit_count = $basket['basket'][$i]['count'];      
                            
