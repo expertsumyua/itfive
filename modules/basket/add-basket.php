@@ -1,6 +1,8 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php';
 // Проверяем, был ли отправлен ПОСТ запрос
+
+
 if (isset($_POST) and $_SERVER["REQUEST_METHOD"]=="POST"){
 
 /*$sql = "SELECT * FROM services WHERE id=" . $_POST['id'];
@@ -10,7 +12,8 @@ if (isset($_POST) and $_SERVER["REQUEST_METHOD"]=="POST"){
                         FROM services 
                         INNER JOIN category_services ON services.id = category_services.service_id 
                         INNER JOIN categories ON categories.id = category_services.category_id
-                        WHERE services.id =" . $_POST['id'] . " AND categories.id=" . $_POST['cat'];
+                        WHERE  category_id=" . $_POST['id'] . " AND service_id =" . $_POST['ser'];
+
     $result = $connect->query($sql);
     $row = mysqli_fetch_assoc($result);
     // Добавление в корзину
@@ -21,7 +24,7 @@ if (isset($_POST) and $_SERVER["REQUEST_METHOD"]=="POST"){
 
         $issetProduct = 0;
         for($i = 0; $i < count($basket['basket']); $i++) {
-            if( $basket['basket'][$i]["service_id"] == $row['id']) {
+            if( $basket['basket'][$i]["service_id"] == $row['id'] && $basket['basket'][$i]["category_id"] == $row['category_id']) {
                  $basket['basket'][$i]['count']++;
                  $issetProduct = 1;
             }
