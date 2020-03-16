@@ -71,6 +71,7 @@ if(isset($_POST['submit'])) {
                         <?php
                         include $_SERVER['DOCUMENT_ROOT'] . "/admin/parts/breadcrumb.php"
                         ?>
+                <!-- enctype="multipart/form-data ОБЯЗАТЕЛЬНО Без неё не рбаотает!-->
                 <form method="POST" enctype="multipart/form-data">      
                     <!-- Row -->
                     <div class="row">
