@@ -51,7 +51,7 @@ if (isset($_POST) and $_SERVER["REQUEST_METHOD"]=="POST" and !isset($_COOKIE['cu
             $row = mysqli_fetch_assoc($result);
             $sum[$i] = $row['cost'] * $basket['basket'][$i]['count'];
         }
-        $sum_order = ('Новый заказ на суму ' .  array_sum($sum) . '$');
+        $sum_order = ('Новый заказ на сумму ' .  array_sum($sum) . '$');
 
         setcookie("basket", "", 0, "/");
         header("Location: /index.php");
