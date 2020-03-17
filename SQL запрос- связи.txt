@@ -1,0 +1,42 @@
+// Поиск и вывод заказов
+SELECT orders.id, customers.`First name`, customers.`Last name` FROM customers
+INNER JOIN orders ON customers.id = orders.customer_id
+
+// Поиск и вывод заказов по имени
+SELECT orders.id, orders.service, customers.first_name, customers.last_name FROM customers
+INNER JOIN orders ON customers.id = orders.customer_id
+WHERE customers.first_name = 'Alex'
+
+// Найти и выбрать наименование, (описание, цену и кратинки) сервиса, если ID категории =1
+SELECT services.title, services.short_description, services.cost, services.img FROM services
+INNER JOIN category_services ON services.id = category_services.service_id
+INNER JOIN categories ON categories.id = category_services.category_id
+WHERE categories.id = 1
+// ИЛИ
+// Найти и выбрать наименование категории, (наименование, описание, цену и картинки) сервиса, если ID категории =1
+SELECT categories.title AS 'categories_title', services.title, services.short_description, services.cost, services.img FROM services
+INNER JOIN category_services ON services.id = category_services.service_id
+INNER JOIN categories ON categories.id = category_services.category_id
+WHERE categories.id = 1
+
+// Найти и выбрать наименование категории, (наименование, описание, цену и картинки) сервиса, если ID услуги =4
+SELECT categories.title AS 'categories_title', services.title, services.short_description, services.cost, services.img FROM services
+INNER JOIN category_services ON services.id = category_services.service_id
+INNER JOIN categories ON categories.id = category_services.category_id
+WHERE services.id = 4
+
+//  удаление Услуг, но сначала КАТЕГОРИИ
+DELETE FROM category_services WHERE category_services.service_id=12;
+DELETE FROM services WHERE services.id=12;
+
+// Удаление услуг если ЕСТЬ связь с категорией (AS можно неуказывать)
+DELETE cs, s FROM category_services AS cs
+LEFT JOIN services AS s ON s.id = cs.service_id
+WHERE cs.service_id = 18;
+// ИЛИ
+DELETE category_services, services FROM category_services
+LEFT JOIN services ON services.id = category_services.service_id
+WHERE category_services.service_id = 18;
+
+// Удаление услуг если НЕТ связи с категорией
+DELETE FROM services WHERE services.id=12;
