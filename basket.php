@@ -70,9 +70,9 @@ include $_SERVER['DOCUMENT_ROOT'] . '/parts/header.php';
 
                                 <!-- редактирование количества товара -->
                                 <td>
-                                        <input type="number" class="btn btn-outline-light col-2 edit_input"
-                                               id="count<?php echo $row['category_id'];?>" min="0" value="<?php echo $basket['basket'][$i]['count'];?>"
-                                               onchange="formEditCount(this, <?php echo $row['category_id'];?>, <?php echo $row['id']; ?>)">
+                                    <input type="number" class="btn btn-outline-light col-2 edit_input"
+                                            id="count<?php echo $row['category_id'];?>" min="0" value="<?php echo $basket['basket'][$i]['count'];?>"
+                                            onchange="formEditCount(this, <?php echo $row['category_id'];?>, <?php echo $row['id']; ?>)">
 
                                 </td>
                                 <!-- Расчет стоимости заказа -->
