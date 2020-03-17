@@ -44,11 +44,20 @@ if (isset($_POST) and $_SERVER["REQUEST_METHOD"]=="POST" and !isset($_COOKIE['cu
     $sql = "INSERT INTO orders (customer_id, service) VALUES ('" . $_COOKIE['customers_id'] . "', '" . $_COOKIE['basket'] . "')";
 
     if($connect->query($sql)) {
+        $basket = json_decode($_COOKIE['basket'], true);
+        for($i = 0; $i < count($basket['basket']); $i++) {
+            $sql = "SELECT * FROM services WHERE id=" . $basket['basket'][$i]['service_id'];
+            $result = $connect->query($sql);
+            $row = mysqli_fetch_assoc($result);
+            $sum[$i] = $row['cost'] * $basket['basket'][$i]['count'];
+        }
+        $sum_order = ('Новый заказ на суму ' .  array_sum($sum) . '$');
+
         setcookie("basket", "", 0, "/");
         header("Location: /index.php");
         // Отправить сообщение о новом заказе в телеграм
         foreach (TELEGRAM_TOKEN as $chatid => $token) {
-        message_to_telegram('New order!!!', $chatid, $token);
+        message_to_telegram($sum_order , $chatid, $token);
         }
     }
 }
